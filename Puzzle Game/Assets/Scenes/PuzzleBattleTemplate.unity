@@ -295,6 +295,16 @@ PrefabInstance:
       propertyPath: m_Parameters.colorGradient.key1.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3496160313796208653, guid: 33625e8acacec814b90f0f9f12e76187,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496160313796208653, guid: 33625e8acacec814b90f0f9f12e76187,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 3496160313841743240, guid: 33625e8acacec814b90f0f9f12e76187,
         type: 3}
       propertyPath: m_RootOrder

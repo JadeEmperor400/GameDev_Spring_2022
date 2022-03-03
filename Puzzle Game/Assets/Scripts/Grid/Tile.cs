@@ -13,8 +13,9 @@ public class Tile : MonoBehaviour
     [SerializeField]
     private GameObject lineObjectPrefab;
 
+    private GameObject spawnedLineObject;
 
-    public void Init() //for the init, perhaps change it to ethier, red green blue or empty 
+    public void Init() 
     {
         int randNum = Random.Range(0, 5);
 
@@ -57,16 +58,16 @@ public class Tile : MonoBehaviour
         {
             case ColorEnum.RED:
                 _renderer.color = Color.red;
-                createLineObject();
+               // createLineObject();
                 break;
 
             case ColorEnum.BLUE:
                 _renderer.color = Color.blue;
-                createLineObject();
+               // createLineObject();
                 break;
             case ColorEnum.GREEN:
                 _renderer.color = Color.green;
-                createLineObject();
+               // createLineObject();
                 break;
             case ColorEnum.NONE:
                 _renderer.color = Color.black;
@@ -81,19 +82,25 @@ public class Tile : MonoBehaviour
 
     private void createLineObject()
     {
-        var spawnedLineObject = Instantiate(lineObjectPrefab, transform.position, Quaternion.identity);
+        spawnedLineObject = Instantiate(lineObjectPrefab, transform.position, Quaternion.identity);
         spawnedLineObject.name = name + " lineObject";
         spawnedLineObject.transform.parent = transform;
 
-        var linerenderer = GetComponent<LineRenderer>();
-        if (linerenderer != null)
-        {
-            Debug.Log("line renderer is created, changing the color ");
-            linerenderer.startColor = Color.yellow;
-            linerenderer.endColor = Color.yellow;
-        }
     }
     
+   /* public void BoxCollider2D()
+    {
+        Debug.Log("Something happened " + gameObject.name);
+    }*/
+
+
+    void OnMouseDown()
+    {
+      
+
+        if ((spawnedLineObject == null) && colorIdentity != ColorEnum.NONE)
+                 createLineObject(); 
+    }
   
 
 }
