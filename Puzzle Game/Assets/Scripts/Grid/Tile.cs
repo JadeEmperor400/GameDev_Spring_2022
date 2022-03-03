@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    
 
+    private ColorEnum colorIdentity;
 
     [SerializeField]
     private SpriteRenderer _renderer;
@@ -14,34 +14,86 @@ public class Tile : MonoBehaviour
     private GameObject lineObjectPrefab;
 
 
-
-
-    public void Init(bool isOffset) //for the init, perhaps change it to ethier, red green blue or empty 
+    public void Init() //for the init, perhaps change it to ethier, red green blue or empty 
     {
-        if (isOffset)
-            _renderer.color = Color.blue;
-        else
-            _renderer.color = Color.yellow;
+        int randNum = Random.Range(0, 5);
 
+        switch(randNum)
+        {
+                case 0:
+                colorIdentity = ColorEnum.RED;
+                break; 
+
+                case 1:
+                colorIdentity = ColorEnum.BLUE;
+                break;
+
+                case 2:
+                colorIdentity = ColorEnum.GREEN;
+                break; 
+
+                case 3:
+                colorIdentity = ColorEnum.NONE;
+                break;
+
+                case 4:
+                colorIdentity = ColorEnum.NONE;
+                break;
+
+                default:
+                Debug.Log("Default case reached in Tile class");
+
+                colorIdentity = ColorEnum.NONE;
+                break;
+    
+
+        }
+        setColor();
+    }
+
+    private void setColor()
+    {
+        switch (colorIdentity)
+        {
+            case ColorEnum.RED:
+                _renderer.color = Color.red;
+                createLineObject();
+                break;
+
+            case ColorEnum.BLUE:
+                _renderer.color = Color.blue;
+                createLineObject();
+                break;
+            case ColorEnum.GREEN:
+                _renderer.color = Color.green;
+                createLineObject();
+                break;
+            case ColorEnum.NONE:
+                _renderer.color = Color.black;
+                break;
+
+            default:
+                Debug.Log("Default case reached in Tile class, SetColor()");
+               
+                break;
+        }
+    }
+
+    private void createLineObject()
+    {
         var spawnedLineObject = Instantiate(lineObjectPrefab, transform.position, Quaternion.identity);
         spawnedLineObject.name = name + " lineObject";
-
         spawnedLineObject.transform.parent = transform;
 
+        var linerenderer = GetComponent<LineRenderer>();
+        if (linerenderer != null)
+        {
+            Debug.Log("line renderer is created, changing the color ");
+            linerenderer.startColor = Color.yellow;
+            linerenderer.endColor = Color.yellow;
+        }
     }
-
-    void OnMouseEnter()
-    {
-
-    }
-
-    //initialize a among us style line rendererer in each tile. then make it only valid for the tiles with a "color" in it 
-    //If I click on that line I can grab it and infinitely drag it to another "grid" 
-    //look at the snap to object code, maybe you can add that as well, the line renderer can only "snap" to its same color "line and line catcher object?" 
-
-
-
-    //future, what happens if a connection is valid? 
-
+    
+  
 
 }

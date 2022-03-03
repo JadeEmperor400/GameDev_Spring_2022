@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum ColorEnum {
+    RED, GREEN, BLUE, NONE
+}
+
+
 public class GridManager : MonoBehaviour
 {
 
@@ -32,8 +38,8 @@ public class GridManager : MonoBehaviour
                  spawnedTile.transform.parent = transform; //all tiles are now a child of the gridmanager object
                   spawnedTile.transform.localScale += new Vector3(-0.1f, -0.1f, -0.1f);
 
-                var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
-                spawnedTile.Init(isOffset);
+               // var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
+                spawnedTile.Init();
             }
         }
     }
