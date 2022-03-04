@@ -295,6 +295,11 @@ PrefabInstance:
       propertyPath: m_Parameters.colorGradient.key1.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3496160313796208649, guid: 33625e8acacec814b90f0f9f12e76187,
+        type: 3}
+      propertyPath: m_TagString
+      value: LineHead
+      objectReference: {fileID: 0}
     - target: {fileID: 3496160313796208653, guid: 33625e8acacec814b90f0f9f12e76187,
         type: 3}
       propertyPath: m_Size.x
@@ -363,6 +368,11 @@ PrefabInstance:
     - target: {fileID: 3496160313841743243, guid: 33625e8acacec814b90f0f9f12e76187,
         type: 3}
       propertyPath: m_Name
+      value: LineObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496160313841743243, guid: 33625e8acacec814b90f0f9f12e76187,
+        type: 3}
+      propertyPath: m_TagString
       value: LineObject
       objectReference: {fileID: 0}
     m_RemovedComponents: []

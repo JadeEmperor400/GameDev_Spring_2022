@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-
+    private const int X_OFFSET = -2;
+    private const int Y_OFFSET = -3;
     private ColorEnum colorIdentity;
 
     [SerializeField]
@@ -13,10 +14,20 @@ public class Tile : MonoBehaviour
     [SerializeField]
     private GameObject lineObjectPrefab;
 
+    private GridManager gridManager; 
+
     private GameObject spawnedLineObject;
 
+
+    void Start()
+    {
+        gridManager = FindObjectOfType<GridManager>();
+        
+       
+    }
     public void Init() 
     {
+        
         int randNum = Random.Range(0, 5);
 
         switch(randNum)
@@ -82,16 +93,89 @@ public class Tile : MonoBehaviour
 
     private void createLineObject()
     {
-        spawnedLineObject = Instantiate(lineObjectPrefab, transform.position, Quaternion.identity);
-        spawnedLineObject.name = name + " lineObject";
-        spawnedLineObject.transform.parent = transform;
+      
+            spawnedLineObject = Instantiate(lineObjectPrefab, transform.position, Quaternion.identity);
+            spawnedLineObject.name = name + " lineObject";
+            spawnedLineObject.transform.parent = transform;
+        
 
     }
     
-   /* public void BoxCollider2D()
+    public void destroyLineObject()
     {
-        Debug.Log("Something happened " + gameObject.name);
-    }*/
+        if (spawnedLineObject != null)
+        {
+            Destroy(spawnedLineObject);
+        }
+    }
+
+    //method for the NONE tiles 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+       if(colorIdentity == ColorEnum.NONE)
+        {
+            if (col.gameObject.CompareTag("LineHead"))
+            {
+              
+                var lr = col.gameObject.transform.parent.GetComponentInChildren<LineRenderer>();
+          
+                var Line = col.gameObject.GetComponent<Line>();
+                Line.DisableDrag();
+                col.gameObject.transform.position = transform.position;
+
+                gridManager.AddConnectedTiles(this.gameObject);
+
+                lr.SetPosition(2, new Vector3(col.gameObject.transform.localPosition.x, col.gameObject.transform.localPosition.y, 0f));
+
+
+                if (spawnedLineObject == null)
+                {
+                    createLineObject();
+                }
+                
+
+            }
+                
+        }
+       
+        
+
+       if(colorIdentity != ColorEnum.NONE)
+        {
+            if(col.gameObject.CompareTag("LineHead"))
+            {
+                var firstTile = gridManager.getFirstConnectedTile();
+                if(GameObject.ReferenceEquals(firstTile, this.gameObject))
+                {
+                    return; //this is when the lineobject hits itself
+                }
+
+
+                if(firstTile.GetComponent<Tile>().getTileColorIdentity() == getTileColorIdentity())
+                {
+                    Debug.Log("Connection made");
+                    //REPEATING CODE, THIS SHOULD BE A METHOD 
+                    var lr = col.gameObject.transform.parent.GetComponentInChildren<LineRenderer>();
+
+                    var Line = col.gameObject.GetComponent<Line>();
+                    Line.DisableDrag();
+                    col.gameObject.transform.position = transform.position;
+
+                    gridManager.AddConnectedTiles(this.gameObject);
+
+                    lr.SetPosition(2, new Vector3(col.gameObject.transform.localPosition.x, col.gameObject.transform.localPosition.y, 0f));
+                }
+            }
+        }
+
+
+            
+
+       
+    }
+
+
+
 
 
     void OnMouseDown()
@@ -99,8 +183,17 @@ public class Tile : MonoBehaviour
       
 
         if ((spawnedLineObject == null) && colorIdentity != ColorEnum.NONE)
-                 createLineObject(); 
+        {
+            gridManager.AddConnectedTiles(this.gameObject);
+            createLineObject();
+        }
+               
     }
   
+
+    public ColorEnum getTileColorIdentity()
+    {
+        return colorIdentity;
+    }
 
 }
