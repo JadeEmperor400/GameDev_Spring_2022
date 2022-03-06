@@ -15,6 +15,7 @@ public class Dialogue_Set : ScriptableObject
     }
 
     public List<Dialogue> Dialogues { get { return dialogues; } }
+
     public void sendDialogue() {
         if (Textbox.T != null)
         {

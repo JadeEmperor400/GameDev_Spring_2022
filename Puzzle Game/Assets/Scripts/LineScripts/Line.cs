@@ -28,10 +28,16 @@ public class Line : MonoBehaviour
             Vector3 mousePosition = Input.mousePosition; // returns "mouse coordinates", must convert to game vector position 
             Vector3 convertedMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             convertedMousePosition.z = 0; //making sure the z position is 0
-            transform.position = convertedMousePosition;
 
+
+           
+
+         
+            transform.position = convertedMousePosition;
             Vector3 positionDifference = convertedMousePosition - lineRenderer.transform.position;
             lineRenderer.SetPosition(2, positionDifference);
+           
+
         }
 
     }
@@ -56,5 +62,8 @@ public class Line : MonoBehaviour
         dragging = false;
     }
 
-
+    public void DestroyLineObject() //a class has a method of this name already 
+    {
+        Destroy(gameObject.transform.parent.gameObject);
+    }
 }

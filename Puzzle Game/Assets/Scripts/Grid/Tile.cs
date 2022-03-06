@@ -4,104 +4,88 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    private const int X_OFFSET = -2;
-    private const int Y_OFFSET = -3;
+
+
+    //TODO potentially seperate things about line object into a seperate script 
+
+   
     private ColorEnum colorIdentity;
 
     [SerializeField]
-    private SpriteRenderer _renderer;
+    private SpriteRenderer spriteRenderer;
 
     [SerializeField]
     private GameObject lineObjectPrefab;
+
 
     private GridManager gridManager; 
 
     private GameObject spawnedLineObject;
 
 
+    void Update()
+    {
+       
+    }
     void Start()
     {
         gridManager = FindObjectOfType<GridManager>();
-        
-       
     }
+
     public void Init() 
     {
-        
-        int randNum = Random.Range(0, 5);
-
-        switch(randNum)
-        {
-                case 0:
-                colorIdentity = ColorEnum.RED;
-                break; 
-
-                case 1:
-                colorIdentity = ColorEnum.BLUE;
-                break;
-
-                case 2:
-                colorIdentity = ColorEnum.GREEN;
-                break; 
-
-                case 3:
-                colorIdentity = ColorEnum.NONE;
-                break;
-
-                case 4:
-                colorIdentity = ColorEnum.NONE;
-                break;
-
-                default:
-                Debug.Log("Default case reached in Tile class");
-
-                colorIdentity = ColorEnum.NONE;
-                break;
-    
-
-        }
-        setColor();
+        AssignColorIdentity();
     }
 
-    private void setColor()
+    private void AssignColorIdentity()
     {
-        switch (colorIdentity)
+        int randNum = Random.Range(0, 5);
+
+        switch (randNum)
         {
-            case ColorEnum.RED:
-                _renderer.color = Color.red;
-               // createLineObject();
+            case 0:
+                colorIdentity = ColorEnum.RED;
+                spriteRenderer.color = Color.red;
                 break;
 
-            case ColorEnum.BLUE:
-                _renderer.color = Color.blue;
-               // createLineObject();
+            case 1:
+                colorIdentity = ColorEnum.BLUE;
+                spriteRenderer.color = Color.blue;
                 break;
-            case ColorEnum.GREEN:
-                _renderer.color = Color.green;
-               // createLineObject();
+
+            case 2:
+                colorIdentity = ColorEnum.GREEN;
+                spriteRenderer.color = Color.green;
                 break;
-            case ColorEnum.NONE:
-                _renderer.color = Color.black;
+
+            case 3:
+                colorIdentity = ColorEnum.NONE;
+                spriteRenderer.color = Color.black;
+                break;
+
+            case 4:
+                colorIdentity = ColorEnum.NONE;
+                spriteRenderer.color = Color.black;
                 break;
 
             default:
-                Debug.Log("Default case reached in Tile class, SetColor()");
-               
+                Debug.Log("Default case reached in Tile class");
+                colorIdentity = ColorEnum.NONE;
+                spriteRenderer.color = Color.black;
                 break;
         }
     }
 
-    private void createLineObject()
+   
+
+    private void CreateLineObject()
     {
-      
             spawnedLineObject = Instantiate(lineObjectPrefab, transform.position, Quaternion.identity);
             spawnedLineObject.name = name + " lineObject";
             spawnedLineObject.transform.parent = transform;
-        
-
     }
     
-    public void destroyLineObject()
+    public void DestroyLineObject()
     {
         if (spawnedLineObject != null)
         {
@@ -116,21 +100,12 @@ public class Tile : MonoBehaviour
         {
             if (col.gameObject.CompareTag("LineHead"))
             {
-              
-                var lr = col.gameObject.transform.parent.GetComponentInChildren<LineRenderer>();
-          
-                var Line = col.gameObject.GetComponent<Line>();
-                Line.DisableDrag();
-                col.gameObject.transform.position = transform.position;
 
+                SnapToPosition(col.gameObject);
                 gridManager.AddConnectedTiles(this.gameObject);
-
-                lr.SetPosition(2, new Vector3(col.gameObject.transform.localPosition.x, col.gameObject.transform.localPosition.y, 0f));
-
-
                 if (spawnedLineObject == null)
                 {
-                    createLineObject();
+                    CreateLineObject();
                 }
                 
 
@@ -138,12 +113,15 @@ public class Tile : MonoBehaviour
                 
         }
        
-        
-
        if(colorIdentity != ColorEnum.NONE)
         {
             if(col.gameObject.CompareTag("LineHead"))
             {
+                //send to gridmanager to determine if its a connection
+                //if it is a valid connection(bool method?), snap to position. And remove all line head in that list and reset the list ?
+                //remember check for if it hits itself 
+               
+
                 var firstTile = gridManager.getFirstConnectedTile();
                 if(GameObject.ReferenceEquals(firstTile, this.gameObject))
                 {
@@ -151,19 +129,12 @@ public class Tile : MonoBehaviour
                 }
 
 
-                if(firstTile.GetComponent<Tile>().getTileColorIdentity() == getTileColorIdentity())
+                if(firstTile.GetComponent<Tile>().GetTileColorIdentity() == GetTileColorIdentity())
                 {
-                    Debug.Log("Connection made");
-                    //REPEATING CODE, THIS SHOULD BE A METHOD 
-                    var lr = col.gameObject.transform.parent.GetComponentInChildren<LineRenderer>();
-
-                    var Line = col.gameObject.GetComponent<Line>();
-                    Line.DisableDrag();
-                    col.gameObject.transform.position = transform.position;
-
+                    Debug.Log("Connection made"); //why does the tile class have info on when a connection is made 
+                    SnapToPosition(col.gameObject);
+                    
                     gridManager.AddConnectedTiles(this.gameObject);
-
-                    lr.SetPosition(2, new Vector3(col.gameObject.transform.localPosition.x, col.gameObject.transform.localPosition.y, 0f));
                 }
             }
         }
@@ -174,24 +145,30 @@ public class Tile : MonoBehaviour
        
     }
 
+   
 
-
-
-
-    void OnMouseDown()
+    private void SnapToPosition(GameObject lineObject)
     {
-      
+        var lr = lineObject.gameObject.transform.parent.GetComponentInChildren<LineRenderer>();
+        var Line = lineObject.gameObject.GetComponent<Line>();
+        Line.DisableDrag();
+        lineObject.gameObject.transform.position = transform.position;
+        lr.SetPosition(2, new Vector3(lineObject.gameObject.transform.localPosition.x, lineObject.gameObject.transform.localPosition.y, 0f));
+    }
 
+
+    private void OnMouseDown()
+    {
         if ((spawnedLineObject == null) && colorIdentity != ColorEnum.NONE)
         {
+           
             gridManager.AddConnectedTiles(this.gameObject);
-            createLineObject();
-        }
-               
+            CreateLineObject();
+        }          
     }
   
 
-    public ColorEnum getTileColorIdentity()
+    public ColorEnum GetTileColorIdentity()
     {
         return colorIdentity;
     }
