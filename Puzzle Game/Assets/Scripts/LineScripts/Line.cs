@@ -7,6 +7,8 @@ public class Line : MonoBehaviour
     public LineRenderer lineRenderer;
     private bool dragging = false;
 
+    private int lnXID;
+    private int lnYID;
 
     // Start is called before the first frame update
     void Start()
@@ -62,8 +64,20 @@ public class Line : MonoBehaviour
         dragging = false;
     }
 
-    public void DestroyLineObject() //a class has a method of this name already 
+    //GETTERS AND SETTERS 
+    public int GetLineXID()
     {
-        Destroy(gameObject.transform.parent.gameObject);
+        return lnXID;
+    }
+    
+    public int GetLineYID()
+    {
+        return lnYID;
+    }
+
+    public void SetLineID(int xId, int yId)
+    {
+        lnXID = xId;
+        lnYID = yId;
     }
 }
