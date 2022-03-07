@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 1152070879}
   - component: {fileID: 1152070878}
   - component: {fileID: 1152070880}
+  - component: {fileID: 1152070881}
   m_Layer: 0
   m_Name: GridManager
   m_TagString: Untagged
@@ -236,8 +237,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8dd3f0405a02fb4fa155097b5be1a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 6
-  height: 6
+  RedPercentage: 12
+  BluePercentage: 12
+  GreenPercentage: 12
+  width: 5
+  height: 5
   _tilePrefab: {fileID: 7217362616580450239, guid: 14953a5b31e7bdd46a815c544e718233,
     type: 3}
   connectedTiles: []
@@ -269,3 +273,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridManager: {fileID: 1152070878}
   collider2d: {fileID: 0}
+--- !u!114 &1152070881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152070877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3beabdcab6212b842909eab76fa5f0e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridManager: {fileID: 1152070878}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,16 +10,16 @@ public enum ColorEnum {
 
 
 public class GridManager : MonoBehaviour
-{  
-    //TODO duplicate ColorEnum.NONE in list when hit Ontriggerenter2D in Tile Class
-    //TODO establish connnection 
-    //TODO automatic drag with mouse 
-    //TODO consider using sets to deal with duplicates 
-    //TODO for scaling, consider offsets based on size of tiles 
-    //TODO in gridmanager, give specific amount of color amount and assign them  
-    // 2 different buttons, one for clearing grid, and one for ending turn (resets grid to a new one)
+{
 
-    
+    //TODO automatic drag with mouse 
+    //TODO consider using sets to deal with duplicates in connected tiles script  
+    //TODO for scaling, consider offsets based on size of tiles 
+    //TODO 2 valid connections of the same color type causes a bug, fix should just be clear connectedtiles on valid connection
+
+    [SerializeField]
+    [Range(12, 20)]
+    private int RedPercentage = 12, BluePercentage = 12, GreenPercentage =12; 
 
     [SerializeField]
     private int width, height;
@@ -38,10 +39,6 @@ public class GridManager : MonoBehaviour
         GenerateGrid(); 
     }
 
-    void Start()
-    {
-
-    }
    private void GenerateGrid()
     {
         for (int x = 0; x < width; x++)
@@ -56,29 +53,62 @@ public class GridManager : MonoBehaviour
                 spawnedTile.transform.localScale += new Vector3(-0.1f, -0.1f, -0.1f);
 
 
-                spawnedTile.Init();
+                spawnedTile.Init(GenerateRandomColorType());
                 spawnedTile.SetTileId(x, y);
 
-                allTilesInGrid.Add(spawnedTile.gameObject);
-                
-              
+                allTilesInGrid.Add(spawnedTile.gameObject);            
             }
         }
     }
-    
-  
+
+    private ColorEnum GenerateRandomColorType()
+    {
+        int num = UnityEngine.Random.Range(1, 101);
+        int n = 100 - (RedPercentage + BluePercentage + GreenPercentage);
+
+        if (num <= n)
+            return ColorEnum.NONE;
+        else if (num <= RedPercentage + n)
+            return ColorEnum.RED;
+        else if (num <= BluePercentage + RedPercentage + n)
+            return ColorEnum.BLUE;
+        else if (num <= GreenPercentage + BluePercentage + RedPercentage + n) //100 or less 
+            return ColorEnum.GREEN;
+
+        return ColorEnum.NONE;
+    }
+
+    public void RegenerateGrid()//assumption that grid size will be the same, maybe add parameters for grid size 
+    {
+        //delete all line objects in the grid 
+        RemoveLineObjectsInList(allTilesInGrid, true);
+
+        //rechange the "type" of all the tiles 
+        ReassignColorTypeInGrid(allTilesInGrid); 
+
+        //reset connected tiles, sanity check
+        connectedTiles.Clear();
+    }
+
+    private void ReassignColorTypeInGrid(List<GameObject> list)
+    {
+        foreach (var tile in list)
+            tile.GetComponent<Tile>().Init(GenerateRandomColorType());
+    }
+
 
     public void AddConnectedTiles(GameObject tile)
     {
-        CheckSameSelection(tile);
+      
         if (tile.gameObject.GetComponent<Tile>().GetTileColorIdentity() != ColorEnum.NONE)
         {
-            if(connectedTiles.Count > 0)
+            if(connectedTiles.Count > 0) //this should be removed and implemented elsewhere
             {
-                if(tile.gameObject.GetComponent<Tile>().GetTileColorIdentity() != connectedTiles[0].gameObject.GetComponent<Tile>().GetTileColorIdentity())
+                //if the currently selected tile is not the same type as the first tile selected
+                if(tile.gameObject.GetComponent<Tile>().GetTileColorIdentity() != connectedTiles[0].gameObject.GetComponent<Tile>().GetTileColorIdentity()) 
                 {
                    
-                    RemoveLineObjectsInList();
+                    RemoveLineObjectsInList(connectedTiles);
                     RemoveTilesInList();
                   
                     connectedTiles.Add(tile);
@@ -87,23 +117,6 @@ public class GridManager : MonoBehaviour
             }
         }
         connectedTiles.Add(tile);
-    }
-
-
-    //A utility check for if the player chooses a colored tile of the same color somewhere else 
-    public void CheckSameSelection(GameObject tile)
-    {
-        if (connectedTiles.Count > 0)
-        {
-            if (tile.gameObject.GetComponent<Tile>().GetTileColorIdentity() == connectedTiles[0].gameObject.GetComponent<Tile>().GetTileColorIdentity())
-            {
-               // RemoveLineObjectsInList();
-              //  RemoveTilesInList();
-
-            }
-
-        }
-
     }
 
 
@@ -117,8 +130,6 @@ public class GridManager : MonoBehaviour
                 return;
             }
         }
-
-
         foreach (var tile in connectedTiles)
         {
             tile.gameObject.GetComponent<Tile>().SetInUse(true);
@@ -126,32 +137,42 @@ public class GridManager : MonoBehaviour
         Debug.Log("Connection made");
     }
 
+   
+
+
+    public void RemoveLineObjectsInList(List<GameObject> list, bool completeRemove = false)
+    {
+        if (completeRemove == true)
+        {
+            foreach (var tile in list)
+                tile.gameObject.GetComponent<Tile>().DestroyLineObject();
+        }
+        else
+        {
+            foreach (var tile in list)
+            {
+
+                if (tile.gameObject.GetComponent<Tile>().IsInUse() == false)
+                    tile.gameObject.GetComponent<Tile>().DestroyLineObject(); //duplicated code, refactor later 
+            }
+        }
+    }
+
+    //GETTERS AND SETTERS
     public GameObject getFirstConnectedTile()
     {
         if (connectedTiles.Count == 0)
-        { 
-            return null; 
+        {
+            return null;
         }
 
         return connectedTiles[0];
     }
 
-
-    public void RemoveLineObjectsInList()//add bool parameter to delete based on currently used nodes? 
-    {
-        foreach (var tile in connectedTiles)
-        {
-
-            if(tile.gameObject.GetComponent<Tile>().IsInUse() == false)
-            tile.gameObject.GetComponent<Tile>().DestroyLineObject();
-        }
-    }
-
     public void RemoveTilesInList()
     {
         connectedTiles.Clear();
-    }
-    
+    }  
 
     public int getWidth()
     {
@@ -161,7 +182,6 @@ public class GridManager : MonoBehaviour
     {
         return height;
     }
-
 
     public List<GameObject> getAllTilesInGrid()
     {

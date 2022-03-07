@@ -10,12 +10,6 @@ public class Line : MonoBehaviour
     private int lnXID;
     private int lnYID;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -29,29 +23,18 @@ public class Line : MonoBehaviour
         {
             Vector3 mousePosition = Input.mousePosition; // returns "mouse coordinates", must convert to game vector position 
             Vector3 convertedMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            convertedMousePosition.z = 0; //making sure the z position is 0
-
-
-           
-
-         
+            convertedMousePosition.z = 0; //making sure the z position is 0         
             transform.position = convertedMousePosition;
             Vector3 positionDifference = convertedMousePosition - lineRenderer.transform.position;
-            lineRenderer.SetPosition(2, positionDifference);
-           
-
+            lineRenderer.SetPosition(2, positionDifference);        
         }
 
     }
 
 
    private void OnMouseDown()
-    {
-       
-       
+    {            
         dragging = true;
-
-     
     }
 
     private void OnMouseUp()
