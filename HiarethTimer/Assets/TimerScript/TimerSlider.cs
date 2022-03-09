@@ -20,25 +20,25 @@ public class TimerSlider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float time = gameTime - Time.time;
-        int minutes = Mathf.FloorToInt(time / 60);
-        int seconds = Mathf.FloorToInt(time - minutes * 60f);
+        gameTime -= Time.deltaTime;
+        int minutes = Mathf.FloorToInt(gameTime / 60);
+        int seconds = Mathf.FloorToInt(gameTime - minutes * 60f);
         string textTime = string.Format("{0:0}:{1:00}", minutes, seconds);    
 
-        if(time <=0){
+        if(gameTime <=0){
             Start();
             timeDisplay.text = textTime;
-            timerSlider.value = time;
+            timerSlider.value = gameTime;
         }
-        if(time >= 0){
+        if(gameTime >= 0){
             if(Input.GetKeyDown("space")){
-            time = gameTime - Time.time*2;
+            gameTime = gameTime - Time.deltaTime*2;
             timeDisplay.text = textTime;
-            timerSlider.value = time;           
+            timerSlider.value = gameTime;           
         }
             else{
             timeDisplay.text = textTime;
-            timerSlider.value = time;
+            timerSlider.value = gameTime;
             }
            
     }
