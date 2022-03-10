@@ -240,8 +240,8 @@ MonoBehaviour:
   RedPercentage: 12
   BluePercentage: 12
   GreenPercentage: 12
-  width: 5
-  height: 5
+  width: 6
+  height: 6
   _tilePrefab: {fileID: 7217362616580450239, guid: 14953a5b31e7bdd46a815c544e718233,
     type: 3}
   connectedTiles: []

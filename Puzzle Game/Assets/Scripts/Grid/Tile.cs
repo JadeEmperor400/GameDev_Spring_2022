@@ -22,6 +22,7 @@ public class Tile : MonoBehaviour
     [SerializeField]
     private bool inUse = false; //flag to determine if its part of a connection already 
 
+    private bool inUseLine = false;
 
     //linkedlist data structure technique to see if I can validate connections
     [SerializeField]//showing it to the editor for debugging 
@@ -33,6 +34,15 @@ public class Tile : MonoBehaviour
         gridManager = FindObjectOfType<GridManager>();
     }
 
+    private void Update()
+    {
+        if (spawnedLineObject == null)
+        {
+            inUseLine = false;
+        }
+        else
+            inUseLine = true;
+    }
     public void Init(ColorEnum colorType)
     {
         switch (colorType)
@@ -89,6 +99,23 @@ public class Tile : MonoBehaviour
                 }
 
                 SnapToPosition(col.gameObject);
+
+                //setting lineobject to "isplaced"
+                var Line = col.gameObject.GetComponent<Line>();
+                if (Line != null)
+                {
+                    if((Line.GetLineXID() != GetXID()) || (Line.GetLineYID() != GetYID()))
+                    {
+                       
+
+                      
+                       // Line.SetIsPlaced();
+                    }
+                   
+                }
+                    
+
+
                 gridManager.AddConnectedTiles(this.gameObject);
                 if (spawnedLineObject == null)
                 {
@@ -184,6 +211,10 @@ public class Tile : MonoBehaviour
     }
 
     //GETTERS AND SETTERS 
+    public bool GetInUseLine()
+    {
+        return inUseLine;
+    }
     public ColorEnum GetTileColorIdentity()
     {
         return colorIdentity;
