@@ -7,42 +7,62 @@ public class TimerSlider : MonoBehaviour
 {
     public Slider timerSlider;
     public Text timeDisplay;
-    public float gameTime;
+    float gameTime;
+    public float startTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameTime = 10;
-        timerSlider.maxValue = gameTime;
+        timerSlider.maxValue = startTime;
         timerSlider.value = gameTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        gameTime -= Time.deltaTime;
-        int minutes = Mathf.FloorToInt(gameTime / 60);
-        int seconds = Mathf.FloorToInt(gameTime - minutes * 60f);
-        string textTime = string.Format("{0:0}:{1:00}", minutes, seconds);    
+        timeUpdate();  
 
         if(gameTime <=0){
-            Start();
-            timeDisplay.text = textTime;
-            timerSlider.value = gameTime;
+            gameTime = startTime;
+            sliderUpdate();
         }
-        if(gameTime >= 0){
-            if(Input.GetKeyDown("space")){
-            gameTime = gameTime - Time.deltaTime*2;
-            timeDisplay.text = textTime;
-            timerSlider.value = gameTime;           
+        else{
+           sliderUpdate();
         }
-            else{
-            timeDisplay.text = textTime;
-            timerSlider.value = gameTime;
-            }
            
     }
 
 
+    public void doubleTime(){
+        Time.timeScale = 2;
+        sliderUpdate();             
+     } 
+
+    public void normalTime(){
+        Time.timeScale = 1;
+        sliderUpdate();             
+     }  
+
+    public void removeTime(){
+        gameTime = gameTime - 2;
+        sliderUpdate();             
+     } 
+
+    public void addTime(){
+        gameTime = gameTime + 2;
+        sliderUpdate();             
+     }    
+
+
+    void sliderUpdate(){
+        int minutes = Mathf.FloorToInt(gameTime / 60);
+        int seconds = Mathf.FloorToInt(gameTime - minutes * 60f);
+        string textTime = string.Format("{0:0}:{1:00}", minutes, seconds);  
+        timeDisplay.text = textTime;
+        timerSlider.value = gameTime;
+    }
+
+    void timeUpdate(){
+        gameTime -= Time.deltaTime;
     }
 }
