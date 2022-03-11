@@ -84,6 +84,7 @@ public class Tile : MonoBehaviour
              if(!IsFromNeighborTile(col.gameObject))
              {
                 Debug.Log("not from a neighbor tile");
+                gridManager.RemoveLineObjectsInList(gridManager.getConnectedTiles()); //remove the lineobjects in the current connected tiles
                return;
               }   
         }
@@ -100,19 +101,7 @@ public class Tile : MonoBehaviour
 
                 SnapToPosition(col.gameObject);
 
-                //setting lineobject to "isplaced"
-                var Line = col.gameObject.GetComponent<Line>();
-                if (Line != null)
-                {
-                    if((Line.GetLineXID() != GetXID()) || (Line.GetLineYID() != GetYID()))
-                    {
-                       
-
-                      
-                       // Line.SetIsPlaced();
-                    }
-                   
-                }
+               
                     
 
 
@@ -137,13 +126,20 @@ public class Tile : MonoBehaviour
                 }
 
 
-                if(firstTile.GetComponent<Tile>().GetTileColorIdentity() == GetTileColorIdentity())
-                {                  
-                   SnapToPosition(col.gameObject);    
-                   gridManager.AddConnectedTiles(this.gameObject);
-                   //alert gridmanger about connection 
-                   gridManager.ValidateConnection();
+                if (firstTile.GetComponent<Tile>().GetTileColorIdentity() == GetTileColorIdentity())
+                {
+                    SnapToPosition(col.gameObject);
+                    gridManager.AddConnectedTiles(this.gameObject);
+                    //alert gridmanger about connection 
+                    gridManager.ValidateConnection();
                 }
+                else
+                {
+                    gridManager.RemoveLineObjectsInList(gridManager.getConnectedTiles());
+                }
+
+
+
             }
         } 
 
@@ -180,13 +176,21 @@ public class Tile : MonoBehaviour
            int lnx = Line.GetLineXID();
            int lny = Line.GetLineYID();
             
-            if ((lnx > GetXID() + 1) || (lnx < GetXID() - 1))
-            {              
+            if ((lnx > GetXID() + 1) || (lnx < GetXID() - 1)) //using XOR operator to make sure connection is from neighboring tiles and not diagonal 
+            {             
+                
                 return false;
             }
               
             if ((lny > GetYID() + 1) || (lny < GetYID() - 1))
             {               
+                return false;
+            }
+
+            // if (((lnx != GetXID() + 1) || (lnx != GetXID() - 1)) && ((lny > GetYID() + 1) || (lny < GetYID() - 1)))
+            if ((lnx != GetXID() )  &&  (lny != GetYID()) )
+            {
+                Debug.Log("diagonal try");
                 return false;
             }
         } 

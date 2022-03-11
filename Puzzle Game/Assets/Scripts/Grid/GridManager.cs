@@ -11,18 +11,31 @@ public enum ColorEnum {
 
 public class GridManager : MonoBehaviour
 {
+    //Debug build for sofi, to get more precise inspiration, add input system so she can change the size at will, maybe change node size, line renderer size etc.
+    //if debug build works, then make one for the general public 
 
-    //TODO automatic drag with mouse 
-    //TODO consider using sets to deal with duplicates in connected tiles script  
-    //TODO for scaling, consider offsets based on size of tiles 
+    //TODO random null reference sometimes ontriggerenter
+    //Ignore diagonal connections  TESTING
+    //TODO automatic drag with mouse, TESTING  
     //TODO 2 valid connections of the same color type causes a bug, fix should just be clear connectedtiles on valid connection
+
+    //TODO consider using sets to deal with duplicates in connected tiles script , NOT NEEDED 
+
+    //Seperate Class to measure combos and types of connections 
+
 
     [SerializeField]
     [Range(12, 20)]
     private int RedPercentage = 12, BluePercentage = 12, GreenPercentage =12; 
 
     [SerializeField]
+    [Range(4, 12)]
     private int width, height;
+
+  
+
+    [Range(1f, 2.1f)]
+    public float offset = 1f;
 
     [SerializeField]
     private Tile _tilePrefab;
@@ -46,7 +59,7 @@ public class GridManager : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
 
-                var gridPlacement = new Vector3(x, y);
+                var gridPlacement = new Vector3(x * offset, y *offset);
                 var spawnedTile = Instantiate(_tilePrefab, gridPlacement, Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
                 spawnedTile.transform.parent = transform; //all tiles are now a child of the gridmanager object
@@ -59,6 +72,17 @@ public class GridManager : MonoBehaviour
                 allTilesInGrid.Add(spawnedTile.gameObject);            
             }
         }
+    }
+
+
+    public void RegenerateGrid()
+    {
+        foreach (var tile in allTilesInGrid)
+        {
+            if(tile.gameObject != null)
+            Destroy(tile.gameObject);
+        }
+        GenerateGrid();
     }
 
     private ColorEnum GenerateRandomColorType()
@@ -78,7 +102,7 @@ public class GridManager : MonoBehaviour
         return ColorEnum.NONE;
     }
 
-    public void RegenerateGrid()//assumption that grid size will be the same, maybe add parameters for grid size 
+    public void RegenerateGridColors()//assumption that grid size will be the same, maybe add parameters for grid size 
     {
         //delete all line objects in the grid 
         RemoveLineObjectsInList(allTilesInGrid, true);
@@ -93,7 +117,11 @@ public class GridManager : MonoBehaviour
     private void ReassignColorTypeInGrid(List<GameObject> list)
     {
         foreach (var tile in list)
+        {
+            if(tile.gameObject != null)
             tile.GetComponent<Tile>().Init(GenerateRandomColorType());
+        }
+            
     }
 
 
@@ -127,6 +155,8 @@ public class GridManager : MonoBehaviour
             if(connectedTiles[i].gameObject.GetComponent<Tile>().GetPrevTile() == null)
             {
                 Debug.Log("Invalid Connection");
+                RemoveLineObjectsInList(connectedTiles);
+                connectedTiles.Clear();
                 return;
             }
         }
@@ -134,6 +164,7 @@ public class GridManager : MonoBehaviour
         {
             tile.gameObject.GetComponent<Tile>().SetInUse(true);
         }
+        connectedTiles.Clear ();
         Debug.Log("Connection made");
     }
 
@@ -145,7 +176,11 @@ public class GridManager : MonoBehaviour
         if (completeRemove == true)
         {
             foreach (var tile in list)
+            {
+                if(tile.gameObject != null)
                 tile.gameObject.GetComponent<Tile>().DestroyLineObject();
+            }
+               
         }
         else
         {
@@ -156,6 +191,7 @@ public class GridManager : MonoBehaviour
                     tile.gameObject.GetComponent<Tile>().DestroyLineObject(); //duplicated code, refactor later 
             }
         }
+        connectedTiles.Clear(); 
     }
 
     //GETTERS AND SETTERS
@@ -186,6 +222,25 @@ public class GridManager : MonoBehaviour
     public List<GameObject> getAllTilesInGrid()
     {
         return allTilesInGrid;
+    }
+
+    public List<GameObject> getConnectedTiles()
+    {
+        return connectedTiles;
+    }
+
+    public void SetGridOffset(float newOffset)
+    {
+        offset = newOffset;
+    }
+
+    public void SetGridWidth(int newWidth)
+    {
+        width = newWidth;
+    }
+    public void SetGridHeight(int newHeight)
+    {
+        height = newHeight;
     }
 
 }

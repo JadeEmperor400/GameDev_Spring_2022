@@ -9,7 +9,7 @@ public class Line : MonoBehaviour
     private bool isPlaced = false;
     private int lnXID;
     private int lnYID;
-
+     
     private void Start()
     {
         
@@ -71,7 +71,7 @@ public class Line : MonoBehaviour
             {
                 if ((GetLineXID() == tile.GetXID()) && (GetLineYID() == tile.GetYID()))
                 {
-                    Debug.Log("This line is part of the same tile");
+                    
                     isPlaced = false;
                 }
                 else if (tile.GetInUseLine() == true)
@@ -80,7 +80,7 @@ public class Line : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("We are about to set this line into place, Line " + GetLineXID() + ", "+ GetLineYID());
+                   
                     SetIsPlaced();
                 }
                    
