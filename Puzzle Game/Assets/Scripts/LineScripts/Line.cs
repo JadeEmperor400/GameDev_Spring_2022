@@ -5,14 +5,14 @@ using UnityEngine;
 public class Line : MonoBehaviour
 {
     public LineRenderer lineRenderer;
-    private bool dragging = false;
+   // private bool dragging;
     private bool isPlaced = false;
     private int lnXID;
     private int lnYID;
      
     private void Start()
     {
-        
+      //  dragging = false;
     }
 
     // Update is called once per frame
@@ -28,10 +28,8 @@ public class Line : MonoBehaviour
     {
         if (isPlaced == true)
             return;
-
-      
-            FollowMouse();
  
+            FollowMouse();
 
     }
 
@@ -48,17 +46,17 @@ public class Line : MonoBehaviour
 
    private void OnMouseDown()
     {            
-        dragging = true;
+    //    dragging = true;
     }
 
     private void OnMouseUp()
     {
-        dragging = false;
+       // dragging = false;
     }
 
     public void DisableDrag()
     {
-        dragging = false;
+       // dragging = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -22,9 +22,9 @@ public class Tile : MonoBehaviour
     [SerializeField]
     private bool inUse = false; //flag to determine if its part of a connection already 
 
-    private bool inUseLine = false;
+    private bool inUseLine = false; //flag to the determine if the LINE is part of a connection already 
 
-    //linkedlist data structure technique to see if I can validate connections
+    //linkedlist data structure technique to check if connection is valid
     [SerializeField]//showing it to the editor for debugging 
     private GameObject prevTile;
 
@@ -88,7 +88,7 @@ public class Tile : MonoBehaviour
                return;
               }   
         }
-
+        //if placed on a black or none colored tile 
         if (colorIdentity == ColorEnum.NONE)
         {          
             if (col.gameObject.CompareTag("LineHead"))
@@ -100,11 +100,6 @@ public class Tile : MonoBehaviour
                 }
 
                 SnapToPosition(col.gameObject);
-
-               
-                    
-
-
                 gridManager.AddConnectedTiles(this.gameObject);
                 if (spawnedLineObject == null)
                 {
@@ -120,6 +115,13 @@ public class Tile : MonoBehaviour
             if(col.gameObject.CompareTag("LineHead"))
             {             
                 var firstTile = gridManager.getFirstConnectedTile();
+                if (firstTile == null)
+                {
+                    Debug.Log("Debugging skills yyoooo");
+                    return;
+                }
+                   
+
                 if(GameObject.ReferenceEquals(firstTile, this.gameObject))
                 {
                     return; //this is when the lineobject hits itself
@@ -176,7 +178,7 @@ public class Tile : MonoBehaviour
            int lnx = Line.GetLineXID();
            int lny = Line.GetLineYID();
             
-            if ((lnx > GetXID() + 1) || (lnx < GetXID() - 1)) //using XOR operator to make sure connection is from neighboring tiles and not diagonal 
+            if ((lnx > GetXID() + 1) || (lnx < GetXID() - 1))
             {             
                 
                 return false;
@@ -187,16 +189,16 @@ public class Tile : MonoBehaviour
                 return false;
             }
 
-            // if (((lnx != GetXID() + 1) || (lnx != GetXID() - 1)) && ((lny > GetYID() + 1) || (lny < GetYID() - 1)))
+           
             if ((lnx != GetXID() )  &&  (lny != GetYID()) )
             {
-                Debug.Log("diagonal try");
+               
                 return false;
             }
         } 
         else
         {
-            Debug.Log("false cuz null in Tile class ");
+           
             return false;   
         }
 
