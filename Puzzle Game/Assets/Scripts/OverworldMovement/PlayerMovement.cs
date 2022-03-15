@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatStopsMovement;
 
 
+
     void Start()
     {
         movePoint.parent = null;
@@ -30,15 +31,21 @@ public class PlayerMovement : MonoBehaviour
                 }
                 
             }
-            if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, whatStopsMovement))
+            if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
-                //Ball
-                movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, whatStopsMovement))
+                {
+                    //Ball
+                    movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                }
             }
+            
             
         }
 
         
     }
+
+   
 }
 
