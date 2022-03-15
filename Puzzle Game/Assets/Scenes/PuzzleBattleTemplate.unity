@@ -975,7 +975,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 484525441}
   m_Direction: 0
   m_MinValue: 5
-  m_MaxValue: 8
+  m_MaxValue: 7
   m_WholeNumbers: 1
   m_Value: 6
   m_OnValueChanged:
@@ -1399,7 +1399,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 604093071}
   m_Direction: 0
   m_MinValue: 5
-  m_MaxValue: 8
+  m_MaxValue: 7
   m_WholeNumbers: 1
   m_Value: 6
   m_OnValueChanged:
@@ -1492,7 +1492,6 @@ GameObject:
   - component: {fileID: 1152070878}
   - component: {fileID: 1152070881}
   - component: {fileID: 1152070880}
-  - component: {fileID: 1152070882}
   m_Layer: 0
   m_Name: GridManager
   m_TagString: Untagged
@@ -1551,7 +1550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DEBUG_FLAG: 1
   currentComboText: {fileID: 2108498487}
-  gridManager: {fileID: 1152070878}
+  connectionText: {fileID: 397881533}
 --- !u!114 &1152070881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1571,20 +1570,6 @@ MonoBehaviour:
   sliderGridWidthtText: {fileID: 138480693}
   sliderGridHeight: {fileID: 1027832713}
   sliderGridHeightText: {fileID: 673682841}
---- !u!114 &1152070882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152070877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fc6468945ea0bd45bb0b1f755255167, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connectionText: {fileID: 397881533}
-  gridComboManager: {fileID: 1152070880}
 --- !u!1 &1369110999
 GameObject:
   m_ObjectHideFlags: 0
@@ -1888,10 +1873,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1052336520}
   m_HandleRect: {fileID: 332803708}
   m_Direction: 0
-  m_MinValue: 2.5
-  m_MaxValue: 4.5
+  m_MinValue: 2.75
+  m_MaxValue: 3.75
   m_WholeNumbers: 0
-  m_Value: 3.5
+  m_Value: 3.25
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

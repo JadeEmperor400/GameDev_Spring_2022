@@ -3,80 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Connection
-{
-   
-
-
-
-    ColorEnum colorType = ColorEnum.NONE; //define it as none to start? 
-    private int lengthOfConnection = 0;
-
-    public Connection(int lengthOfConnection, ColorEnum colorType)
-    {
-       this.lengthOfConnection = lengthOfConnection;
-       this.colorType = colorType;
-    }
-
-    //GETTERS AND SETTERS 
-    public ColorEnum getColorType()
-    {
-        return colorType;
-    }
-   public int getLengthOfConnection()
-    {
-        return lengthOfConnection;
-    }
-}
-
-
-public class Combo
-{
-   
-
-
-    private Queue<Connection> connections = new Queue<Connection>();
-  
-
-
-    
-    public Queue<Connection> getAllConnections()
-    {
-        return connections;
-    }
-
-    //add connection to queue 
-    public void AddConnection(Connection connection)
-    {
-        connections.Enqueue(connection); 
-        
-    }
-
-    //clear combo method 
-    public void ClearCombo()
-    {
-       //just make a new empty queue ? 
-
-    }
-
-
-
-}
-
 public class GridComboManager : MonoBehaviour
 {
     //debug variables 
     public bool DEBUG_FLAG = true;
     public Text currentComboText;
+    [SerializeField]
+    private Text connectionText;
 
     private Connection lastConnectionMade = null;//for debug
 
-    [SerializeField]
-    private GridManager gridManager; //is this needed? 
+    
 
     private Combo combo = new Combo(); //how to garantee one instance of combo?  
 
-    public void AddToCombo(List<GameObject> connectionList) //bad name, change it later
+
+    private void Update()
+    {
+        if (getLastConnectionMade() != null && DEBUG_FLAG)
+        {
+            connectionText.text = "LAST CONNECTION MADE:" + getLastConnectionMade().getColorType() + " - " + getLastConnectionMade().getLengthOfConnection();
+        }
+    }
+    public void AddToCombo(List<GameObject> connectionList) 
     {
        
         //make a connection object based on that list 
@@ -87,8 +36,7 @@ public class GridComboManager : MonoBehaviour
         combo.AddConnection(connection);
       
         if(DEBUG_FLAG)
-        {
-            
+        {           
             currentComboText.text += "\n Color: " + connection.getColorType() + " " + connection.getLengthOfConnection(); 
         }
 
@@ -125,8 +73,7 @@ public class GridComboManager : MonoBehaviour
     {
         if (DEBUG_FLAG)
         {
-            currentComboText.text = "";
-           
+            currentComboText.text = "";          
         }
     }
 
