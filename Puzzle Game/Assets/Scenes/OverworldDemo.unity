@@ -1878,7 +1878,7 @@ GameObject:
   - component: {fileID: 528001399}
   - component: {fileID: 528001398}
   m_Layer: 5
-  m_Name: Ultimate UI Canvas
+  m_Name: Touch UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1958,7 +1958,7 @@ RectTransform:
   m_Children:
   - {fileID: 939322873}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2045,7 +2045,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 818241700}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &709951374
 GameObject:
@@ -2077,7 +2077,7 @@ Transform:
   m_Children:
   - {fileID: 2013169740}
   m_Father: {fileID: 818241700}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &709951376
 CircleCollider2D:
@@ -2140,7 +2140,7 @@ Transform:
   - {fileID: 1230332418}
   - {fileID: 1883872075}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &731842492
 Tilemap:
@@ -2193,7 +2193,7 @@ GameObject:
   - component: {fileID: 762225373}
   - component: {fileID: 762225376}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2258,10 +2258,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762225372}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -0.5, y: -0.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 818241700}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &762225376
@@ -2273,11 +2273,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 762225372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2607abe4e808a4a90ae5a2c7fc60b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 12fb6bb13149f6a4a91b72462207f013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maintainHeight: 0
-  adaptPosition: 1
+  target: {fileID: 818241700}
 --- !u!1 &818241698
 GameObject:
   m_ObjectHideFlags: 0
@@ -2312,6 +2311,7 @@ MonoBehaviour:
   whatStopsMovement:
     serializedVersion: 2
     m_Bits: 64
+  freezePlayer: 0
 --- !u!4 &818241700
 Transform:
   m_ObjectHideFlags: 0
@@ -2323,10 +2323,11 @@ Transform:
   m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 762225375}
   - {fileID: 584697828}
   - {fileID: 709951375}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &939322873 stripped
 RectTransform:
@@ -2769,7 +2770,7 @@ GameObject:
   - component: {fileID: 1510942589}
   - component: {fileID: 1510942588}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: Touch Event System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2821,7 +2822,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1883872074
 GameObject:
@@ -9421,7 +9422,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013169739}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -9475,7 +9476,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1930457997205300, guid: ee250115b6588924fae658dd8db790f6, type: 3}
       propertyPath: m_Name
-      value: Dark Joystick
+      value: Movement Joystick
       objectReference: {fileID: 0}
     - target: {fileID: 114077611300725542, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
@@ -9490,6 +9491,46 @@ PrefabInstance:
     - target: {fileID: 114077611300725542, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114124628316905110, guid: ee250115b6588924fae658dd8db790f6,
+        type: 3}
+      propertyPath: anchor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114124628316905110, guid: ee250115b6588924fae658dd8db790f6,
+        type: 3}
+      propertyPath: deadZone
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114124628316905110, guid: ee250115b6588924fae658dd8db790f6,
+        type: 3}
+      propertyPath: scalingAxis
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114124628316905110, guid: ee250115b6588924fae658dd8db790f6,
+        type: 3}
+      propertyPath: joystickName
+      value: Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 114124628316905110, guid: ee250115b6588924fae658dd8db790f6,
+        type: 3}
+      propertyPath: joystickSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114124628316905110, guid: ee250115b6588924fae658dd8db790f6,
+        type: 3}
+      propertyPath: tapCountOption
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114124628316905110, guid: ee250115b6588924fae658dd8db790f6,
+        type: 3}
+      propertyPath: positionHorizontal
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114124628316905110, guid: ee250115b6588924fae658dd8db790f6,
+        type: 3}
+      propertyPath: customActivationRange
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114832116788905040, guid: ee250115b6588924fae658dd8db790f6,
@@ -9550,12 +9591,12 @@ PrefabInstance:
     - target: {fileID: 224575833377848682, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 120
+      value: 640
       objectReference: {fileID: 0}
     - target: {fileID: 224575833377848682, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 120
+      value: 540
       objectReference: {fileID: 0}
     - target: {fileID: 224575833377848682, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
@@ -9595,12 +9636,12 @@ PrefabInstance:
     - target: {fileID: 224575833377848682, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 94
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 224575833377848682, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 132
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 224575833377848682, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
@@ -9620,12 +9661,22 @@ PrefabInstance:
     - target: {fileID: 224799044942441028, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 120
+      value: 288
       objectReference: {fileID: 0}
     - target: {fileID: 224799044942441028, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 120
+      value: 288
+      objectReference: {fileID: 0}
+    - target: {fileID: 224799044942441028, guid: ee250115b6588924fae658dd8db790f6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -96.640015
+      objectReference: {fileID: 0}
+    - target: {fileID: 224799044942441028, guid: ee250115b6588924fae658dd8db790f6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -39.600006
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee250115b6588924fae658dd8db790f6, type: 3}
