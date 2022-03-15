@@ -15,11 +15,11 @@ public class TimeTest : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown("space")){
-            Debug.Log("Wassuuup");
+            Debug.Log("Time is counting down twice as fast");
             timerSlider.doubleTime();
         }
         if(Input.GetKeyDown("tab")){
-            Debug.Log("You pressed tab");
+            Debug.Log("Time is counting down regularly");
             timerSlider.normalTime();
         }
         if(Input.GetKeyDown("down")){
@@ -31,6 +31,16 @@ public class TimeTest : MonoBehaviour
             Debug.Log("You pressed up");
             Debug.Log("You are adding 2 seconds");
             timerSlider.addTime();
+        }
+        if(Input.GetKeyDown("left")){
+            Debug.Log("You pressed left");
+            Debug.Log("time FREEZE");
+            timerSlider.pauseTime();
+        }
+        if(Input.GetKeyDown("right")){
+            Debug.Log("You pressed right");
+            Debug.Log("time UNFREEZE");
+            timerSlider.resumeTime();
         }
     }
 }
