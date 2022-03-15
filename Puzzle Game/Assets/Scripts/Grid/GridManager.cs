@@ -17,7 +17,9 @@ public class GridManager : MonoBehaviour
     //Ignore diagonal connections  TESTING
     //TODO automatic drag with mouse, TESTING  
     //TODO 2 valid connections of the same color type causes a bug, fix should just be clear connectedtiles on valid connection
-
+    //TODO Dynamic Dropdown system -> maybe try manipulating grid based on x and y pos, (Seperate Script, TileMovement), "invisible" instantiated row up top.
+    //^ algorhthm for droppinng tiles based on connection. Refactor gridManager? 
+    
     //TODO consider using sets to deal with duplicates in connected tiles script , NOT NEEDED 
 
     //Seperate Class to measure combos and types of connections 
@@ -82,6 +84,7 @@ public class GridManager : MonoBehaviour
         }
         connectedTiles = new List<GameObject>();
         GenerateGrid();
+        gridComboManager.ClearCombo();
        
     }
 

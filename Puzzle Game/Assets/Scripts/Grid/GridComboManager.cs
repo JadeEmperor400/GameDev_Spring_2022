@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Connection
 {
+   
+
+
+
     ColorEnum colorType = ColorEnum.NONE; //define it as none to start? 
     private int lengthOfConnection = 0;
 
@@ -27,7 +32,10 @@ public class Connection
 
 public class Combo
 {
-   private Queue<Connection> connections = new Queue<Connection>();
+   
+
+
+    private Queue<Connection> connections = new Queue<Connection>();
   
 
 
@@ -41,11 +49,13 @@ public class Combo
     public void AddConnection(Connection connection)
     {
         connections.Enqueue(connection); 
+        
     }
 
     //clear combo method 
     public void ClearCombo()
     {
+       //just make a new empty queue ? 
 
     }
 
@@ -55,6 +65,10 @@ public class Combo
 
 public class GridComboManager : MonoBehaviour
 {
+    //debug variables 
+    public bool DEBUG_FLAG = true;
+    public Text currentComboText;
+
     private Connection lastConnectionMade = null;//for debug
 
     [SerializeField]
@@ -64,12 +78,20 @@ public class GridComboManager : MonoBehaviour
 
     public void AddToCombo(List<GameObject> connectionList) //bad name, change it later
     {
+       
         //make a connection object based on that list 
-       var connection = ConvertToConnection(connectionList);
+        var connection = ConvertToConnection(connectionList);
 
         //take that newly made connection and add it to the combo
         if(connection != null)
-        combo.AddConnection(connection);      
+        combo.AddConnection(connection);
+      
+        if(DEBUG_FLAG)
+        {
+            
+            currentComboText.text += "\n Color: " + connection.getColorType() + " " + connection.getLengthOfConnection(); 
+        }
+
     }
      
 
@@ -93,10 +115,19 @@ public class GridComboManager : MonoBehaviour
                 cnt++;
             }           
         }
-        Debug.Log("This connection had a length of " + cnt + ". The color was of type " + firstTileColorType);
+       
         Connection newConnection = new Connection(cnt, firstTileColorType);
         setLastConnectionMade(newConnection);//for debug 
         return newConnection;
+    }
+
+    public void ClearCombo()
+    {
+        if (DEBUG_FLAG)
+        {
+            currentComboText.text = "";
+           
+        }
     }
 
     //GETTERS AND SETTERS
