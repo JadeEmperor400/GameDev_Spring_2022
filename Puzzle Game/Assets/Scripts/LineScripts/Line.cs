@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Line : MonoBehaviour
 {
+   
     public LineRenderer lineRenderer;
    // private bool dragging;
     private bool isPlaced = false;

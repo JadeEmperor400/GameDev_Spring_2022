@@ -10,10 +10,15 @@ public enum ColorEnum {
 
 
 public class GridManager : MonoBehaviour
-{ 
+{
     //TODO Dynamic Dropdown system -> maybe try manipulating grid based on x and y pos, (Seperate Script, TileMovement), "invisible" instantiated row up top.
     //^ algorhthm for droppinng tiles based on connection. Refactor gridManager? 
     //TODO random null reference sometimes ontriggerenter, cant remake bug on command
+    public AudioSource audioSource;
+    public AudioClip redClip;
+    public AudioClip blueClip;
+    public AudioClip greenClip;
+
     [SerializeField]
     private GridComboManager gridComboManager;
 
@@ -39,6 +44,7 @@ public class GridManager : MonoBehaviour
     void Awake()
     {
         GenerateGrid(); 
+        audioSource = GetComponent<AudioSource>();
     }
 
    private void GenerateGrid()
@@ -62,6 +68,8 @@ public class GridManager : MonoBehaviour
                 allTilesInGrid.Add(spawnedTile.gameObject);            
             }
         }
+
+        ForceTilesToRange(3, 5);
     }
 
 
@@ -168,9 +176,12 @@ public class GridManager : MonoBehaviour
         }
 
         gridComboManager.AddToCombo(connectedTiles);
+        PlayConnectionSound(connectedTiles[0].gameObject.GetComponent<Tile>().GetTileColorIdentity());
         connectedTiles.Clear ();
         Debug.Log("Connection made");
     }
+
+   
 
     public void RemoveLineObjectsInList(List<GameObject> list, bool completeRemove = false)
     {
@@ -196,6 +207,94 @@ public class GridManager : MonoBehaviour
             }
         }
         connectedTiles.Clear(); 
+    }
+
+    private void ForceTilesToRange(int minAmount, int maxAmount)
+    {
+        ForceMinTiles(minAmount, ColorEnum.RED);
+        ForceMinTiles(minAmount, ColorEnum.GREEN);
+        ForceMinTiles(minAmount, ColorEnum.BLUE);
+        ForceMaxTiles(maxAmount, ColorEnum.RED);
+        ForceMaxTiles(maxAmount, ColorEnum.GREEN);
+        ForceMaxTiles(maxAmount, ColorEnum.BLUE);
+    }
+    private void ForceMinTiles(int minAmount, ColorEnum colorType)
+    {
+        int amtOfColorTile = 0;
+        foreach (var tile in allTilesInGrid)
+        {
+            if (tile.gameObject.GetComponent<Tile>().GetTileColorIdentity() == colorType) 
+                amtOfColorTile++;
+        }
+
+
+        while (amtOfColorTile <= minAmount)
+        {
+           
+            List<GameObject> blackTiles = new List<GameObject>(); 
+            foreach(var tile in allTilesInGrid) //get all black tiles 
+            {
+                if (tile.gameObject.GetComponent<Tile>().GetTileColorIdentity() == ColorEnum.NONE) 
+                    blackTiles.Add(tile);
+            }
+
+            //randomly change one of them to that color 
+            int randNum = UnityEngine.Random.Range(0, blackTiles.Count -1);
+            blackTiles[randNum].gameObject.GetComponent<Tile>().SetTileColorIdentity(colorType);  
+
+
+            amtOfColorTile++;          
+        }
+    }
+    private void ForceMaxTiles(int maxAmount, ColorEnum colorType)
+    {
+        int amtOfColorTile = 0;
+        foreach (var tile in allTilesInGrid)
+        {
+            if (tile.gameObject.GetComponent<Tile>().GetTileColorIdentity() == colorType)
+                amtOfColorTile++;
+        }
+
+
+        while (amtOfColorTile >= maxAmount)
+        {
+
+            List<GameObject> blackTiles = new List<GameObject>();
+            foreach (var tile in allTilesInGrid) //get all black tiles 
+            {
+                if (tile.gameObject.GetComponent<Tile>().GetTileColorIdentity() == colorType)
+                    blackTiles.Add(tile);
+            }
+
+            //randomly change one of them to black
+            int randNum = UnityEngine.Random.Range(0, blackTiles.Count - 1);
+            blackTiles[randNum].gameObject.GetComponent<Tile>().SetTileColorIdentity(ColorEnum.NONE); 
+
+
+            amtOfColorTile--;
+        }
+    }
+
+    private void PlayConnectionSound(ColorEnum colorEnum)
+    {
+        switch(colorEnum)
+        {
+            case ColorEnum.RED:
+                audioSource.clip = redClip;
+                audioSource.Play();
+                break;
+            case ColorEnum.BLUE:
+                audioSource.clip = blueClip;
+                audioSource.Play();
+                break;
+            case ColorEnum.GREEN:
+                audioSource.clip = greenClip;
+                audioSource.Play();
+                break;
+                default:
+                Debug.Log("Play connection sound in GridManager");
+                break;
+        }
     }
 
     //GETTERS AND SETTERS
