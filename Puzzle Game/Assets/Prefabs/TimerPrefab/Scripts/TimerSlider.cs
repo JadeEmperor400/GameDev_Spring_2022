@@ -10,6 +10,7 @@ public class TimerSlider : MonoBehaviour
     public float startTime;
     float gameTime;
     float timeScaleValue;
+    private bool isReset = false;
     
 
     // Start is called before the first frame update
@@ -24,10 +25,15 @@ public class TimerSlider : MonoBehaviour
         timeUpdate();  
             if(gameTime <=0){
                 gameTime = startTime;
+            isReset = true;
                 sliderUpdate();
             }
             else
-                sliderUpdate();     
+        {
+            sliderUpdate();
+            isReset = false;
+        }
+                 
     }
 
      void sliderUpdate(){
@@ -77,6 +83,24 @@ public class TimerSlider : MonoBehaviour
      }    
 
 
+    //GETTERS AND SETTERS 
+    public float getGameTime()
+    {
+        return gameTime;
+    }
 
+    public bool getIsReset()
+    {
+        return isReset;
+    }
+    public void SetStartTime(float newStartTime)
+    {
+        startTime = newStartTime;
+    }
+
+    public float GetStartTime()
+    {
+        return startTime;
+    }
    
 }

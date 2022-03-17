@@ -75,6 +75,7 @@ public class GridComboManager : MonoBehaviour
         {
             currentComboText.text = "";          
         }
+        combo.ClearCombo();
     }
 
     //GETTERS AND SETTERS

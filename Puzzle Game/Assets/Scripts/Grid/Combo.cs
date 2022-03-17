@@ -19,6 +19,9 @@ public class Combo
     public void ClearCombo()
     {
        //just make a new empty queue ? 
+       connections = new Queue<Connection>();
 
     }
+
+    
 }
