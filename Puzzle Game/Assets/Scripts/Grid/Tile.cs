@@ -79,9 +79,16 @@ public class Tile : MonoBehaviour
         }
     }
     private void OnTriggerEnter2D(Collider2D col)
-    { 
-        //if placed near a tile that is not a neighboring tile 
+    {
+        //if placed on a tile that is already in use 
         if (col.gameObject.CompareTag("LineHead"))
+        {
+            if (inUse == true)
+                gridManager.RemoveLineObjectsInList(gridManager.getConnectedTiles()); //remove the lineobjects in the current connected tiles
+        }
+
+            //if placed near a tile that is not a neighboring tile 
+            if (col.gameObject.CompareTag("LineHead"))
         {
              if(!IsFromNeighborTile(col.gameObject))
              {
