@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class TimerSlider : MonoBehaviour
 {
-    public Image sliderFill;
-    public Color myColor;
     public Slider timerSlider;
     public Text timeDisplay;
     public float startTime;
@@ -19,7 +17,6 @@ public class TimerSlider : MonoBehaviour
     {
         timerSlider.maxValue = startTime;
         timerSlider.value = gameTime;
-        myColor.a = 1;
     }
 
     // Update is called once per frame
@@ -79,10 +76,6 @@ public class TimerSlider : MonoBehaviour
         sliderUpdate();             
      }    
 
-     void colorUpdate(){
-        if(gameTime <=10)
-            sliderFill.color = myColor;
-        }
 
 
    
