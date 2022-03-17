@@ -92,7 +92,7 @@ public class Tile : MonoBehaviour
         {
              if(!IsFromNeighborTile(col.gameObject))
              {
-                Debug.Log("not from a neighbor tile");
+               
                 gridManager.RemoveLineObjectsInList(gridManager.getConnectedTiles()); //remove the lineobjects in the current connected tiles
                return;
               }   
@@ -126,7 +126,7 @@ public class Tile : MonoBehaviour
                 var firstTile = gridManager.getFirstConnectedTile();
                 if (firstTile == null)
                 {
-                    Debug.Log("Debugging skills yyoooo");
+                   
                     return;
                 }
                    
@@ -225,7 +225,7 @@ public class Tile : MonoBehaviour
         lr.SetPosition(2, new Vector3(lineObject.gameObject.transform.localPosition.x, lineObject.gameObject.transform.localPosition.y, 0f));
         if (audioSource == null)
         {
-            Debug.Log("yo its null");
+           
         }
         audioSource.Play(0);
     }

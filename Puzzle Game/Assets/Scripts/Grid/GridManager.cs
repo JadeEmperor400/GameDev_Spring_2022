@@ -178,7 +178,7 @@ public class GridManager : MonoBehaviour
         gridComboManager.AddToCombo(connectedTiles);
         PlayConnectionSound(connectedTiles[0].gameObject.GetComponent<Tile>().GetTileColorIdentity());
         connectedTiles.Clear ();
-        Debug.Log("Connection made");
+        
     }
 
    
