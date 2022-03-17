@@ -31,6 +31,8 @@ public class EnemyStats : BattleEntity
     public int extraTurnTimer = 3;
     public int extraCounter = 0;
 
+    public List<EnemyAction> enemyActions = new List<EnemyAction>();
+
     public override void PassTurn()
     {
         Debug.Log(gameObject.name + " Passed Turn");
