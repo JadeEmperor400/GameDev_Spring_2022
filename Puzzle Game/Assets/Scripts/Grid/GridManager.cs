@@ -11,9 +11,9 @@ public enum ColorEnum {
 
 public class GridManager : MonoBehaviour
 {
-    //TODO Dynamic Dropdown system -> maybe try manipulating grid based on x and y pos, (Seperate Script, TileMovement), "invisible" instantiated row up top.
+    //TODO Dynamic Dropdown system -> maybe try manipulating grid based y pos, (Seperate Script, TileMovement), "invisible" instantiated row up top.
     //^ algorhthm for droppinng tiles based on connection. Refactor gridManager? 
-    //TODO random null reference sometimes ontriggerenter, cant remake bug on command
+   
     public AudioSource audioSource;
     public AudioClip redClip;
     public AudioClip blueClip;

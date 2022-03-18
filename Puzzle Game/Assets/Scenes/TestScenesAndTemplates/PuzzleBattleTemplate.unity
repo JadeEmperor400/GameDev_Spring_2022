@@ -1786,7 +1786,7 @@ MonoBehaviour:
   m_MinValue: 2.75
   m_MaxValue: 3.75
   m_WholeNumbers: 0
-  m_Value: 3.25
+  m_Value: 2.775
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1986,6 +1986,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GridManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 152416184227924210, guid: 5a6ab051b60793647b7fe34dc048eea5,
+        type: 3}
+      propertyPath: offset
+      value: 2.775
       objectReference: {fileID: 0}
     - target: {fileID: 152416184227924211, guid: 5a6ab051b60793647b7fe34dc048eea5,
         type: 3}
