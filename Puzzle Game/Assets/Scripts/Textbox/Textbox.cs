@@ -61,7 +61,7 @@ public class Textbox : MonoBehaviour
             return;
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Go = true;
         }
@@ -172,7 +172,7 @@ public class Textbox : MonoBehaviour
 
                 text.text = text.text + line[c];
 
-                if (Input.GetButton("Fire1"))
+                if (Input.GetButton("Fire1")) //what
                 {
                     yield return new WaitForSeconds(0.01f);
                 }
