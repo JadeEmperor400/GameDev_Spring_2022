@@ -1990,7 +1990,7 @@ PrefabInstance:
     - target: {fileID: 152416184227924210, guid: 5a6ab051b60793647b7fe34dc048eea5,
         type: 3}
       propertyPath: offset
-      value: 2.775
+      value: 3.214
       objectReference: {fileID: 0}
     - target: {fileID: 152416184227924211, guid: 5a6ab051b60793647b7fe34dc048eea5,
         type: 3}

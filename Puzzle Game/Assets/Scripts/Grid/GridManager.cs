@@ -176,7 +176,7 @@ public class GridManager : MonoBehaviour
         }
 
         gridComboManager.AddToCombo(connectedTiles);
-        PlayConnectionSound(connectedTiles[0].gameObject.GetComponent<Tile>().GetTileColorIdentity());
+       
         connectedTiles.Clear ();
         
     }
@@ -196,12 +196,17 @@ public class GridManager : MonoBehaviour
         }
         else
         {
+            
             foreach (var tile in list)
             {
                 if (tile.gameObject != null)
                 {
                     if (tile.gameObject.GetComponent<Tile>().IsInUse() == false)
+                    {
+                       
                         tile.gameObject.GetComponent<Tile>().DestroyLineObject(); //duplicated code, refactor later 
+                    }
+                       
                 }
                     
             }
