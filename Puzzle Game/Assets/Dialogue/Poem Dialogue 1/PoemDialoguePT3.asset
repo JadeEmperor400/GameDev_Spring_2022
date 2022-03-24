@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828c47c4a50d62f4d8846a98e9506ad4, type: 3}
   m_Name: PoemDialoguePT3
   m_EditorClassIdentifier: 
-  dialogues: []
+  dialogues:
+  - profile: {fileID: 0}
+    line: 'Unto me The timely end you''ve brought '
+  - profile: {fileID: 0}
+    line: 'Desperation fills me Extra time I have sought '
+  - profile: {fileID: 0}
+    line: 'Save me For I am soon to be gone '
+  - profile: {fileID: 0}
+    line: 'By the hand of the one That seemed pure all along '
   linkedSet: []

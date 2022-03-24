@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828c47c4a50d62f4d8846a98e9506ad4, type: 3}
   m_Name: PoemDialoguePT1
   m_EditorClassIdentifier: 
-  dialogues: []
+  dialogues:
+  - profile: {fileID: 0}
+    line: 'At long last \nYou have arrived '
+  - profile: {fileID: 0}
+    line: 'Maybe you''ll heed me Conserve me you''ll try '
+  - profile: {fileID: 0}
+    line: 'Now I can guess What you have in your mind '
+  - profile: {fileID: 0}
+    line: 'Perhaps you will help me And differ from your kind '
   linkedSet: []

@@ -10,15 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 828c47c4a50d62f4d8846a98e9506ad4, type: 3}
-  m_Name: PoemDialoguePT2
+  m_Name: Octo_Intro
   m_EditorClassIdentifier: 
   dialogues:
   - profile: {fileID: 0}
-    line: 'I see it all How you consistently act '
+    line: "Hey stranger! I\u2019m Octomochi. What\u2019s ya name?"
   - profile: {fileID: 0}
-    line: 'Against all that are here Never holding back '
-  - profile: {fileID: 0}
-    line: 'Might I try To tell all that live here? '
-  - profile: {fileID: 0}
-    line: 'The danger close by, Your ability I fear '
+    line: "\u2026 So, you don\u2019t talk much. That\u2019s ok we can still be friends!"
   linkedSet: []

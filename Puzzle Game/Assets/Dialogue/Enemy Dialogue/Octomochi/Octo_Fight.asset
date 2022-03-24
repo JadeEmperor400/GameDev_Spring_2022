@@ -10,15 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 828c47c4a50d62f4d8846a98e9506ad4, type: 3}
-  m_Name: PoemDialoguePT2
+  m_Name: Octo_Fight
   m_EditorClassIdentifier: 
   dialogues:
   - profile: {fileID: 0}
-    line: 'I see it all How you consistently act '
+    line: Why do you want to fight me so badly? I just wanted to make a new friend.
   - profile: {fileID: 0}
-    line: 'Against all that are here Never holding back '
-  - profile: {fileID: 0}
-    line: 'Might I try To tell all that live here? '
-  - profile: {fileID: 0}
-    line: 'The danger close by, Your ability I fear '
+    line: "You think you can take advantage of me?! I may look feeble but I\u2019m
+      an adult according to my species >:( !"
   linkedSet: []

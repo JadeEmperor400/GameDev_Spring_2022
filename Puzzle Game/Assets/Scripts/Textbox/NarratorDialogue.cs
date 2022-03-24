@@ -42,4 +42,9 @@ public class NarratorDialogue : DisplayDialogue
         //ideally something that would stop the narrator hitbox from triggering again
     }
 
+    void Start()
+    {
+
+    }
+
 }
