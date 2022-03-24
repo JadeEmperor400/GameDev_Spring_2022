@@ -39,7 +39,14 @@ public class GridManager : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> allTilesInGrid = new List<GameObject>(); //private list must be initialized, reference to all tiles in the grid 
-    public List<GameObject> connectedTiles; //currently connected tiles 
+    public List<GameObject> connectedTiles; //currently connected tiles
+
+    private Coroutine coroutine;
+
+    private bool falling = false;
+    public bool Falling {
+        get { return falling; }
+    }
 
     void Awake()
     {
@@ -60,7 +67,6 @@ public class GridManager : MonoBehaviour
                 spawnedTile.name = $"Tile {x} {y}";
                 spawnedTile.transform.parent = transform; //all tiles are now a child of the gridmanager object
                 spawnedTile.transform.localScale += new Vector3(-0.1f, -0.1f, -0.1f);
-
 
                 spawnedTile.Init(GenerateRandomColorType());
                 spawnedTile.SetTileId(x, y);
@@ -170,13 +176,14 @@ public class GridManager : MonoBehaviour
                 return;
             }
         }
+
         foreach (var tile in connectedTiles)
         {
             tile.gameObject.GetComponent<Tile>().SetInUse(true);
         }
 
         gridComboManager.AddToCombo(connectedTiles);
-       
+
         connectedTiles.Clear ();
         
     }
@@ -351,4 +358,152 @@ public class GridManager : MonoBehaviour
         height = newHeight;
     }
 
+    public void PlayFallAnimation() {
+        if (coroutine != null) {
+            Debug.Log("Drop : Fall Animation Already Playing");
+            return;
+        }
+        coroutine = StartCoroutine(DropDown());
+    }
+
+    private IEnumerator DropDown() {
+        List<GameObject> usedTiles = new List<GameObject>();
+        falling = true;
+        //Stop Timer
+
+        //Freeze Player
+
+        //Init Drops : Amount of Falldown for each 
+        List<int> drops = new List<int>();
+        for (int i = 0; i < allTilesInGrid.Count; i++){
+            drops.Add(0);
+        }
+
+        int[] topDrops = new int[width];
+        //Init Top Drops
+        for (int i = 0; i < width; i++) {
+            topDrops[i] = 0;
+        }
+
+        Debug.Log("Drop : Start of Initial Setup");
+        //Turn Gray or Calculate Drop
+        for (int h = 0; h < allTilesInGrid.Count; h++) {
+            //Turn Gray If in Use & Delet Line
+            if (allTilesInGrid[h].GetComponent<Tile>().IsInUse()) {
+                allTilesInGrid[h].GetComponent<Tile>().DestroyLineObject();
+                allTilesInGrid[h].GetComponent<SpriteRenderer>().color = Color.gray;
+                topDrops[allTilesInGrid[h].GetComponent<Tile>().GetXID()]++;
+                usedTiles.Add(allTilesInGrid[h]);
+                continue;
+            }
+
+            //Calculate Drop if in Use
+            for (int i = 0; i < allTilesInGrid.Count; i++) {
+
+                if (allTilesInGrid[h].GetComponent<Tile>().GetXID() == allTilesInGrid[i].GetComponent<Tile>().GetXID()) {
+                    if (allTilesInGrid[h].GetComponent<Tile>().GetYID() > allTilesInGrid[i].GetComponent<Tile>().GetYID()) {
+                        if (allTilesInGrid[i].GetComponent<Tile>().IsInUse()) {
+                            drops[h] = drops[h] + 1;
+                        }
+                    }
+                }
+            }
+            yield return new WaitForSeconds(1 / ((float) allTilesInGrid.Count / Time.timeScale));
+        } Debug.Log("Drop : Reach End of Initial Setup");
+
+        yield return new WaitForSeconds(1/(24.0f / Time.timeScale));
+        //Remove Tile
+
+        Debug.Log("Drop: Start of Remove Tile");
+        foreach (GameObject g in usedTiles)
+        {
+            //Delete Tile
+            g.GetComponent<Tile>().SetTileColorIdentity(ColorEnum.NONE);
+            g.transform.localPosition = new Vector2 (g.transform.localPosition.x, height * offset);
+            g.SetActive(false);
+            yield return new WaitForSeconds(1 /( 60.0f / Time.timeScale));
+        }
+        Debug.Log("Drop: End of Remove Tile");
+
+        //Lerp Trackers
+        float lerpTime = 0.0f;
+        float lerpFull = 0.25f;
+
+        //Calculate Falls
+        Debug.Log("Drop: Start of Calc Falls");
+        for (int i = 0; i < allTilesInGrid.Count; i++) {
+            if (drops[i] > 0) {
+                lerpTime = 0;
+                Tile tile = allTilesInGrid[i].GetComponent<Tile>();
+                Vector3 startLoc = tile.transform.localPosition;
+                tile.SetTileId(tile.GetXID(), tile.GetYID() - drops[i]); //Set new ID
+                Vector3 gridPlacement = new Vector3(tile.GetXID() * offset, tile.GetYID() * offset);
+
+                //Lerp Block to Position
+                while (lerpTime < lerpFull) {
+                    lerpTime += 1 / 60.0f;
+                    if (lerpTime >= lerpFull)
+                    {
+                        tile.transform.localPosition = gridPlacement;
+                        break;
+                    }
+                    else {
+                        tile.transform.localPosition = Vector3.Lerp(startLoc, gridPlacement, lerpTime/lerpFull);
+                    }
+                    yield return new WaitForSeconds(1 / (60.0f / Time.timeScale));
+                }//End of Lerp
+
+            }
+        }
+        Debug.Log("Drop: End of Calc Falls");
+
+
+        //Generate New tiles
+        Debug.Log("Drop: Start of New Tiles");
+        for (int i = 0; i < usedTiles.Count; i++)
+        {
+            usedTiles[i].SetActive(true);
+            Tile tile = usedTiles[i].GetComponent<Tile>();
+
+            tile.GetComponent<Tile>().Init(GenerateRandomColorType());// Assign New Color
+
+            if (topDrops[tile.GetXID()] > 0)
+            {
+                lerpTime = 0;
+                
+                Vector3 startLoc = tile.transform.localPosition;
+                tile.SetTileId(tile.GetXID(), height - topDrops[tile.GetXID()]); //Set new ID
+                topDrops[tile.GetXID()] -= 1;
+
+                Vector3 gridPlacement = new Vector3(tile.GetXID() * offset, tile.GetYID() * offset);
+
+                //Lerp Block to Position
+                while (lerpTime < lerpFull)
+                {
+                    lerpTime += 1 / 60.0f;
+                    if (lerpTime >= lerpFull)
+                    {
+                        tile.transform.localPosition = gridPlacement;
+                        break;
+                    }
+                    else
+                    {
+                        tile.transform.localPosition = Vector3.Lerp(startLoc, gridPlacement, lerpTime / lerpFull);
+                    }
+                    yield return new WaitForSeconds(1 / (60.0f / Time.timeScale));
+                }//End of Lerp
+
+            }
+        }
+        Debug.Log("Drop: End of New Tiles");
+
+        //Unfreeze Player & set timer to solving speed
+
+        //Clear Connected Tiles
+        RemoveTilesInList();
+
+        falling = false;
+        coroutine = null;
+        yield break;
+    }
 }

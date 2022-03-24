@@ -51,7 +51,7 @@ public class TimerSlider : MonoBehaviour
 
     public void pauseTime(){
         timeScaleValue = Time.timeScale;
-        Time.timeScale = 0;
+        Time.timeScale = 0.25f;
         sliderUpdate();             
      }
 
