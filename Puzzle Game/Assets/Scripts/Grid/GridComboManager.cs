@@ -56,6 +56,12 @@ public class GridComboManager : MonoBehaviour
         {           
             currentComboText.text += "\n Color: " + connection.getColorType() + " " + connection.getLengthOfConnection(); 
         }
+
+        if (!countFall)
+        {
+            countFall = true;
+        }
+        fallTimer = 0;
     }
      
 
@@ -83,6 +89,12 @@ public class GridComboManager : MonoBehaviour
         Connection newConnection = new Connection(cnt, firstTileColorType);
         setLastConnectionMade(newConnection);//for debug 
         return newConnection;
+    }
+
+    public void ResetCountFall()
+    {
+        countFall = false;
+        fallTimer = 0;
     }
 
     public void ClearCombo()

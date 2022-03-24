@@ -2197,7 +2197,7 @@ PrefabInstance:
     - target: {fileID: 152416184227924172, guid: 5a6ab051b60793647b7fe34dc048eea5,
         type: 3}
       propertyPath: fallTimeMax
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 152416184227924172, guid: 5a6ab051b60793647b7fe34dc048eea5,
         type: 3}

@@ -49,6 +49,7 @@ public class TestGameManager : MonoBehaviour
         if (timerSlider.getIsReset() == true)
         {
             gridManager.RegenerateGrid();
+            gridComboManager.ResetCountFall();
         }
     }
 

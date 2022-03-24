@@ -11,7 +11,7 @@ public class TimerSlider : MonoBehaviour
     float gameTime;
     float timeScaleValue;
     private bool isReset = false;
-    
+    private bool isPause = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +22,10 @@ public class TimerSlider : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
+        if (isPause) {
+            return;
+        }
+
         timeUpdate();  
             if(gameTime <=0){
                 gameTime = startTime;
@@ -51,11 +55,14 @@ public class TimerSlider : MonoBehaviour
 
     public void pauseTime(){
         timeScaleValue = Time.timeScale;
-        Time.timeScale = 0.25f;
+        Time.timeScale = 0.1f;
+        isPause = true;
         sliderUpdate();             
      }
 
      public void resumeTime(){
+        isPause = false;
+
         if(timeScaleValue == 2)
             doubleTime();
         else
