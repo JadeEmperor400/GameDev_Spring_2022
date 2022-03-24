@@ -103,7 +103,9 @@ public class PlayerMovement : MonoBehaviour
         
 
         
-    }
+    }//update ends here
+
+
 
    
 }

@@ -5,13 +5,6 @@ using UnityEngine;
 public abstract class DisplayDialogue : MonoBehaviour
 {
 
-    [SerializeField]
-    private Dialogue_Set firstDialogueSet = null;
-
-    public void displayFirstDialogue()
-    {
-        firstDialogueSet?.sendDialogue();
-    }
-
+    public abstract void displayFirstDialogue(Dialogue_Set dialogue_Set);
 
 }
