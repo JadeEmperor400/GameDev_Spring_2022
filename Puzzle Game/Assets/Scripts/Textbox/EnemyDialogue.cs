@@ -16,6 +16,15 @@ public class EnemyDialogue : DisplayDialogue
     {
         enemyDialogueSet?.sendDialogue();
         fightEnemyDialogue?.sendDialogue();
+
+
+        //this is just for testing, remove in main build
+        int num = Random.Range(0, 100);
+        if (num % 2 == 0)
+            winEnemyDialogue?.sendDialogue();
+        else
+            lossEnemyDialogue?.sendDialogue();
+
     }
 
     public void displayWinEnemyDialogue()
