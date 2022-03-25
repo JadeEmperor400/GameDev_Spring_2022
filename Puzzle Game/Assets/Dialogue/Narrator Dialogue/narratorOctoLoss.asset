@@ -10,14 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 828c47c4a50d62f4d8846a98e9506ad4, type: 3}
-  m_Name: Intro_Narrator
+  m_Name: narratorOctoLoss
   m_EditorClassIdentifier: 
   dialogues:
   - profile: {fileID: 0}
-    line: "Wake up\u2026yes, you ball of flame."
-  - profile: {fileID: 0}
-    line: "That was quite a fall you took\u2026 can you understand me, kid?"
-  - profile: {fileID: 0}
-    line: "Where is my voice coming from? Don\u2019t worry about that, you\u2019ve
-      got bigger fish to fry!"
+    line: Serves you right for messing with a harmless Octomochi.
   linkedSet: []

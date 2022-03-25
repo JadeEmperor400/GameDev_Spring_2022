@@ -7,6 +7,21 @@ public class NarratorDialogue : DisplayDialogue
     
     public Dialogue_Set initialDialogue;
 
+    //commented out for readability
+    /*
+    public Dialogue_Set drifterLossDialogue;
+    public Dialogue_Set drifterWinDialogue;
+
+    public Dialogue_Set octoLossDialogue;
+    public Dialogue_Set octoWinDialogue;
+
+    public Dialogue_Set wyrmLossDialogue;
+    public Dialogue_Set wyrmWinDialogue;
+
+    public Dialogue_Set anglerLossDialogue;
+    public Dialogue_Set anglerWinDialogue;
+    */
+
     public bool isFirstDisplay = false;
 
     public override void displayFirstDialogue(Dialogue_Set initialDialogueSet)
@@ -28,7 +43,7 @@ public class NarratorDialogue : DisplayDialogue
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             displayFirstDialogue(initialDialogue);
         }

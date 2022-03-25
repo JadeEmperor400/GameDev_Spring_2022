@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - profile: {fileID: 0}
-    line: Hah. You think you can challenge me?! Do your worst.
+    line: Hah. You think you can challenge me?!
+  - profile: {fileID: 0}
+    line: _lDo your worst.
   linkedSet: []

@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyDialogue : DisplayDialogue
 {
 
+    public NarratorDialogue narratorDialogue;
+    
     public float radius = 1.5f;
 
     public Dialogue_Set introEnemyDialogue = null;

@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 828c47c4a50d62f4d8846a98e9506ad4, type: 3}
-  m_Name: PoemDialoguePT2
+  m_Name: anglerFight
   m_EditorClassIdentifier: 
   dialogues:
   - profile: {fileID: 0}
-    line: 'I see it all How you consistently act '
+    line: "Why you lookin\u2019 down on my family? They aren\u2019t that weird!"
   - profile: {fileID: 0}
-    line: 'Against all that are here Never holding back '
+    line: 'You need a good beating for having such shitty manners! '
   - profile: {fileID: 0}
-    line: 'Might I try To tell all that live here? '
+    line: "And while I\u2019m on that maybe you\u2019ll find out an ingredient of
+      the family shake is too."
   - profile: {fileID: 0}
-    line: 'The danger close by, Your ability I fear '
+    line: "Oh, you didn\u2019t know? Blood is the main ingredient."
+  - profile: {fileID: 0}
+    line: "_sWhoops, I wasn\u2019t supposed to tell you yet. Oh well."
   linkedSet: []
