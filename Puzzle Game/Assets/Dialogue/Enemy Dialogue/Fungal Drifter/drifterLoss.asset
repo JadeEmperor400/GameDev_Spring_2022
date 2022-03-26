@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - profile: {fileID: 0}
-    line: Quite the naive wanderer to think you would win this fight but I guess
-      that is your appeal.
+    line: Quite the naive wanderer to think you would win this fight.
   linkedSet: []

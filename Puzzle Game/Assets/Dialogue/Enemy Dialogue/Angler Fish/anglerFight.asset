@@ -14,13 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - profile: {fileID: 0}
-    line: "Why you lookin\u2019 down on my family? They aren\u2019t that weird!"
-  - profile: {fileID: 0}
-    line: 'You need a good beating for having such shitty manners! '
-  - profile: {fileID: 0}
-    line: "And while I\u2019m on that maybe you\u2019ll find out an ingredient of
-      the family shake is too."
-  - profile: {fileID: 0}
     line: "Oh, you didn\u2019t know? Blood is the main ingredient."
   - profile: {fileID: 0}
     line: "_sWhoops, I wasn\u2019t supposed to tell you yet. Oh well."

@@ -32,7 +32,7 @@ public class NarratorDialogue : DisplayDialogue
     
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("You have entered the collider. Dialogue should change automatically");
+       if(collision.CompareTag("Player"))
         if (!isFirstDisplay)
         {
             displayFirstDialogue(initialDialogue);
@@ -41,7 +41,7 @@ public class NarratorDialogue : DisplayDialogue
 
     }
 
-    public void OnTriggerStay2D(Collider2D collision)
+   /* public void OnTriggerStay2D(Collider2D collision)
     {
         if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -49,7 +49,7 @@ public class NarratorDialogue : DisplayDialogue
         }
 
         //something that prevents the player from talking to the narrator again once the dialogue is exhausted
-    }
+    }*/
 
     public void OnTriggerExit2D(Collider2D collision)
     {

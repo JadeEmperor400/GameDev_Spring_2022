@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - profile: {fileID: 0}
-    line: "Is this my end? Oh great, another cousin Ricky in the making. I\u2019ll
-      never hear the end of this."
+    line: "Is this my end?  I\u2019ll never hear the end of this. I need a shake
+      right about now."
   linkedSet: []

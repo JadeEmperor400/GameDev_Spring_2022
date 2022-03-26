@@ -16,11 +16,5 @@ MonoBehaviour:
   - profile: {fileID: 0}
     line: "I see\u2026 you really are adamant in following this path?"
   - profile: {fileID: 0}
-    line: 'Do not think of yourself as the victor just because you have defeated
-      one simpleton Octomochi. '
-  - profile: {fileID: 0}
-    line: One as noble as I have never been defeated in a fair fight, I doubt your
-      kind will be the first.
-  - profile: {fileID: 0}
     line: Try your best for this is an honor you will not be able to achieve again.
   linkedSet: []

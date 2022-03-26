@@ -15,7 +15,4 @@ MonoBehaviour:
   dialogues:
   - profile: {fileID: 0}
     line: Why do you want to fight me so badly? I just wanted to make a new friend.
-  - profile: {fileID: 0}
-    line: "You think you can take advantage of me?! I may look feeble but I\u2019m
-      an adult according to my species >:( !"
   linkedSet: []

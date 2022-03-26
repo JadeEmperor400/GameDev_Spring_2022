@@ -14,13 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - profile: {fileID: 0}
-    line: "Hello little one, don\u2019t be scared, I am not your enemy yet."
+    line: "Hello little one, don\u2019t be scared, I am not your enemy. yet. "
   - profile: {fileID: 0}
-    line: My name is [insert Fungal name] young wanderer.
-  - profile: {fileID: 0}
-    line: "If you plan to get out of here, you better do it soon before our planet\u2019s
-      enforcement catches you."
-  - profile: {fileID: 0}
-    line: They do not take kind to unidentified aliens, especially one with motives
-      such as yours.
+    line: You can call me Fungal Drifter young wanderer.
   linkedSet: []

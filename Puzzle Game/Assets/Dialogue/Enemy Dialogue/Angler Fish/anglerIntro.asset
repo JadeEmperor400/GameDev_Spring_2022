@@ -14,20 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - profile: {fileID: 0}
-    line: You look like you got a lot on your shoulders. Want me to massage them?
+    line: You look like you got a lot on your shoulders. maybe have some of my nutritious
+      shake for some energy.
   - profile: {fileID: 0}
     line: ...
   - profile: {fileID: 0}
-    line: Or maybe have some of my nutritious shake for some energy.
-  - profile: {fileID: 0}
     line: "Don\u2019t ask what's in it, the ingredients aren't sold for the public
       and mildly illegal."
-  - profile: {fileID: 0}
-    line: What! Your family never had a secret recipe passed down? Sheesh, what a
-      boring family you got.
-  - profile: {fileID: 0}
-    line: My mothers, father, great-grandpa's cousin twice removed got thrown into
-      jail for trying to revive this drink.
-  - profile: {fileID: 0}
-    line: "Bless his soul\u2026 he was an eccentric one."
   linkedSet: []

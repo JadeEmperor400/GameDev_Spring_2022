@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - profile: {fileID: 0}
-    line: "Maybe if you drank some of my shake when I had asked you, you wouldn\u2019t
+    line: "Maybe if you drank some of my shake when I asked you, you wouldn\u2019t
       be losing like this."
-  - profile: {fileID: 0}
-    line: You should meet my cousin Ricky, you guys have a lot in common.
   linkedSet: []

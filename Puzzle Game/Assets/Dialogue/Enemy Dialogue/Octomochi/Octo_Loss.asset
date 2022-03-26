@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - profile: {fileID: 0}
-    line: You are 100 light years too early to think of defeating me.
+    line: "Don\u2019t even think of underestimating us Octos >:D!!"
   linkedSet: []
