@@ -24,6 +24,15 @@ public class TestGameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (gridManager.Falling)
+        {
+            timerSlider.pauseTime();
+            return;
+        }
+        else {
+            timerSlider.resumeTime();
+        }
+
         if (gridComboManager.currentComboQueue().Count == 0)
         {
           
@@ -39,7 +48,8 @@ public class TestGameManager : MonoBehaviour
 
         if (timerSlider.getIsReset() == true)
         {
-           // gridManager.RegenerateGrid();
+            gridManager.RegenerateGrid();
+            gridComboManager.ResetCountFall();
         }
     }
 

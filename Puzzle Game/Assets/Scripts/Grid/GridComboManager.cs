@@ -7,7 +7,11 @@ public class GridComboManager : MonoBehaviour
 {
     
     private Combo combo = new Combo(); //how to garantee one instance of combo?  
-
+    [SerializeField]
+    private float fallTimer = 0.0f;
+    [SerializeField]
+    private float fallTimeMax = 6.0f;
+    private bool countFall = false;
 
     public void AddToCombo(List<GameObject> connectionList) 
     {
@@ -21,6 +25,11 @@ public class GridComboManager : MonoBehaviour
       
        
 
+        if (!countFall)
+        {
+            countFall = true;
+        }
+        fallTimer = 0;
     }
      
 
@@ -48,6 +57,12 @@ public class GridComboManager : MonoBehaviour
         Connection newConnection = new Connection(cnt, firstTileColorType);
       
         return newConnection;
+    }
+
+    public void ResetCountFall()
+    {
+        countFall = false;
+        fallTimer = 0;
     }
 
     public void ClearCombo()

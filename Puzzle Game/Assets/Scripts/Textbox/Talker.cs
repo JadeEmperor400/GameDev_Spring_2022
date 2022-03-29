@@ -32,9 +32,9 @@ public class Talker : MonoBehaviour
     public bool nearPlayer {
         get {
 
-            return ( false/*
+            return ( 
                 (FindObjectOfType<PlayerMovement>() != null) &&
-                ( Mathf.Abs( Vector3.Distance(transform.position, GameObject.FindObjectOfType<PlayerMovement>().transform.position) ) <= radiusRange)*/
+                ( Mathf.Abs( Vector3.Distance(transform.position, GameObject.FindObjectOfType<PlayerMovement>().transform.position) ) <= radiusRange)
                 );
         }
     }
