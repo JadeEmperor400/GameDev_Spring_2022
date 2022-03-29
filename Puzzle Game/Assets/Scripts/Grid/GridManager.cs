@@ -388,9 +388,10 @@ public class GridManager : MonoBehaviour
         Debug.Log("Drop : Start of Initial Setup");
         //Turn Gray or Calculate Drop
         for (int h = 0; h < allTilesInGrid.Count; h++) {
+            allTilesInGrid[h].GetComponent<Tile>().DestroyLineObject();
+
             //Turn Gray If in Use & Delet Line
             if (allTilesInGrid[h].GetComponent<Tile>().IsInUse()) {
-                allTilesInGrid[h].GetComponent<Tile>().DestroyLineObject();
                 allTilesInGrid[h].GetComponent<SpriteRenderer>().color = Color.gray;
                 topDrops[allTilesInGrid[h].GetComponent<Tile>().GetXID()]++;
                 usedTiles.Add(allTilesInGrid[h]);
@@ -420,6 +421,7 @@ public class GridManager : MonoBehaviour
             //Delete Tile
             g.GetComponent<Tile>().SetTileColorIdentity(ColorEnum.NONE);
             g.transform.localPosition = new Vector2 (g.transform.localPosition.x, height * offset);
+            g.GetComponent<Tile>().SetInUse(false);
             g.SetActive(false);
             yield return new WaitForSeconds(1 /( 60.0f / Time.timeScale));
         }
@@ -460,6 +462,8 @@ public class GridManager : MonoBehaviour
 
         //Generate New tiles
         Debug.Log("Drop: Start of New Tiles");
+        float tileTime = 1 + ((usedTiles.Count/5)/2.0f);//Increase Time for tile falls if more tiles involved
+
         for (int i = 0; i < usedTiles.Count; i++)
         {
             usedTiles[i].SetActive(true);
@@ -490,7 +494,7 @@ public class GridManager : MonoBehaviour
                     {
                         tile.transform.localPosition = Vector3.Lerp(startLoc, gridPlacement, lerpTime / lerpFull);
                     }
-                    yield return new WaitForSeconds(1 / (60.0f / Time.timeScale));
+                    yield return new WaitForSeconds(3.0f / ((60.0f / Time.timeScale) * usedTiles.Count));
                 }//End of Lerp
 
             }
