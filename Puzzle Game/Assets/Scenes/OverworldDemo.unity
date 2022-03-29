@@ -197,7 +197,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1491912131
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0.5, z: 0}
   m_MaxChunkCount: 16
@@ -12021,12 +12021,12 @@ PrefabInstance:
     - target: {fileID: 224575833377848682, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 582
+      value: 577
       objectReference: {fileID: 0}
     - target: {fileID: 224575833377848682, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 365.625
+      value: 386.25
       objectReference: {fileID: 0}
     - target: {fileID: 224575833377848682, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
@@ -12066,12 +12066,12 @@ PrefabInstance:
     - target: {fileID: 224575833377848682, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 291
+      value: 288.5
       objectReference: {fileID: 0}
     - target: {fileID: 224575833377848682, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 182.8125
+      value: 193.125
       objectReference: {fileID: 0}
     - target: {fileID: 224575833377848682, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
@@ -12091,22 +12091,22 @@ PrefabInstance:
     - target: {fileID: 224799044942441028, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 195
+      value: 206
       objectReference: {fileID: 0}
     - target: {fileID: 224799044942441028, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 195
+      value: 206
       objectReference: {fileID: 0}
     - target: {fileID: 224799044942441028, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -115.97998
+      value: -109.66
       objectReference: {fileID: 0}
     - target: {fileID: 224799044942441028, guid: ee250115b6588924fae658dd8db790f6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -26.8125
+      value: -28.324997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee250115b6588924fae658dd8db790f6, type: 3}
