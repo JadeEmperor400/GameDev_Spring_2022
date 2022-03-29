@@ -9,14 +9,15 @@ public class Textbox : MonoBehaviour
 
     //Sizes the font can be
     //When writing dialogues start with "_s" for smol text or "_l" for big text, anything else creates normal text.
-    //these were originally 12 18 32 with arial
-    const int FONT_SIZE_SMALL = 6;
-    const int FONT_SIZE_NORMAL = 10;
-    const int FONT_SIZE_BIG = 15;
+    const int FONT_SIZE_SMALL = 12;
+    const int FONT_SIZE_NORMAL = 18;
+    const int FONT_SIZE_BIG = 32;
     [SerializeField]
     private Text text;
+
     [SerializeField]
     private Image profile;
+
     [SerializeField]
     private float speed = 10.0f; // 10 chars a second
 
@@ -62,7 +63,7 @@ public class Textbox : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetButtonDown("Jump"))
         {
             Go = true;
         }
@@ -173,7 +174,7 @@ public class Textbox : MonoBehaviour
 
                 text.text = text.text + line[c];
 
-                if (Input.GetButton("Fire1")) //what
+                if (Input.GetButton("Fire1"))
                 {
                     yield return new WaitForSeconds(0.01f);
                 }
