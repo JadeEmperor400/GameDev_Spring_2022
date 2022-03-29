@@ -39,7 +39,7 @@ public class TestGameManager : MonoBehaviour
 
         if (timerSlider.getIsReset() == true)
         {
-            gridManager.RegenerateGrid();
+           // gridManager.RegenerateGrid();
         }
     }
 

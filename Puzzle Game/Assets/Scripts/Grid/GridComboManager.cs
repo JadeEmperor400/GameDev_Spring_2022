@@ -5,26 +5,10 @@ using UnityEngine.UI;
 
 public class GridComboManager : MonoBehaviour
 {
-    //debug variables 
-    public bool DEBUG_FLAG = true;
-    public Text currentComboText;
-    [SerializeField]
-    private Text connectionText;
-
-    private Connection lastConnectionMade = null;//for debug
-
     
-
     private Combo combo = new Combo(); //how to garantee one instance of combo?  
 
 
-    private void Update()
-    {
-        if (getLastConnectionMade() != null && DEBUG_FLAG)
-        {
-            connectionText.text = "LAST CONNECTION MADE:" + getLastConnectionMade().getColorType() + " - " + getLastConnectionMade().getLengthOfConnection();
-        }
-    }
     public void AddToCombo(List<GameObject> connectionList) 
     {
        
@@ -35,10 +19,7 @@ public class GridComboManager : MonoBehaviour
         if(connection != null)
         combo.AddConnection(connection);
       
-        if(DEBUG_FLAG)
-        {           
-            currentComboText.text += "\n Color: " + connection.getColorType() + " " + connection.getLengthOfConnection(); 
-        }
+       
 
     }
      
@@ -65,16 +46,13 @@ public class GridComboManager : MonoBehaviour
         }
        
         Connection newConnection = new Connection(cnt, firstTileColorType);
-        setLastConnectionMade(newConnection);//for debug 
+      
         return newConnection;
     }
 
     public void ClearCombo()
     {
-        if (DEBUG_FLAG)
-        {
-            currentComboText.text = "";          
-        }
+       
         combo.ClearCombo();
     }
 
@@ -83,12 +61,5 @@ public class GridComboManager : MonoBehaviour
     {
         return combo.getAllConnections();
     }
-    public void setLastConnectionMade(Connection connection) //for debug
-    {
-        lastConnectionMade = connection;
-    }
-    public Connection getLastConnectionMade()//for debug
-    {
-        return lastConnectionMade;
-    }
+    
 }
