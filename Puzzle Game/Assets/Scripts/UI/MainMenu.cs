@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     {
         //Scenes list.
         //0 is StartMenu. 1 is Overworld Demo
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+       // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitGame()
