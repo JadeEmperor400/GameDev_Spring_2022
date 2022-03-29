@@ -18,15 +18,6 @@ public class DecisionBox : MonoBehaviour
     public Coroutine coroutine;
     private float selectBuffer;
 
-    public void ClickDecide(int selection)
-    {
-        selectedChoice = selection;
-        arrowRect.anchoredPosition = new Vector2(arrowRect.anchoredPosition.x, 24 * -selectedChoice);
-        selectBuffer = buffer;
-        Textbox.T.currentSet.sendLinkedDialogue(selectedChoice % choices.Count);
-        Clear();
-    }
-
     private void Awake()
     {
         if (S == null)
