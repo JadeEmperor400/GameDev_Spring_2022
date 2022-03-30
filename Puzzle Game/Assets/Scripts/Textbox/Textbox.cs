@@ -14,10 +14,8 @@ public class Textbox : MonoBehaviour
     const int FONT_SIZE_BIG = 32;
     [SerializeField]
     private Text text;
-
     [SerializeField]
     private Image profile;
-
     [SerializeField]
     private float speed = 10.0f; // 10 chars a second
 
