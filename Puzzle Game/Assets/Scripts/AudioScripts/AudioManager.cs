@@ -115,6 +115,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(AudioClip musicClip)
     {
+        //Playing music
         musicSource.clip = musicClip;
         musicSource.Play();
     }
