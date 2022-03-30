@@ -13,7 +13,7 @@ public class Talker : MonoBehaviour
     public bool nearPlayer {
         get {
 
-            return ( false 
+            return ( true 
                 /*(FindObjectOfType<PlayerMovement>() != null) &&
                 ( Mathf.Abs( Vector3.Distance(transform.position, GameObject.FindObjectOfType<PlayerMovement>().transform.position) ) <= 1.01f)*/
                 );
@@ -33,7 +33,7 @@ public class Talker : MonoBehaviour
         }
 
         //if player presses talk button Talk
-        if ( nearPlayer && Input.GetButtonDown("Talk") && !Textbox.On ) {
+        if ( nearPlayer && Input.GetKeyDown(KeyCode.E) && !Textbox.On ) {
             Talk();
         }
         
