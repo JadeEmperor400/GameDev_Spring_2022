@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Textbox : MonoBehaviour
 {
+    //reference to player movement
+    public PlayerMovement playerMovement;
+
     public static Textbox T; //The one and only textbox for the scene
 
     //Sizes the font can be
@@ -209,6 +212,7 @@ public class Textbox : MonoBehaviour
 
     //hide textbox
     public IEnumerator hideTextbox() {
+        playerMovement.UnFreezePlayer();
         int framesPassed = 0;
         while (GetComponent<Image>().rectTransform.localScale.y > 0) {
             framesPassed++;

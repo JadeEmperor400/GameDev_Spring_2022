@@ -106,5 +106,19 @@ public class PlayerMovement : MonoBehaviour
     }
 
    
+    public bool IsPlayerFrozen()
+    {
+        return freezePlayer;
+    }
+
+    public void FreezePlayer()
+    {
+        freezePlayer = true;
+    }
+
+    public void UnFreezePlayer()
+    {
+        freezePlayer = false;
+    }
 }
 

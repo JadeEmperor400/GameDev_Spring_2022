@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyDialogue : DisplayDialogue
 {
-
-    public NarratorDialogue narratorDialogue;
+    public PlayerMovement playerMovement;
+  
     
     public float radius = 1.5f;
 
@@ -16,17 +16,9 @@ public class EnemyDialogue : DisplayDialogue
 
     public override void displayFirstDialogue(Dialogue_Set enemyDialogueSet)
     {
+        playerMovement.FreezePlayer();
         enemyDialogueSet?.sendDialogue();
         fightEnemyDialogue?.sendDialogue();
-
-
-        //this is just for testing, remove in main build
-        int num = Random.Range(0, 100);
-        if (num % 2 == 0)
-            winEnemyDialogue?.sendDialogue();
-        else
-            lossEnemyDialogue?.sendDialogue();
-
     }
 
     public void displayWinEnemyDialogue()
@@ -43,7 +35,6 @@ public class EnemyDialogue : DisplayDialogue
     {
         get
         {
-
             return (
                 (FindObjectOfType<PlayerMovement>() != null) &&
                 (Mathf.Abs(Vector3.Distance(transform.position, GameObject.FindObjectOfType<PlayerMovement>().transform.position)) <= radius)
@@ -51,11 +42,7 @@ public class EnemyDialogue : DisplayDialogue
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  
 
     // Update is called once per frame
     void Update()

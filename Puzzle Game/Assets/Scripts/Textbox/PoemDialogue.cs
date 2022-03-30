@@ -9,6 +9,8 @@ public class PoemDialogue : DisplayDialogue
     [SerializeField]
     private SpriteRenderer talkIcon = null;
     */
+    public PlayerMovement playerMovement;
+
 
     public float radius = 1.5f;
 
@@ -17,7 +19,9 @@ public class PoemDialogue : DisplayDialogue
 
     public override void displayFirstDialogue(Dialogue_Set poemDialogueSet)
     {
+        playerMovement.FreezePlayer();
         poemDialogueSet?.sendDialogue();
+        
     }
 
     public bool nearPlayer
