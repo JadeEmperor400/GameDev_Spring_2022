@@ -10,12 +10,31 @@ public class Talker : MonoBehaviour
     [SerializeField]
     private Dialogue_Set dialogue = null;
 
+   
+
+    [SerializeField]
+    private float radiusRange = 2f; 
+
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Player collided with box collider");
+        }
+    }
+    
+    void OnCollision2D()
+    {
+
+    }
+    
     public bool nearPlayer {
         get {
 
-            return ( false 
-                /*(FindObjectOfType<PlayerMovement>() != null) &&
-                ( Mathf.Abs( Vector3.Distance(transform.position, GameObject.FindObjectOfType<PlayerMovement>().transform.position) ) <= 1.01f)*/
+            return ( 
+                (FindObjectOfType<PlayerMovement>() != null) &&
+                ( Mathf.Abs( Vector3.Distance(transform.position, GameObject.FindObjectOfType<PlayerMovement>().transform.position) ) <= radiusRange)
                 );
         }
     }
@@ -33,7 +52,7 @@ public class Talker : MonoBehaviour
         }
 
         //if player presses talk button Talk
-        if ( nearPlayer && Input.GetButtonDown("Talk") && !Textbox.On ) {
+        if ( nearPlayer && Input.GetButtonDown("Jump") && !Textbox.On ) {
             Talk();
         }
         
@@ -42,4 +61,6 @@ public class Talker : MonoBehaviour
     public void Talk() {
         dialogue?.sendDialogue();
     }
+
+   
 }
