@@ -70,6 +70,8 @@ public class PlayerMovement : MonoBehaviour
 
 
 
+
+
             //Character
             transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
@@ -103,7 +105,9 @@ public class PlayerMovement : MonoBehaviour
         
 
         
-    }
+    }//update ends here
+
+
 
    
 }
