@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 152416184227924173}
   - component: {fileID: 152416184227924172}
   - component: {fileID: 152416184227924174}
+  - component: {fileID: 1560675435825196999}
   m_Layer: 0
   m_Name: GridManager
   m_TagString: Untagged
@@ -46,10 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8dd3f0405a02fb4fa155097b5be1a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 152416184227924174}
-  redClip: {fileID: 8300000, guid: 206a137105f70494985e6a0624c1ff06, type: 3}
-  blueClip: {fileID: 8300000, guid: 39208c55c68c69345a4016a6bacd849b, type: 3}
-  greenClip: {fileID: 8300000, guid: b54f23320a26a5a499a562ab560d4dec, type: 3}
+  gridAudio: {fileID: 1560675435825196999}
   gridComboManager: {fileID: 152416184227924172}
   RedPercentage: 12
   BluePercentage: 12
@@ -92,9 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8102f423dfc33fb4387514e3078d4913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEBUG_FLAG: 1
-  currentComboText: {fileID: 0}
-  connectionText: {fileID: 0}
+  fallTimer: 0
+  fallTimeMax: 6
 --- !u!82 &152416184227924174
 AudioSource:
   m_ObjectHideFlags: 0
@@ -191,3 +188,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1560675435825196999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152416184227924209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511c8f43a5ff23e41913fa8f73c54aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 152416184227924174}
+  RedChargeUpClip: {fileID: 8300000, guid: 206a137105f70494985e6a0624c1ff06, type: 3}
+  BlueChargeUpClip: {fileID: 8300000, guid: b54f23320a26a5a499a562ab560d4dec, type: 3}
+  GreenChargeUpClip: {fileID: 8300000, guid: 39208c55c68c69345a4016a6bacd849b, type: 3}

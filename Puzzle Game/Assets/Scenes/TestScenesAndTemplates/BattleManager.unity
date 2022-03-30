@@ -630,6 +630,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1560675435825196999, guid: 5a6ab051b60793647b7fe34dc048eea5,
+        type: 3}
+      propertyPath: RedChargeUpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 41c2a3c7d103bdc4f8f769bded75edd5, type: 3}
+    - target: {fileID: 1560675435825196999, guid: 5a6ab051b60793647b7fe34dc048eea5,
+        type: 3}
+      propertyPath: BlueChargeUpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 439f0aebd2fb63a4cb046258bb0e5064, type: 3}
+    - target: {fileID: 1560675435825196999, guid: 5a6ab051b60793647b7fe34dc048eea5,
+        type: 3}
+      propertyPath: GreenChargeUpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f23ebbb012449e848aeb0ff97ad9bb7b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a6ab051b60793647b7fe34dc048eea5, type: 3}
 --- !u!114 &2040229166 stripped

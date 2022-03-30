@@ -13,11 +13,9 @@ public class GridManager : MonoBehaviour
 {
     //TODO Dynamic Dropdown system -> maybe try manipulating grid based y pos, (Seperate Script, TileMovement), "invisible" instantiated row up top.
     //^ algorhthm for droppinng tiles based on connection. Refactor gridManager? 
-   
-    public AudioSource audioSource;
-    public AudioClip redClip;
-    public AudioClip blueClip;
-    public AudioClip greenClip;
+
+    [SerializeField]
+    private GridAudio gridAudio;
 
     [SerializeField]
     private GridComboManager gridComboManager;
@@ -51,7 +49,7 @@ public class GridManager : MonoBehaviour
     void Awake()
     {
         GenerateGrid(); 
-        audioSource = GetComponent<AudioSource>();
+       
     }
 
    private void GenerateGrid()
@@ -183,7 +181,7 @@ public class GridManager : MonoBehaviour
         }
 
         gridComboManager.AddToCombo(connectedTiles);
-
+        gridAudio.PlayChargeUpSound(connectedTiles);
         connectedTiles.Clear ();
         
     }
@@ -287,27 +285,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    private void PlayConnectionSound(ColorEnum colorEnum)
-    {
-        switch(colorEnum)
-        {
-            case ColorEnum.RED:
-                audioSource.clip = redClip;
-                audioSource.Play();
-                break;
-            case ColorEnum.BLUE:
-                audioSource.clip = blueClip;
-                audioSource.Play();
-                break;
-            case ColorEnum.GREEN:
-                audioSource.clip = greenClip;
-                audioSource.Play();
-                break;
-                default:
-                Debug.Log("Play connection sound in GridManager");
-                break;
-        }
-    }
+   
 
     //GETTERS AND SETTERS
     public GameObject getFirstConnectedTile()
