@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,23 +17,25 @@ public class BattleManager : MonoBehaviour
     public PlayerStats player;
     public List<EnemyStats> enemy;
 
+    public PlayerAction redPlayerAction;
+    public PlayerAction bluePlayerAction;
+    public PlayerAction greenPlayerAction;
+
+
+
 
     public State state{
         get; 
         private set;
     }=State.PlayerPhase;
 
-
     
-
-    
-    // Start is called before the first frame update
     void Start()
     {
         playerTurn();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
@@ -70,6 +73,10 @@ public class BattleManager : MonoBehaviour
             // First connection color determines attack
             //Subsequent connections stack support effects
         CalculatePlayerAttack(comboManager.currentComboQueue());
+
+
+        //apply attack to enemy
+
 
         // Check Transition to EnemyPhase or Victory
             // Check all enemies
@@ -113,9 +120,86 @@ public class BattleManager : MonoBehaviour
 
     private void CalculatePlayerAttack(Queue<Connection> currentCombo)
     {
+        int supportDMG = 0; 
+
         if(currentCombo == null) //if player did no connections, then leave this method 
             return;
 
+        var firstConnection = currentCombo.Dequeue();
+        ColorEnum firstConnectionColorType  = firstConnection.getColorType();
+        int baseDamage = DetermineBaseDamage(firstConnectionColorType); 
+
+       
+
+
+        for(int i =1; i < currentCombo.Count; i++ )
+        {
+            //subsequent attacks
+            var combo = currentCombo.Dequeue();
+            var colorType = combo.getColorType();
+            supportDMG += DetermineSupportDamage(colorType); 
+        }
+
+       
+        DealDamage(baseDamage, supportDMG);
+    }
+
+    private void DealDamage(int baseDMG, int supportDMG)
+    {
+        
+        enemy[0].TakeDamage(baseDMG); 
+        enemy[0].TakeDamage(supportDMG);
+    }
+    private int DetermineSupportDamage(ColorEnum colorType)
+    {
+
+        switch (colorType)
+        {
+            case ColorEnum.RED:
+
+               
+                return 20;
+               
+            case ColorEnum.GREEN:
+                return 0; 
+              
+            case ColorEnum.BLUE:
+
+                return 0;
+            default:
+                break;
+        }
+
+        return 0;
+    }
+
+    private int DetermineBaseDamage(ColorEnum colorType)
+    {
+        switch(colorType)
+        {
+            case ColorEnum.RED:
+               
+               int baseAtk = redPlayerAction.power;
+                return baseAtk;
+               
+            case ColorEnum.GREEN:
+               
+                break;
+            case ColorEnum.BLUE:
+              
+                break;
+                default:
+                break;
+        }
+
+
+        return -500; //sanity check
+    }
+
+
+    private void ApplyEnemyAttack(int damage, int stagger)
+    {
+        enemy[0].TakeDamage(damage);
     }
 
     public List<EnemyStats> RandomizeEnemyTurnOrder(List<EnemyStats> OrderedEnemyStats)
