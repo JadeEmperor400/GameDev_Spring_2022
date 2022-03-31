@@ -53,7 +53,7 @@ public class NarratorDialogue : DisplayDialogue
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("You have exited the collider. E will no longer do anything");
+       
         //ideally something that would stop the narrator hitbox from triggering again
     }
 
