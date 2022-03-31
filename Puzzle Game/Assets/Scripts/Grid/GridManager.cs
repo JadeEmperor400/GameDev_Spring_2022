@@ -29,7 +29,7 @@ public class GridManager : MonoBehaviour
     private int width, height;
   
 
-    [Range(2.5f, 4.5f)]
+    [Range(1.1f, 4.5f)]
     public float offset = 3.5f;
 
     [SerializeField]
@@ -64,11 +64,12 @@ public class GridManager : MonoBehaviour
                 var spawnedTile = Instantiate(_tilePrefab, gridPlacement, Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
                 spawnedTile.transform.parent = transform; //all tiles are now a child of the gridmanager object
+                
                 spawnedTile.transform.localScale += new Vector3(-0.1f, -0.1f, -0.1f);
 
                 spawnedTile.Init(GenerateRandomColorType());
                 spawnedTile.SetTileId(x, y);
-
+                spawnedTile.transform.localPosition = new Vector3(x * offset, y * offset);
                 allTilesInGrid.Add(spawnedTile.gameObject);            
             }
         }

@@ -31,7 +31,17 @@ public class GridComboManager : MonoBehaviour
         }
         fallTimer = 0;
     }
-     
+
+    public void Update()
+    {
+        if (countFall) {
+            fallTimer += Time.deltaTime;
+            if (fallTimer >= fallTimeMax) {
+                ResetCountFall();
+                FindObjectOfType<GridManager>().PlayFallAnimation();
+            }
+        }
+    }
 
     private Connection ConvertToConnection(List<GameObject> connectionList)
     {
