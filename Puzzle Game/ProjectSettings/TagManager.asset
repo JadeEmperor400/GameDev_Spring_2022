@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Tile
+  - LineHead
   layers:
   - Default
   - TransparentFX
@@ -38,14 +40,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Terrain
     uniqueID: 4189426099
     locked: 0
-  - name: WallsAndCharacter
-    uniqueID: 2803055165
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: TopDetails
     uniqueID: 2425651459
