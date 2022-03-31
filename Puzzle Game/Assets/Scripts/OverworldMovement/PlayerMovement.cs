@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
+        //Animator
         if (!freezePlayer)
         {
             movement.x = UltimateJoystick.GetHorizontalAxisRaw("Movement") + Input.GetAxisRaw("Horizontal");
@@ -70,30 +70,30 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-            //Character
+            //Character Movement
             transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
             {
+                if (Mathf.Abs(movement.y) == 1f)
+                {
+                    if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, movement.y, 0f), .2f, whatStopsMovement))
+                    {
+                        movePoint.position += new Vector3(0f, movement.y, 0f);
+                        return;
+                    }
+                }
                 if (Mathf.Abs(movement.x) == 1f)
                 {
                     if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(movement.x, 0f, 0f), .2f, whatStopsMovement))
                     {
-                        //Ball
                         movePoint.position += new Vector3(movement.x, 0f, 0f);
                         return;
                     }
 
                 }
-                if (Mathf.Abs(movement.y) == 1f)
-                {
-                    if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, movement.y, 0f), .2f, whatStopsMovement))
-                    {
-                        //Ball
-                        movePoint.position += new Vector3(0f, movement.y, 0f);
-                        return;
-                    }
-                }
+                
+
 
 
             }
