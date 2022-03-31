@@ -25,6 +25,6 @@ public abstract class MusicState : MonoBehaviour
 
     public virtual void StopPlaying()
     {
-
+        AudioManager.Instance.StopMusicFadeOut();
     }
 }

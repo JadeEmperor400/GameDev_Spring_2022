@@ -5,13 +5,12 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
    
-    public AudioClip mainMenuMusic;
-    public AudioClip overambience;
+   
 
     // Start is called before the first frame update
     private void Start()
     {
-        AudioManager.Instance.PlayMusicFadeIn(mainMenuMusic);
+       
     }
     public void PlayGame()
     {
@@ -19,7 +18,7 @@ public class MainMenu : MonoBehaviour
         //0 is StartMenu. 1 is Overworld Demo
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
-        AudioManager.Instance.StopMusicFadeOut();
+       
         
     }
 

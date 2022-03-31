@@ -22,6 +22,7 @@ public class MusicMotor : MonoBehaviour
 
     public IEnumerator changeState(MusicState state)
     {
+       
         activeState.StopPlaying();
         //2-3 sec buffer wait time here 
         yield return new WaitForSeconds(2);
@@ -30,4 +31,10 @@ public class MusicMotor : MonoBehaviour
 
 
     }
+
+    public MusicState getActiveState()
+    {
+        return activeState;
+    }
+   
 }
