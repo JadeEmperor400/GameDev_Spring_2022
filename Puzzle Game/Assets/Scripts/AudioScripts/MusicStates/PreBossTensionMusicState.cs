@@ -48,11 +48,14 @@ public class PreBossTensionMusicState : MusicState
     }
     public override void StateChangeCheck()
     {
-       if((Mathf.Abs(Vector3.Distance(transform.position, GameObject.FindObjectOfType<PlayerMovement>().transform.position)) <= radius))
-            StartCoroutine(motor.changeState(overworldMusicState));
+      
+           
+            //StartCoroutine(motor.changeState(overworldMusicState));
+
         
 
-        if(Input.GetKeyDown(KeyCode.J))
+
+        if (Input.GetKeyDown(KeyCode.J))
         {
             //start coroutine to boss battle music 
         }

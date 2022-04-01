@@ -120,7 +120,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 5
 --- !u!114 &834596056836418514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +136,9 @@ MonoBehaviour:
   m_AudioSource: {fileID: 834596056836418525}
   m_AudioClips:
   - {fileID: 8300000, guid: 255d758d4eea9974daa601e4498d6e25, type: 3}
+  m_Motor: {fileID: 0}
+  preBossTensionMusicState: {fileID: 0}
+  overworldMusicState: {fileID: 0}
 --- !u!82 &834596056836418525
 AudioSource:
   m_ObjectHideFlags: 0
