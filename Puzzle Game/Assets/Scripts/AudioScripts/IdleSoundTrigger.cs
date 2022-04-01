@@ -10,10 +10,26 @@ public class IdleSoundTrigger : MonoBehaviour
     [SerializeField]
     private List<AudioClip> m_AudioClips;
 
-  
+    [SerializeField]
+    private MusicMotor m_Motor;
+
+    [SerializeField]
+    private PreBossTensionMusicState preBossTensionMusicState;
+    [SerializeField]
+    private OverworldMusicState overworldMusicState;
+
     void Start()
     {
-      
+      if(m_Motor == null)
+            m_Motor = FindObjectOfType<MusicMotor>().GetComponent<MusicMotor>();
+
+      if(preBossTensionMusicState == null)
+            preBossTensionMusicState = FindObjectOfType<PreBossTensionMusicState>().GetComponent<PreBossTensionMusicState>();
+
+        if (overworldMusicState == null)
+            overworldMusicState = FindObjectOfType<OverworldMusicState>().GetComponent<OverworldMusicState>();
+
+
     }
 
    
@@ -25,13 +41,32 @@ public class IdleSoundTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Hello?");
+       
         if(collision.CompareTag("Player"))
         {
+
+           StartCoroutine( m_Motor.changeState(preBossTensionMusicState));
+
+
+
             m_AudioSource.clip = m_AudioClips[0];
             m_AudioSource.Play();
         }
         
         
+    }
+
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+
+            StartCoroutine(m_Motor.changeState(overworldMusicState));
+
+
+
+           
+        }
     }
 }

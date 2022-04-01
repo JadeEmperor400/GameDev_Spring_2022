@@ -5,6 +5,8 @@ using UnityEngine;
 public class OverworldMusicState : MusicState
 {
     public MusicState battleMusicState;
+    public MusicState PreBossTensionMusicState;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,8 +36,14 @@ public class OverworldMusicState : MusicState
         }
 
 
+        if(PreBossTensionMusicState.GetComponent<PreBossTensionMusicState>().getInArea() == true)
+        {
+            StartCoroutine(motor.changeState(PreBossTensionMusicState));
+        }
+
+
 
     }
 
-
+   
 }
