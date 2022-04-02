@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class EnemyStats : BattleEntity
 {
+    [SerializeField]
+    protected string enemyName = "Enemy";
+    public string EnemyName {
+        get { return enemyName; }
+    }
+
     [Tooltip("How much Stagger an enemy can have before skipping their turn")]
     public int staggerLimit = 10;
     [Tooltip("How much Stagger an enemy has on it")]
     public int staggerCount = 0;
+
+    public List<EnemyAction> actions;
 
     [Tooltip("Damage Multipliers for cerain colors")]
     [SerializeField]
@@ -33,6 +41,11 @@ public class EnemyStats : BattleEntity
 
     public List<EnemyAction> enemyActions = new List<EnemyAction>();
 
+    public override void StartTurn()
+    {
+        Debug.Log(gameObject.name + " Started Turn");
+    }
+
     public override void PassTurn()
     {
         Debug.Log(gameObject.name + " Passed Turn");
@@ -48,5 +61,23 @@ public class EnemyStats : BattleEntity
         else {
             extraCounter++;
         }
+    }
+
+    public void OnMouseDown()
+    {
+        if (BattleManager.BM != null) {
+            BattleManager.BM.ChangeTarget(this);
+        }
+    }
+
+    public virtual EnemyAction SelectAction() {
+        if (actions.Count < 1) {
+            Debug.Log("This enemy has no actions");
+            return null;
+        }
+
+        int choose = Random.Range(0, actions.Count);
+
+        return actions[choose];
     }
 }

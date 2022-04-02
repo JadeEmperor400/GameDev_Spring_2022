@@ -14,9 +14,9 @@ public abstract class BattleEntity : MonoBehaviour
         HP = MaxHP;
     }
 
-    public virtual void PassTurn() {
-        Debug.Log (gameObject.name + " Passed Turn");
-    }
+    public abstract void StartTurn();
+
+    public abstract void PassTurn();
 
     public virtual void TakeDamage(int damage) {
         if (damage < 0) { damage = 0; }

@@ -8,10 +8,10 @@ public class TimerSlider : MonoBehaviour
     public Slider timerSlider;
     public Text timeDisplay;
     public float startTime;
-    float gameTime;
+    public float gameTime;
     float timeScaleValue;
     private bool isReset = false;
-    private bool isPause = false;
+    public bool isPause = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +20,14 @@ public class TimerSlider : MonoBehaviour
         timerSlider.value = gameTime;
     }
 
+    public void TimerStart(float baseTime, float reduction) {
+        timerSlider.maxValue = startTime;
+        timerSlider.value = gameTime;
+        removeTime(reduction);
+        normalTime();
+        isPause = false;
+        isReset = false;
+    }
     // Update is called once per frame
     void Update(){
         if (isPause) {
@@ -27,9 +35,10 @@ public class TimerSlider : MonoBehaviour
         }
 
         timeUpdate();  
-            if(gameTime <=0){
+            if(gameTime <= 0){
                 gameTime = startTime;
             isReset = true;
+            isPause = true;
                 sliderUpdate();
             }
             else
@@ -82,7 +91,13 @@ public class TimerSlider : MonoBehaviour
     public void removeTime(){
         gameTime = gameTime - 2;
         sliderUpdate();             
-     } 
+     }
+
+    public void removeTime(float reduction)
+    {
+        gameTime = gameTime - reduction;
+        sliderUpdate();
+    }
 
     public void addTime(){
         gameTime = gameTime + 2;
