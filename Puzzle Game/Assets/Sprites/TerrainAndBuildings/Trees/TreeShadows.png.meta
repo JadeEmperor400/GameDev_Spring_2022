@@ -1,16 +1,7 @@
 fileFormatVersion: 2
-guid: 6c473428534577a48a1f85f3abbe9d1b
+guid: 284ef0a48f282bc408061025f5f4e580
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 2572236292851511218
-    second: Trees_0
-  - first:
-      213: 6224024930817484846
-    second: Trees_1
-  - first:
-      213: -8911251428918342384
-    second: Trees_2
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -55,7 +46,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -146,81 +137,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Trees_0
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 1
-        width: 89
-        height: 95
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8.5, y: -28.5}
-        - {x: -8.5, y: -19.5}
-        - {x: 8.5, y: -19.5}
-        - {x: 8.5, y: -29.5}
-        - {x: 14.5, y: -29.5}
-        - {x: 16.5, y: -33.5}
-        - {x: 12.5, y: -37.5}
-        - {x: 4.5, y: -36.5}
-        - {x: 0.5, y: -37.5}
-        - {x: -1.5, y: -35.5}
-        - {x: -0.5, y: -31.5}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2bf28c1b74b62b320800000000000000
-      internalID: 2572236292851511218
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trees_1
-      rect:
-        serializedVersion: 2
-        x: 109
-        y: 7
-        width: 75
-        height: 85
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e282d82c2bd206650800000000000000
-      internalID: 6224024930817484846
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trees_2
-      rect:
-        serializedVersion: 2
-        x: 195
-        y: 9
-        width: 51
-        height: 50
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 01d412b0a00e45480800000000000000
-      internalID: -8911251428918342384
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
