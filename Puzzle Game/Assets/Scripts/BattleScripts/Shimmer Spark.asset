@@ -15,5 +15,5 @@ MonoBehaviour:
   power: 100
   drainRt: 0
   attackAnim: {fileID: 0}
-  stagger: 2
+  stagger: 5
   type: 1

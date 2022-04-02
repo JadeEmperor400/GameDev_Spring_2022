@@ -228,6 +228,7 @@ public class BattleManager : MonoBehaviour
                     break;
                 case ActType.Status:
                     player.timeReduction += enemyActions[i].timeReduction;
+                    player.Barrier = player.Barrier - enemyActions[i].barrierReduction;
                     break;
                 case ActType.Attack:
                 default:
@@ -236,6 +237,7 @@ public class BattleManager : MonoBehaviour
                             int attackPower = (int) (enemyActions[i].power * (1 - player.Barrier));
                             int drainPower = (int)(attackPower * enemyActions[i].drainRt);
                             player.timeReduction += enemyActions[i].timeReduction;
+                            player.Barrier = player.Barrier - enemyActions[i].barrierReduction;
                             player.TakeDamage(attackPower);
                             break;
                     }
@@ -261,6 +263,11 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator CalculatePlayerAttack(Queue<Connection> currentCombo)
     {
+        while (gridManager.Falling)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
         puzzleClose();
 
         if (currentCombo == null || currentCombo.Count < 1) //if player did no connections, then leave this method 
@@ -284,7 +291,7 @@ public class BattleManager : MonoBehaviour
                 ColorEnum colorType = combo.getColorType();
                 Debug.Log("ColorType : " + colorType);
                 supportDMG += DetermineSupportDamage(colorType);
-                staggerBoost += DetermineSupportDamage(colorType);
+                staggerBoost += DetermineSupportStagger(colorType);
                 player.Barrier = player.Barrier + DetermineSupportBarrier(colorType);
 
             }

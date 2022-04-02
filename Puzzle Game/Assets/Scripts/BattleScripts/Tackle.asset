@@ -17,4 +17,5 @@ MonoBehaviour:
   attackAnim: {fileID: 0}
   actionType: 0
   targetType: 0
-  timeReduction: 0
+  timeReduction: 3
+  barrierReduction: 0

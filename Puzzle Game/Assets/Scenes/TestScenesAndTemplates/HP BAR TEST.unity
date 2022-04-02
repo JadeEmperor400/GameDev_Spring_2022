@@ -1871,10 +1871,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2ebb9cf16674143b82d4dfb22fd3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 300
+  MaxHP: 500
   HP: 100
   enemyName: Enemy
-  staggerLimit: 10
+  staggerLimit: 15
   staggerCount: 0
   actions: []
   redAff: 1
@@ -2005,7 +2005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ecee2c7911ae547809cd5e07032191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 100
+  MaxHP: 160
   HP: 100
   baseTime: 10
   timeReduction: 0

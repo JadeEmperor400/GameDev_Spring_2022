@@ -21,4 +21,5 @@ public class EnemyAction : Action
     public ActType actionType = ActType.Attack;
     public TargetType targetType = TargetType.Player;
     public float timeReduction = 0;
+    public float barrierReduction = 0;
 }
