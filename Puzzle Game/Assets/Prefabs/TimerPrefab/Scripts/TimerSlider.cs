@@ -16,11 +16,12 @@ public class TimerSlider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timerSlider.maxValue = startTime;
-        timerSlider.value = gameTime;
+        //TimerStart(startTime, 0);
     }
 
     public void TimerStart(float baseTime, float reduction) {
+        startTime = baseTime;
+        gameTime = startTime;
         timerSlider.maxValue = startTime;
         timerSlider.value = gameTime;
         removeTime(reduction);
@@ -31,6 +32,9 @@ public class TimerSlider : MonoBehaviour
     // Update is called once per frame
     void Update(){
         if (isPause) {
+            return;
+        }
+        if (FindObjectOfType<GridManager>().Falling) {
             return;
         }
 

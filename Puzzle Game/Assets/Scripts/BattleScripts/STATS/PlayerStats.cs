@@ -17,16 +17,16 @@ public class PlayerStats : BattleEntity
         get { return barrier; }
         set
         {
-            if (value > 0.9f)
-            {
-                value = 0.9f;
-            }
-
-            if (value < -0.5f) {
-                value = -0.5f;
-            }
-
             barrier = value;
+            if (barrier > 0.9f)
+            {
+                barrier = 0.9f;
+            }
+
+            if (barrier < -0.5f)
+            {
+                barrier = -0.5f;
+            }
         }
     }
 

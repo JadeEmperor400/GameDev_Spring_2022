@@ -19,7 +19,7 @@ public class EnemyStats : BattleEntity
 
     [Tooltip("Damage Multipliers for cerain colors")]
     [SerializeField]
-    private float redAff, blueAff, greenAff = 1.0f;
+    private float redAff = 1.0f, blueAff = 1.0f, greenAff = 1.0f;
 
     public float RedAff {
         get { return redAff; }

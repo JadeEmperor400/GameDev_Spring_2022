@@ -269,6 +269,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
+            int comboSize = currentCombo.Count;
             var firstConnection = currentCombo.Dequeue();
             ColorEnum firstConnectionColorType = firstConnection.getColorType();
             int baseDamage = DetermineBaseDamage(firstConnectionColorType);
@@ -276,17 +277,19 @@ public class BattleManager : MonoBehaviour
             int staggerBoost = 0;
             int supportDMG = 0;
 
-            for (int i = 1; i < currentCombo.Count; i++)
+            for(int i = 1; i < comboSize; i++)
             {
                 //subsequent attacks
-                var combo = currentCombo.Dequeue();
-                var colorType = combo.getColorType();
+                Connection combo = currentCombo.Dequeue();
+                ColorEnum colorType = combo.getColorType();
+                Debug.Log("ColorType : " + colorType);
                 supportDMG += DetermineSupportDamage(colorType);
                 staggerBoost += DetermineSupportDamage(colorType);
+                player.Barrier = player.Barrier + DetermineSupportBarrier(colorType);
 
             }
             int fullStagger = baseStagger + staggerBoost;
-            int fullDmg = DealDamage(baseDamage, supportDMG, fullStagger, currentCombo.Count);
+            int fullDmg = DealDamage(baseDamage, supportDMG, fullStagger, comboSize, firstConnectionColorType);
 
             int drainHeal = (int)(fullDmg * DetermineDrainRt(firstConnectionColorType));
 
@@ -296,6 +299,11 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.5f);
             //TODO: Start Animation and Wait for it
             //TODO: Spawn Damage Notifications
+        }
+
+        while (gridManager.Falling)
+        {
+            yield return new WaitForEndOfFrame();
         }
 
         player.PassTurn();
@@ -329,7 +337,7 @@ public class BattleManager : MonoBehaviour
         state = State.Victory;
     }
 
-    private int DealDamage(int baseDMG, int supportDMG, int stagger, int comboSize)
+    private int DealDamage(int baseDMG, int supportDMG, int stagger, int comboSize, ColorEnum attackType)
     {
         int fullDamage = baseDMG + supportDMG;
 
@@ -339,8 +347,24 @@ public class BattleManager : MonoBehaviour
             comboMult += (comboSize - 1) * 0.25f; ;
         }
 
-        fullDamage = (int)(fullDamage * comboMult);
+        float colorMult = 1.0f;
 
+        switch (attackType) {
+            case ColorEnum.RED:
+                colorMult = enemy[targetEnemy].RedAff;
+                break;
+            case ColorEnum.BLUE:
+                colorMult = enemy[targetEnemy].BlueAff;
+                break;
+            case ColorEnum.GREEN:
+                colorMult = enemy[targetEnemy].GreenAff;
+                break;
+        }
+
+        Debug.Log("DAMAGE MULT:: Combo: " + comboMult + " / ColorAff : " + colorMult);
+
+        fullDamage = (int)(fullDamage * comboMult * colorMult);
+        
         enemy[targetEnemy].TakeDamage(fullDamage);
         enemy[targetEnemy].staggerCount += stagger;
 
@@ -376,22 +400,18 @@ public class BattleManager : MonoBehaviour
         return 1;
     }
 
-    private int DetermineSupportBarrier(ColorEnum colorType)
+    private float DetermineSupportBarrier(ColorEnum colorType)
     {
 
         switch (colorType)
         {
-            case ColorEnum.RED:
-                return 0;
             case ColorEnum.GREEN:
-                return 0;
-            case ColorEnum.BLUE:
-                return 3;
+                return 0.25f;
             default:
                 break;
         }
 
-        return 0;
+        return 0.0f;
     }
 
     private int DetermineBaseDamage(ColorEnum colorType)
@@ -475,9 +495,6 @@ public class BattleManager : MonoBehaviour
                 return;
             }
         }
-
-        
-        //Victory if You get here
     }
 
     public List<EnemyStats> RandomizeEnemyTurnOrder(List<EnemyStats> OrderedEnemyStats)
