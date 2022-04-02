@@ -1,7 +1,16 @@
 fileFormatVersion: 2
 guid: 284ef0a48f282bc408061025f5f4e580
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 4070274111221503741
+    second: TreeShadows_0
+  - first:
+      213: -9138421998554476468
+    second: TreeShadows_1
+  - first:
+      213: 873796246298352063
+    second: TreeShadows_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -137,7 +146,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: TreeShadows_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1
+        width: 80
+        height: 37
+      alignment: 9
+      pivot: {x: 0.43, y: 0.54}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df693d92db48c7830800000000000000
+      internalID: 4070274111221503741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TreeShadows_1
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 8
+        width: 60
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c409b881c9dcd2180800000000000000
+      internalID: -9138421998554476468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TreeShadows_2
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 13
+        width: 41
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb9dea27e09502c00800000000000000
+      internalID: 873796246298352063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
