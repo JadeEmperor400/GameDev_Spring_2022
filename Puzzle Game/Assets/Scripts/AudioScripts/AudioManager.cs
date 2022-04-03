@@ -66,7 +66,7 @@ public class AudioManager : MonoBehaviour
     private IEnumerator UpdateMusicWithFadingIn(AudioSource activeSource, float transitionTime)
     {
         activeSource.Play();
-
+      
 
         // Fade in
         for (float t = 0.0f; t <= transitionTime; t += Time.deltaTime)
