@@ -6,8 +6,13 @@ using UnityEngine;
 
 
 public enum State{
-        PlayerPhase, Calculating, EnemyPhase, GameOver, Victory, Start
-    };
+        PlayerPhase,
+    Calculating,
+    EnemyPhase,
+    GameOver,
+    Victory,
+    Start // battle system is rready to go
+};
 
 public class BattleManager : MonoBehaviour
 {
@@ -46,6 +51,10 @@ public class BattleManager : MonoBehaviour
     private List<Sprite> numbers = new List<Sprite>();
     [SerializeField]
     private SpriteRenderer _numBit;
+    [SerializeField]
+    private EnemyHPBAR enemyHPBAR;
+    [SerializeField]
+    private EnemyHPBAR playerHPBar;
 
     public State state{
         get; 
@@ -55,7 +64,10 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     private BattleMessenger messenger;
 
-    void Start()
+    [SerializeField]
+    private List<EnemyStats> testTeam;
+
+    void Awake()
     {
         if (BM == null)
         {
@@ -64,21 +76,85 @@ public class BattleManager : MonoBehaviour
         else if (BM != this) {
             Destroy(this.gameObject);
         }
-
+        player.gameObject.SetActive(false);
+        gridManager.gameObject.SetActive(false);
+        timer.gameObject.SetActive(false);
         state = State.Start;
-        BattleStart();
+        //BattleStart();
     }
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.T) && Input.GetKeyDown(KeyCode.B)) {
+            if (testTeam != null && testTeam.Count > 0)
+            {
+                if (state == State.Start)
+                {
+                    BeginBattle(testTeam);
+                }
+                else {
+                    Debug.Log("Battle in Progress");
+                }
+            }
+            else {
+                Debug.Log("No test team available");
+            }
+        }
+
         if (timer.getIsReset() && state == State.PlayerPhase) {
             playerCalc();
         }     
     }
 
+    public void BeginBattle(List<EnemyStats> SpawnThese ) {
+        if (state == State.Start) {
+            player.gameObject.SetActive(true);
+
+            if (enemy.Count != 0)
+            {
+                foreach (EnemyStats e in enemy)
+                {
+                    Destroy(e.gameObject);
+                }
+
+                enemy.Clear();
+            }
+
+            for (int i = 0; i < SpawnThese.Count; i++) {
+                if (i == 3) {
+                    break;
+                }
+
+                EnemyStats e = Instantiate(SpawnThese[i]);
+
+                switch (i) {
+                    case 0:
+                        e.gameObject.transform.position = new Vector3(5,-0.5f,0);
+                        break;
+                    case 1:
+                        e.gameObject.transform.position = new Vector3(7, -3.5f, 0);
+                        break;
+                    case 2:
+                        e.gameObject.transform.position = new Vector3(7, 1.5f, 0);
+                        break;
+                }
+
+                enemy.Add(e);
+                Instantiate(enemyHPBAR.gameObject, e.transform);
+            }
+
+            EnemyHPBAR playerBar = player.GetComponentInChildren<EnemyHPBAR>();
+            if (playerBar != null) {
+                Destroy(playerBar.gameObject);
+            }
+            Instantiate(playerHPBar.gameObject, player.transform);
+            BattleStart();
+        }
+    }
+
     void BattleStart() {
-        gridManager.gameObject.SetActive(false);//turn on gridmanager
-        timer.gameObject.SetActive(false);//turn on slider
+        gridManager.gameObject.SetActive(false);
+        timer.gameObject.SetActive(false);
         SetMessage("THEY APPROACH!", 2.0f);
         player.Init();
         foreach (EnemyStats e in enemy) {
@@ -633,7 +709,10 @@ public class BattleManager : MonoBehaviour
     }
 
     public void SetMessage(string message, float delay = 0.5f) {
-            mesRoutine = StartCoroutine(ShowMessage( message, delay));
+        if (mesRoutine != null) {
+            StopCoroutine(mesRoutine);
+        }
+        mesRoutine = StartCoroutine(ShowMessage( message, delay));
     }
 
     private IEnumerator ShowMessage(string message, float delay = 0.5f) {
@@ -676,7 +755,17 @@ public class BattleManager : MonoBehaviour
     private IEnumerator VictoryAnimate() {
         SetMessage("You Win!!", 2.0f);
         yield return new WaitForSecondsRealtime(3.5f);
-        Start();
+        if (enemy.Count != 0)
+        {
+            foreach (EnemyStats e in enemy)
+            {
+                Destroy(e.gameObject);
+            }
+
+            enemy.Clear();
+        }
+        player.gameObject.SetActive(false);
+        state = State.Start;
     }
 
     private void GameOver() {
@@ -688,7 +777,15 @@ public class BattleManager : MonoBehaviour
         player.gameObject.SetActive(false);
         SetMessage("You Lose!!", 2.0f);
         yield return new WaitForSecondsRealtime(3.5f);
-        player.gameObject.SetActive(true);
-        Start();
+        if (enemy.Count != 0)
+        {
+            foreach (EnemyStats e in enemy)
+            {
+                Destroy(e.gameObject);
+            }
+
+            enemy.Clear();
+        }
+        state = State.Start;
     }
 }

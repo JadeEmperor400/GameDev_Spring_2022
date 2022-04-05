@@ -15,8 +15,6 @@ public class EnemyStats : BattleEntity
     [Tooltip("How much Stagger an enemy has on it")]
     public int staggerCount = 0;
 
-    public List<EnemyAction> actions;
-
     [Tooltip("Damage Multipliers for cerain colors")]
     [SerializeField]
     private float redAff = 1.0f, blueAff = 1.0f, greenAff = 1.0f;
@@ -71,13 +69,13 @@ public class EnemyStats : BattleEntity
     }
 
     public virtual EnemyAction SelectAction() {
-        if (actions.Count < 1) {
+        if (enemyActions.Count < 1) {
             Debug.Log("This enemy has no actions");
             return null;
         }
 
-        int choose = Random.Range(0, actions.Count);
+        int choose = Random.Range(0, enemyActions.Count);
 
-        return actions[choose];
+        return enemyActions[choose];
     }
 }
