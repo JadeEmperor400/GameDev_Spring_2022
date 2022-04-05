@@ -47,9 +47,19 @@ public class EnemyDialogue : DisplayDialogue
     // Update is called once per frame
     void Update()
     {
-        if (nearPlayer && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0)) && !Textbox.On)
+        if (nearPlayer && (Input.GetKeyDown(KeyCode.E)) && !Textbox.On)
         {
             displayFirstDialogue(introEnemyDialogue);
         }
     }
+
+    private void OnMouseDown()
+    {
+        if(nearPlayer && !Textbox.On)
+        {
+            displayFirstDialogue(introEnemyDialogue);
+        }
+       
+    }
+
 }
