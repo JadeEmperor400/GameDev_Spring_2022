@@ -391,7 +391,7 @@ public class GridManager : MonoBehaviour
             yield return new WaitForSeconds(1 / ((float) allTilesInGrid.Count / Time.timeScale));
         } Debug.Log("Drop : Reach End of Initial Setup");
 
-        yield return new WaitForSeconds(1/(24.0f / Time.timeScale));
+        yield return new WaitForSeconds(1/(30.0f / Time.timeScale));
         //Remove Tile
 
         Debug.Log("Drop: Start of Remove Tile");
@@ -431,7 +431,7 @@ public class GridManager : MonoBehaviour
                     else {
                         tile.transform.localPosition = Vector3.Lerp(startLoc, gridPlacement, lerpTime/lerpFull);
                     }
-                    yield return new WaitForSeconds(1 / (60.0f / Time.timeScale));
+                    yield return new WaitForSeconds(1 / ((60.0f / Time.timeScale) * drops.Count));
                 }//End of Lerp
 
             }
@@ -473,7 +473,7 @@ public class GridManager : MonoBehaviour
                     {
                         tile.transform.localPosition = Vector3.Lerp(startLoc, gridPlacement, lerpTime / lerpFull);
                     }
-                    yield return new WaitForSeconds(3.0f / ((60.0f / Time.timeScale) * usedTiles.Count));
+                    yield return new WaitForSeconds(2.0f / ((60.0f / Time.timeScale) * usedTiles.Count));
                 }//End of Lerp
 
             }

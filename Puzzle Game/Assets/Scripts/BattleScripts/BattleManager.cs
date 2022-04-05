@@ -24,6 +24,12 @@ public class BattleManager : MonoBehaviour
     private List<EnemyStats> randomizedEnemies = new List<EnemyStats>();
     [SerializeField]
     private int targetEnemy = 0;
+
+    public EnemyStats TargetEnemy
+    {
+        get { return enemy[targetEnemy]; }
+    }
+
     [SerializeField]
     private int enemyTurnNo = 0;
 
@@ -34,24 +40,33 @@ public class BattleManager : MonoBehaviour
     public EnemyAction defaultEnemyAttack;
 
     private Coroutine batteRoutine;
+    private Coroutine mesRoutine;
+
+    [SerializeField]
+    private List<Sprite> numbers = new List<Sprite>();
+    [SerializeField]
+    private SpriteRenderer _numBit;
 
     public State state{
         get; 
         private set;
     } = State.Start;
 
-    
+    [SerializeField]
+    private BattleMessenger messenger;
+
     void Start()
     {
         if (BM == null)
         {
             BM = this;
-            state = State.Start;
-            BattleStart();
         }
         else if (BM != this) {
             Destroy(this.gameObject);
         }
+
+        state = State.Start;
+        BattleStart();
     }
 
     void Update()
@@ -62,11 +77,15 @@ public class BattleManager : MonoBehaviour
     }
 
     void BattleStart() {
+        gridManager.gameObject.SetActive(false);//turn on gridmanager
+        timer.gameObject.SetActive(false);//turn on slider
+        SetMessage("THEY APPROACH!", 2.0f);
         player.Init();
         foreach (EnemyStats e in enemy) {
+            e.gameObject.SetActive(true);
             e.Init();
         }
-        playerTurn();
+        StartCoroutine(StartUp());
     }
 
     private void playerTurn(){
@@ -206,7 +225,8 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator EnemyStunned(EnemyStats user) {
         Debug.Log("ENEMY ACTING : " + user.name + " IS STUNNED!! ");
-        yield return new WaitForSecondsRealtime(0.5f);
+        SetMessage(user.name + " Is Stunned!!", 1.5f);
+        yield return new WaitForSecondsRealtime(2.25f);
         enemyTurnNo++;
         enemyAct();
         yield break;
@@ -215,16 +235,18 @@ public class BattleManager : MonoBehaviour
     private IEnumerator EnemyActionPlay(EnemyStats user, List<EnemyAction> enemyActions) {
 
         Debug.Log("ENEMY ACTING : " + user.name + " START " );
-        yield return new WaitForSecondsRealtime(0.5f);
 
         for (int i = 0; i < enemyActions.Count; i++) {
             //TODO: ADD ACTION NOTIFIACTION
             Debug.Log("ENEMY ACTING : " + user.name + " used " + enemyActions[i].name + ".");
-
+            SetMessage(user.name + " used " + enemyActions[i].name, 1.5f);
+            yield return new WaitForSecondsRealtime(0.5f);
             //TODO: SPAWN DAMAGE NUMBER
             switch (enemyActions[i].actionType) {
                 case ActType.Heal:
                     user.HealDamage(enemyActions[i].power);
+                    StartCoroutine(DisplayNumber(enemyActions[i].power, user.gameObject, new Color(0.5f, 1, 0.5f)));
+                    yield return new WaitForSecondsRealtime(0.5f);
                     break;
                 case ActType.Status:
                     player.timeReduction += enemyActions[i].timeReduction;
@@ -239,6 +261,14 @@ public class BattleManager : MonoBehaviour
                             player.timeReduction += enemyActions[i].timeReduction;
                             player.Barrier = player.Barrier - enemyActions[i].barrierReduction;
                             player.TakeDamage(attackPower);
+                            StartCoroutine(DisplayNumber(attackPower, player.gameObject, new Color(0.75f, 0.75f, 0.5f)));
+                            yield return new WaitForSecondsRealtime(0.25f);
+
+                            if (drainPower > 0) {
+                                user.HealDamage(drainPower);
+                                StartCoroutine(DisplayNumber(drainPower, user.gameObject, new Color(0.5f, 1, 0.5f)));
+                            }
+                            yield return new WaitForSecondsRealtime(0.25f);
                             break;
                     }
                     break;
@@ -252,6 +282,7 @@ public class BattleManager : MonoBehaviour
             if (player.HP <= 0) {
                 state = State.GameOver;
                 Debug.Log("GAME OVER");
+                GameOver();
                 yield break;
             }
         }
@@ -298,14 +329,23 @@ public class BattleManager : MonoBehaviour
             int fullStagger = baseStagger + staggerBoost;
             int fullDmg = DealDamage(baseDamage, supportDMG, fullStagger, comboSize, firstConnectionColorType);
 
-            int drainHeal = (int)(fullDmg * DetermineDrainRt(firstConnectionColorType));
+            StartCoroutine(DisplayNumber(fullDmg, enemy[targetEnemy].gameObject, Color.white));
+            if (TargetEnemy.HP <= 0) {
+                TargetEnemy.gameObject.SetActive(false);
+            }
+            yield return new WaitForSecondsRealtime(0.25f);
 
-            player.HealDamage(drainHeal);
-            Debug.Log("Player Used : " + firstConnection.getColorType() + " action  POWER: " + fullDmg + " / HEAL: " + drainHeal + " / STAGGER : " + fullStagger);
+            int drainHeal = (int)(fullDmg * DetermineDrainRt(firstConnectionColorType));
             
-            yield return new WaitForSecondsRealtime(0.5f);
+            player.HealDamage(drainHeal);
+            if (drainHeal > 0) {
+                StartCoroutine(DisplayNumber(drainHeal, player.gameObject, new Color(0.5f, 1, 0.5f)));
+            }
+            
+            Debug.Log("Player Used : " + firstConnection.getColorType() + " action  POWER: " + fullDmg + " / HEAL: " + drainHeal + " / STAGGER : " + fullStagger);
+            yield return new WaitForSecondsRealtime(0.25f);
+            yield return new WaitForSecondsRealtime(0.1f);
             //TODO: Start Animation and Wait for it
-            //TODO: Spawn Damage Notifications
         }
 
         while (gridManager.Falling)
@@ -324,6 +364,7 @@ public class BattleManager : MonoBehaviour
             //Victory
             Debug.Log("VICTORY : NO ENMEY");
             state = State.Victory;
+            Victory();
             return;
         }
 
@@ -342,6 +383,7 @@ public class BattleManager : MonoBehaviour
         //Victory
         Debug.Log("VICTORY : ALL DEAD");
         state = State.Victory;
+        Victory();
     }
 
     private int DealDamage(int baseDMG, int supportDMG, int stagger, int comboSize, ColorEnum attackType)
@@ -529,4 +571,124 @@ public class BattleManager : MonoBehaviour
         return randomizedEnemies;
     }
 
+    public IEnumerator DisplayNumber(int number, GameObject target, Color color) {
+        if (number > 999) {
+            number = 999;
+        }
+
+        int amounts = 1;
+        if (number > 99)
+        {
+            amounts = 3;
+        }
+        else if (number > 9)
+        {
+            amounts = 2;
+        }
+        List<GameObject> bits = new List<GameObject>();
+        Debug.Log("StartDisplay 0");
+        for (int i = amounts; i > 0; i--) {
+            int checkNum = (int)(number/ (Mathf.Pow(10,i-1)));
+            number -= checkNum * (int)((Mathf.Pow(10, i - 1)));
+            GameObject g = GameObject.Instantiate(_numBit.gameObject);
+            g.transform.position = new Vector3(target.transform.position.x + (amounts - i + 1) / 2.0f, target.transform.position.y + 1,0);
+            g.transform.localScale = Vector3.zero;
+            g.GetComponent<SpriteRenderer>().color = color;
+            g.GetComponent<SpriteRenderer>().sprite = numbers[checkNum % 10];
+            bits.Add(g);
+        }
+
+        Vector3 startScale = new Vector3(0.5f, 0, 1);
+        Vector3 endScale = new Vector3(0.5f, 0.5f, 1);
+
+        Debug.Log("StartDisplay 1");
+        for (float i = 0; i <= 1.0f; i += (1 / 10.0f)) {
+            foreach (GameObject g in bits) {
+                g.transform.localScale = Vector3.Lerp(startScale, endScale, i);
+                g.transform.position += new Vector3(0,1/120.0f,0);
+            }
+            yield return new WaitForSecondsRealtime(1 /60.0f);
+        }
+
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        Color startColor = color;
+        Color endColor = Color.clear;
+        Debug.Log("StartDisplay 2");
+        for (float i = 0; i <= 1.0f; i += (1 / 6.0f))
+        {
+            foreach (GameObject g in bits)
+            {
+                g.GetComponent<SpriteRenderer>().color = Color.Lerp(startColor,endColor,i);
+            }
+            yield return new WaitForSecondsRealtime(1 / 60.0f);
+        }
+
+        foreach (GameObject g in bits)
+        {
+            Destroy(g);
+        }
+        Debug.Log("End Display");
+        yield break;
+    }
+
+    public void SetMessage(string message, float delay = 0.5f) {
+            mesRoutine = StartCoroutine(ShowMessage( message, delay));
+    }
+
+    private IEnumerator ShowMessage(string message, float delay = 0.5f) {
+        if (delay < 0) {
+            delay = 0;
+        }
+        messenger.Message = message;
+        Vector3 startScale = new Vector3(1, 0, 1);
+        Vector3 endScale = new Vector3(1,1,1);
+
+        for (float i = 0; i <= 1.0f; i += 1 / 15.0f) {
+            messenger.transform.localScale = Vector3.Lerp(startScale, endScale, i);
+            yield return new WaitForSecondsRealtime(1 / 60.0f);
+        }
+
+        yield return new WaitForSecondsRealtime(delay);
+
+        for (float i = 0; i <= 1.0f; i += 1 / 15.0f)
+        {
+            messenger.transform.localScale = Vector3.Lerp(endScale, startScale, i);
+            yield return new WaitForSecondsRealtime(1 / 60.0f);
+        }
+        mesRoutine = null;
+        yield break;
+    }
+
+    //Starts Battle
+    private IEnumerator StartUp() {
+        yield return new WaitForSecondsRealtime(3.5f);
+        playerTurn();
+        yield break;
+    }
+
+
+    private void Victory()
+    {
+        StartCoroutine(VictoryAnimate());
+    }
+
+    private IEnumerator VictoryAnimate() {
+        SetMessage("You Win!!", 2.0f);
+        yield return new WaitForSecondsRealtime(3.5f);
+        Start();
+    }
+
+    private void GameOver() {
+        StartCoroutine(GameOverAnimate());
+    }
+
+    private IEnumerator GameOverAnimate()
+    {
+        player.gameObject.SetActive(false);
+        SetMessage("You Lose!!", 2.0f);
+        yield return new WaitForSecondsRealtime(3.5f);
+        player.gameObject.SetActive(true);
+        Start();
+    }
 }

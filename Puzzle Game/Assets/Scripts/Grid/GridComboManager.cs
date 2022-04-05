@@ -22,14 +22,21 @@ public class GridComboManager : MonoBehaviour
         //take that newly made connection and add it to the combo
         if(connection != null)
         combo.AddConnection(connection);
-      
-       
+
+
 
         if (!countFall)
         {
             countFall = true;
+            fallTimer = 0;
         }
-        fallTimer = 0;
+        else {
+            fallTimer -= 0.5f;
+            if (fallTimer < 0) {
+                fallTimer = 0;
+            }
+        }
+        
     }
 
     public void Update()
