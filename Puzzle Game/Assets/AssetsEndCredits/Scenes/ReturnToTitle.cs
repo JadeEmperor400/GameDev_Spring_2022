@@ -11,7 +11,7 @@ public class ReturnToTitle : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        StartCoroutine(HideAndShow(19.0f));
+        //StartCoroutine(HideAndShow(19.0f));
     }
 
     // Update is called once per frame

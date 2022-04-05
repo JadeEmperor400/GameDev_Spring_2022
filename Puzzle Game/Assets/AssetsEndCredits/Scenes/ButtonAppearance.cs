@@ -6,11 +6,12 @@ public class ButtonAppearance : MonoBehaviour
 {
 
     public GameObject SkipButton;
+    public int timeToShow; 
 
     // Use this for initialization
     void Start()
     {
-        StartCoroutine(HideAndShow(8.0f));
+        StartCoroutine(HideAndShow(timeToShow));
     }
 
     // Update is called once per frame
