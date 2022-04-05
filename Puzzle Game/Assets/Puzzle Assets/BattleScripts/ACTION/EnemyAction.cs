@@ -16,9 +16,10 @@ public enum ActType {
 }
 
 [CreateAssetMenu]
-public class EnemyAction : ActionSO
+public class EnemyAction : BattleAction
 {
     public ActType actionType = ActType.Attack;
     public TargetType targetType = TargetType.Player;
     public float timeReduction = 0;
+    public float barrierReduction = 0;
 }

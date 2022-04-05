@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ff5d476d0b8944c9e9fde3dcffd136, type: 3}
   m_Name: Rogue Flare
   m_EditorClassIdentifier: 
-  power: 100
+  power: 120
   drainRt: 0
   attackAnim: {fileID: 0}
-  stagger: 1
+  stagger: 2
   type: 0

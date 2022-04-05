@@ -13,11 +13,9 @@ public class GridManager : MonoBehaviour
 {
     //TODO Dynamic Dropdown system -> maybe try manipulating grid based y pos, (Seperate Script, TileMovement), "invisible" instantiated row up top.
     //^ algorhthm for droppinng tiles based on connection. Refactor gridManager? 
-   
-    public AudioSource audioSource;
-    public AudioClip redClip;
-    public AudioClip blueClip;
-    public AudioClip greenClip;
+
+    [SerializeField]
+    private GridAudio gridAudio;
 
     [SerializeField]
     private GridComboManager gridComboManager;
@@ -31,7 +29,7 @@ public class GridManager : MonoBehaviour
     private int width, height;
   
 
-    [Range(2.5f, 4.5f)]
+    [Range(1.1f, 4.5f)]
     public float offset = 3.5f;
 
     [SerializeField]
@@ -51,7 +49,7 @@ public class GridManager : MonoBehaviour
     void Awake()
     {
         GenerateGrid(); 
-        audioSource = GetComponent<AudioSource>();
+       
     }
 
    private void GenerateGrid()
@@ -66,11 +64,12 @@ public class GridManager : MonoBehaviour
                 var spawnedTile = Instantiate(_tilePrefab, gridPlacement, Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
                 spawnedTile.transform.parent = transform; //all tiles are now a child of the gridmanager object
+                
                 spawnedTile.transform.localScale += new Vector3(-0.1f, -0.1f, -0.1f);
 
                 spawnedTile.Init(GenerateRandomColorType());
                 spawnedTile.SetTileId(x, y);
-
+                spawnedTile.transform.localPosition = new Vector3(x * offset, y * offset);
                 allTilesInGrid.Add(spawnedTile.gameObject);            
             }
         }
@@ -183,7 +182,7 @@ public class GridManager : MonoBehaviour
         }
 
         gridComboManager.AddToCombo(connectedTiles);
-
+        gridAudio.PlayChargeUpSound(connectedTiles);
         connectedTiles.Clear ();
         
     }
@@ -287,27 +286,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    private void PlayConnectionSound(ColorEnum colorEnum)
-    {
-        switch(colorEnum)
-        {
-            case ColorEnum.RED:
-                audioSource.clip = redClip;
-                audioSource.Play();
-                break;
-            case ColorEnum.BLUE:
-                audioSource.clip = blueClip;
-                audioSource.Play();
-                break;
-            case ColorEnum.GREEN:
-                audioSource.clip = greenClip;
-                audioSource.Play();
-                break;
-                default:
-                Debug.Log("Play connection sound in GridManager");
-                break;
-        }
-    }
+   
 
     //GETTERS AND SETTERS
     public GameObject getFirstConnectedTile()
@@ -412,7 +391,7 @@ public class GridManager : MonoBehaviour
             yield return new WaitForSeconds(1 / ((float) allTilesInGrid.Count / Time.timeScale));
         } Debug.Log("Drop : Reach End of Initial Setup");
 
-        yield return new WaitForSeconds(1/(24.0f / Time.timeScale));
+        yield return new WaitForSeconds(1/(30.0f / Time.timeScale));
         //Remove Tile
 
         Debug.Log("Drop: Start of Remove Tile");
@@ -452,7 +431,7 @@ public class GridManager : MonoBehaviour
                     else {
                         tile.transform.localPosition = Vector3.Lerp(startLoc, gridPlacement, lerpTime/lerpFull);
                     }
-                    yield return new WaitForSeconds(1 / (60.0f / Time.timeScale));
+                    yield return new WaitForSeconds(1 / ((60.0f / Time.timeScale) * drops.Count));
                 }//End of Lerp
 
             }
@@ -494,7 +473,7 @@ public class GridManager : MonoBehaviour
                     {
                         tile.transform.localPosition = Vector3.Lerp(startLoc, gridPlacement, lerpTime / lerpFull);
                     }
-                    yield return new WaitForSeconds(3.0f / ((60.0f / Time.timeScale) * usedTiles.Count));
+                    yield return new WaitForSeconds(2.0f / ((60.0f / Time.timeScale) * usedTiles.Count));
                 }//End of Lerp
 
             }

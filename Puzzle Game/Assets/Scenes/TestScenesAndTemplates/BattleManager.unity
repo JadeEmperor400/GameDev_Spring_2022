@@ -171,9 +171,6 @@ MonoBehaviour:
   timer: {fileID: 2041370072}
   player: {fileID: 889680263}
   enemy: []
-  redPlayerAction: {fileID: 11400000, guid: 286df402fe77f8244af949b6d0365dbf, type: 2}
-  bluePlayerAction: {fileID: 11400000, guid: e03e6299a32357b46b5504088be869c4, type: 2}
-  greenPlayerAction: {fileID: 11400000, guid: 8597707a7ee810b43a502d9ed78a4650, type: 2}
 --- !u!1 &419531377
 GameObject:
   m_ObjectHideFlags: 0

@@ -51,17 +51,17 @@ public class Tile : MonoBehaviour
         {
             case ColorEnum.RED:
                 colorIdentity = ColorEnum.RED;
-                spriteRenderer.color = Color.red;
+                spriteRenderer.color = new Color( 1.0f, 0.3f, 0.3f);
                 break;
 
             case ColorEnum.BLUE:
                 colorIdentity = ColorEnum.BLUE;
-                spriteRenderer.color = Color.blue;
+                spriteRenderer.color = new Color(0.3f, 0.3f, 1.0f);
                 break;
 
             case ColorEnum.GREEN:
                 colorIdentity = ColorEnum.GREEN;
-                spriteRenderer.color = Color.green;
+                spriteRenderer.color = new Color(0.3f, 1.0f, 0.3f); ;
                 break;
 
             case ColorEnum.NONE:
