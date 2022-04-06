@@ -6,7 +6,7 @@ public class EnemyDialogue : DisplayDialogue
 {
     public PlayerMovement playerMovement;
   
-    
+    public GameManagerScript gameManagerScript;
     public float radius = 1.5f;
 
     public Dialogue_Set introEnemyDialogue = null;
@@ -19,6 +19,7 @@ public class EnemyDialogue : DisplayDialogue
         playerMovement.FreezePlayer();
         enemyDialogueSet?.sendDialogue();
         fightEnemyDialogue?.sendDialogue();
+        gameManagerScript.StartBattle();
     }
 
     public void displayWinEnemyDialogue()

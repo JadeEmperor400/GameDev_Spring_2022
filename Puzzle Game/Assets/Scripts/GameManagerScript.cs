@@ -9,8 +9,10 @@ public class GameManagerScript : MonoBehaviour
 
     //reference to all the enemies 
 
+    public BattleManager battleManager;
+   
 
-
+    public List<EnemyStats> coralWyrm;
 
     //Singleton
     private static GameManagerScript instance;
@@ -20,15 +22,28 @@ public class GameManagerScript : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
 
+        if(battleManager == null)
+            battleManager = FindObjectOfType<BattleManager>();  
+
     }
 
-
-    public void StartBattle(EnemyStats enemyStats)
+    private void Update()
     {
-        //start battle with the enemies stats
-
-
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            StartBattle();
+        }           
     }
+    public void StartBattle()
+    {       
+        battleManager.BeginBattle(coralWyrm);
+    }
+
+    public void StartBossBattle()
+    {
+        
+    }
+   
     public void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -17,7 +17,8 @@ public enum State{
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager BM;
-
+    public UltimateJoystick joystick;
+    public PlayerMovement playerMovement;
     public GridManager gridManager;
     public GridComboManager comboManager;
     public TimerSlider timer;
@@ -107,6 +108,8 @@ public class BattleManager : MonoBehaviour
     }
 
     public void BeginBattle(List<EnemyStats> SpawnThese ) {
+        playerMovement.FreezePlayer();
+        joystick.gameObject.SetActive(false);
         if (state == State.Start) {
             player.gameObject.SetActive(true);
 
@@ -749,6 +752,8 @@ public class BattleManager : MonoBehaviour
 
     private void Victory()
     {
+        playerMovement.UnFreezePlayer();
+        joystick.gameObject.SetActive(true);
         StartCoroutine(VictoryAnimate());
     }
 
@@ -769,6 +774,8 @@ public class BattleManager : MonoBehaviour
     }
 
     private void GameOver() {
+        playerMovement.UnFreezePlayer();
+        joystick.gameObject.SetActive(true);
         StartCoroutine(GameOverAnimate());
     }
 
