@@ -212,7 +212,7 @@ public class Textbox : MonoBehaviour
 
     //hide textbox
     public IEnumerator hideTextbox() {
-        playerMovement.UnFreezePlayer();
+        
         int framesPassed = 0;
         while (GetComponent<Image>().rectTransform.localScale.y > 0) {
             framesPassed++;
@@ -233,6 +233,15 @@ public class Textbox : MonoBehaviour
         //FindObjectOfType<PlayerMovement>()?.EnableMovement();
         //FindObjectOfType<PlayerState>()?.SetInteracting(false);
         gameObject.SetActive(false);
+        if (GameManagerScript.instance.nextBattle != null)
+        {
+            BattleManager.BM.BeginBattle(GameManagerScript.instance.nextBattle);
+            GameManagerScript.instance.ClearNextBattle();
+
+        }
+        else {
+            playerMovement.UnFreezePlayer();
+        }
         yield break;
     }
 }

@@ -6,12 +6,13 @@ using UnityEngine;
 
 
 public enum State{
-        PlayerPhase,
+    PlayerPhase,
     Calculating,
     EnemyPhase,
     GameOver,
     Victory,
-    Start // battle system is rready to go
+    Start, // battle system is rready to go
+    Off
 };
 
 public class BattleManager : MonoBehaviour
@@ -33,7 +34,13 @@ public class BattleManager : MonoBehaviour
 
     public EnemyStats TargetEnemy
     {
-        get { return enemy[targetEnemy]; }
+        get {
+            if (enemy == null || targetEnemy >= enemy.Count) {
+                return null;
+            }
+
+            return enemy[targetEnemy];
+        }
     }
 
     [SerializeField]
@@ -60,7 +67,7 @@ public class BattleManager : MonoBehaviour
     public State state{
         get; 
         private set;
-    } = State.Start;
+    } = State.Off;
 
     [SerializeField]
     private BattleMessenger messenger;
@@ -80,7 +87,7 @@ public class BattleManager : MonoBehaviour
         player.gameObject.SetActive(false);
         gridManager.gameObject.SetActive(false);
         timer.gameObject.SetActive(false);
-        state = State.Start;
+        state = State.Off;
         //BattleStart();
     }
 
@@ -89,7 +96,7 @@ public class BattleManager : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.T) && Input.GetKeyDown(KeyCode.B)) {
             if (testTeam != null && testTeam.Count > 0)
             {
-                if (state == State.Start)
+                if (state == State.Off)
                 {
                     BeginBattle(testTeam);
                 }
@@ -110,13 +117,23 @@ public class BattleManager : MonoBehaviour
     public void BeginBattle(List<EnemyStats> SpawnThese ) {
         playerMovement.FreezePlayer();
         joystick.gameObject.SetActive(false);
-        if (state == State.Start) {
+        
+        if (state == State.Off) {
+
+            if (SpawnThese == null || SpawnThese.Count <= 0)
+            {
+                batteRoutine = StartCoroutine(VictoryAnimate());
+                return;
+            }
+
+            state = State.Start;
             player.gameObject.SetActive(true);
 
             if (enemy.Count != 0)
             {
                 foreach (EnemyStats e in enemy)
                 {
+                    if (e == null) { continue; }
                     Destroy(e.gameObject);
                 }
 
@@ -164,6 +181,9 @@ public class BattleManager : MonoBehaviour
             e.gameObject.SetActive(true);
             e.Init();
         }
+
+        
+
         StartCoroutine(StartUp());
     }
 
@@ -770,7 +790,7 @@ public class BattleManager : MonoBehaviour
             enemy.Clear();
         }
         player.gameObject.SetActive(false);
-        state = State.Start;
+        state = State.Off;
     }
 
     private void GameOver() {
@@ -793,6 +813,6 @@ public class BattleManager : MonoBehaviour
 
             enemy.Clear();
         }
-        state = State.Start;
+        state = State.Off;
     }
 }

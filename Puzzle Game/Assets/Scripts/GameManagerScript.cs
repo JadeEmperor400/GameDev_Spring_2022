@@ -10,12 +10,12 @@ public class GameManagerScript : MonoBehaviour
     //reference to all the enemies 
 
     public BattleManager battleManager;
-   
 
+    public List<EnemyStats> nextBattle = null;
     public List<EnemyStats> coralWyrm;
 
     //Singleton
-    private static GameManagerScript instance;
+    public static GameManagerScript instance;
     private void Awake()
     {
         instance = this;
@@ -37,6 +37,16 @@ public class GameManagerScript : MonoBehaviour
     public void StartBattle()
     {       
         battleManager.BeginBattle(coralWyrm);
+    }
+
+    public void SetNextbattle(List<EnemyStats> enemyStats) {
+        nextBattle = enemyStats;
+    }
+
+    public void ClearNextBattle() {
+        if (nextBattle == null) { return; }
+        nextBattle.Clear();
+        nextBattle = null;
     }
 
     public void StartBossBattle()

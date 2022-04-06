@@ -15,6 +15,12 @@ public class TargetFire : MonoBehaviour
     {
         if (BattleManager.BM != null && (BattleManager.BM.state == State.EnemyPhase || BattleManager.BM.state == State.PlayerPhase || BattleManager.BM.state == State.Calculating)) {
             EnemyStats es = BattleManager.BM.TargetEnemy;
+
+            if (es == null) {
+                GetComponent<SpriteRenderer>().color = Color.clear;
+                return;
+            }
+
             transform.position = new Vector3( es.transform.position.x - 1f, es.transform.position.y, 0);
             if (es.HP <= 0)
             {
