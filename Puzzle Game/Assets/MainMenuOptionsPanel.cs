@@ -32,6 +32,17 @@ public class MainMenuOptionsPanel : MonoBehaviour
         audioMixer.SetFloat("MasterVolume", Mathf.Log10(masterVolume) * 20);
     }
 
+    public void SetSFXVolume(float sfxVol)
+    {
+       
+        audioMixer.SetFloat("SFXVol", Mathf.Log10(sfxVol) * 20);
+    }
+
+    public void SetMusicVolume(float musicVol)
+    {
+        audioMixer.SetFloat("MusicVol", Mathf.Log10(musicVol) * 20);
+    }
+
     public void OptionsSwitch()
     {
         clickedOn = !clickedOn;

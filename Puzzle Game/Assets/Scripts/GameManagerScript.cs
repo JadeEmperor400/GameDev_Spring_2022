@@ -12,6 +12,11 @@ public class GameManagerScript : MonoBehaviour
 
     public GameObject helpPanel;
     private bool switcher = false;
+    public MusicMotor musicMotor;
+    public MusicState battleMusicState;
+    public MusicState overworldState;
+
+
 
 
 
@@ -26,6 +31,15 @@ public class GameManagerScript : MonoBehaviour
 
 
         helpPanel.SetActive(false);
+
+
+        if (battleMusicState == null)
+            battleMusicState = FindObjectOfType<BattleMusicState>();
+        if (musicMotor == null)
+            musicMotor = FindObjectOfType<MusicMotor>();
+        if (overworldState == null)
+            overworldState = FindObjectOfType<OverworldMusicState>();
+
     }
 
 
@@ -39,8 +53,9 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
-    public void StartBattle(EnemyStats enemyStats)
+    public void StartBattle()
     {
+        StartCoroutine(musicMotor.changeState(battleMusicState));
         //start battle with the enemies stats
 
 

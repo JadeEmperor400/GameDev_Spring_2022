@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     #region Instance
     private static AudioManager instance;
+    public AudioMixerGroup outputAudioMixerGroup;
+   
     public static AudioManager Instance
     {
         get
@@ -38,6 +41,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+       
         // Keep this instance alive throughout the whole game
         DontDestroyOnLoad(this.gameObject);
 
@@ -48,6 +52,8 @@ public class AudioManager : MonoBehaviour
         // Make sure to enable loop on music sources
         musicSource.loop = true;
         musicSource2.loop = true;
+
+       musicSource.outputAudioMixerGroup = outputAudioMixerGroup;
     }
 
     #region Pete Audio Methods (with only a single audiosource)

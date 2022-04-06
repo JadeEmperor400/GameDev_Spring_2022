@@ -669,7 +669,8 @@ AudioSource:
   m_GameObject: {fileID: 611602934}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7659393423458382134, guid: 1e413cd7e7892394fb319c8348f0baa7,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 446dec1bc3da41243b5add5d9af3e3a9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.104
@@ -878,6 +879,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 616086957}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &616086960 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 782678515298380866, guid: 1ee39929830fd3748b9ebe1a5a82cdb0,
+    type: 3}
+  m_PrefabInstance: {fileID: 616086957}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc675318ba3546042bed3ecd84b4c1b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &823311714 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5703708371828903194, guid: 6eae648124a7ddc488ceaa86ba209706,
@@ -1657,6 +1670,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   helpPanel: {fileID: 387694970}
+  musicMotor: {fileID: 2118948144}
+  battleMusicState: {fileID: 616086960}
+  overworldState: {fileID: 616086958}
 --- !u!4 &2117317824
 Transform:
   m_ObjectHideFlags: 0
