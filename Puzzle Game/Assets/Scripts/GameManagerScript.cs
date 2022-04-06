@@ -10,6 +10,9 @@ public class GameManagerScript : MonoBehaviour
     //reference to all the enemies 
 
 
+    public GameObject helpPanel;
+    private bool switcher = false;
+
 
 
     //Singleton
@@ -20,8 +23,21 @@ public class GameManagerScript : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
 
+
+
+        helpPanel.SetActive(false);
     }
 
+
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            switcher = !switcher;
+            helpPanel.SetActive(switcher);
+        }
+    }
 
     public void StartBattle(EnemyStats enemyStats)
     {
