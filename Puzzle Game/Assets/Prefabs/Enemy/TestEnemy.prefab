@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1539952591
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 8832701418630050452, guid: 3810d635d7b220d448aeba241440bc6a,
     type: 3}
@@ -102,7 +102,6 @@ MonoBehaviour:
   enemyName: Enemy
   staggerLimit: 15
   staggerCount: 0
-  actions: []
   redAff: 1
   blueAff: 1
   greenAff: 1
