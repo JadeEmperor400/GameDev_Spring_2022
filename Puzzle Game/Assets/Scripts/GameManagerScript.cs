@@ -13,6 +13,15 @@ public class GameManagerScript : MonoBehaviour
 
     public List<EnemyStats> nextBattle = null;
     public List<EnemyStats> coralWyrm;
+    public GameObject helpPanel;
+    private bool switcher = false;
+    public MusicMotor musicMotor;
+    public MusicState battleMusicState;
+    public MusicState overworldState;
+
+
+
+
 
     //Singleton
     public static GameManagerScript instance;
@@ -25,6 +34,19 @@ public class GameManagerScript : MonoBehaviour
         if(battleManager == null)
             battleManager = FindObjectOfType<BattleManager>();  
 
+
+        helpPanel.SetActive(false);
+
+
+        if (battleMusicState == null)
+            battleMusicState = FindObjectOfType<BattleMusicState>();
+        if (musicMotor == null)
+            musicMotor = FindObjectOfType<MusicMotor>();
+        if (overworldState == null)
+            overworldState = FindObjectOfType<OverworldMusicState>();
+
+    }
+
     }
 
     private void Update()
@@ -32,14 +54,29 @@ public class GameManagerScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.G))
         {
             StartBattle();
-        }           
+        }   
+         if(Input.GetKeyDown(KeyCode.H))
+        {
+            switcher = !switcher;
+            helpPanel.SetActive(switcher);
+        }        
     }
     public void StartBattle()
-    {       
-        battleManager.BeginBattle(coralWyrm);
+    {   
+        if(nextBattle == null || nextBattle.Count <= 0){
+
+            return;
+        }
+        battleManager.BeginBattle(nextBattle);
+        StartCoroutine(musicMotor.changeState(battleMusicState));
     }
 
     public void SetNextbattle(List<EnemyStats> enemyStats) {
+        if(enemyStats == null || enemyStats.Count <= 0){
+            return;
+
+        }
+
         nextBattle = enemyStats;
     }
 
