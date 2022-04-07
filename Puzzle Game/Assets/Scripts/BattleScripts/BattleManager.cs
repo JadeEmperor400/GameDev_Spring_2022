@@ -115,17 +115,14 @@ public class BattleManager : MonoBehaviour
     }
 
     public void BeginBattle(List<EnemyStats> SpawnThese ) {
-        playerMovement.FreezePlayer();
-        joystick.gameObject.SetActive(false);
-        
+        if (SpawnThese == null || SpawnThese.Count <= 0)
+        {
+            return;
+        }
+
         if (state == State.Off) {
-
-            if (SpawnThese == null || SpawnThese.Count <= 0)
-            {
-                batteRoutine = StartCoroutine(VictoryAnimate());
-                return;
-            }
-
+            playerMovement.FreezePlayer();
+            joystick.gameObject.SetActive(false);
             state = State.Start;
             player.gameObject.SetActive(true);
 
@@ -784,7 +781,8 @@ public class BattleManager : MonoBehaviour
         {
             foreach (EnemyStats e in enemy)
             {
-                Destroy(e.gameObject);
+                if(e != null)
+                    Destroy(e.gameObject);
             }
 
             enemy.Clear();
@@ -808,7 +806,8 @@ public class BattleManager : MonoBehaviour
         {
             foreach (EnemyStats e in enemy)
             {
-                Destroy(e.gameObject);
+                if(e != null)
+                    Destroy(e.gameObject);
             }
 
             enemy.Clear();

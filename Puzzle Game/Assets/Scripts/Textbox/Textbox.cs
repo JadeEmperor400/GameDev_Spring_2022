@@ -233,13 +233,17 @@ public class Textbox : MonoBehaviour
         //FindObjectOfType<PlayerMovement>()?.EnableMovement();
         //FindObjectOfType<PlayerState>()?.SetInteracting(false);
         gameObject.SetActive(false);
-        if (GameManagerScript.instance.nextBattle != null)
+        if (GameManagerScript.instance.nextBattle != null && GameManagerScript.instance.nextBattle.Count > 0)
         {
             BattleManager.BM.BeginBattle(GameManagerScript.instance.nextBattle);
             GameManagerScript.instance.ClearNextBattle();
 
         }
         else {
+
+            if (GameManagerScript.instance.nextBattle == null || GameManagerScript.instance.nextBattle.Count <= 0 ) {
+                GameManagerScript.instance.ClearNextBattle();
+            }
             playerMovement.UnFreezePlayer();
         }
         yield break;

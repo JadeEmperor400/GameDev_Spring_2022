@@ -21,7 +21,7 @@ public class EnemyDialogue : DisplayDialogue
         playerMovement.FreezePlayer();
         enemyDialogueSet?.sendDialogue();
         fightEnemyDialogue?.sendDialogue();
-        if (battle != null) {
+        if (battle != null && battle.Count > 0) {
             GameManagerScript.instance.SetNextbattle(battle);
         }
         //gameManagerScript.StartBattle();

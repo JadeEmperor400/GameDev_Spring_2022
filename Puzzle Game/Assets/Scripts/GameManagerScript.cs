@@ -19,23 +19,24 @@ public class GameManagerScript : MonoBehaviour
     public MusicState battleMusicState;
     public MusicState overworldState;
 
-
-
-
-
     //Singleton
     public static GameManagerScript instance;
     private void Awake()
     {
-        instance = this;
-
-        DontDestroyOnLoad(this.gameObject);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else {
+            Destroy(gameObject);
+            return;
+        }
 
         if(battleManager == null)
-            battleManager = FindObjectOfType<BattleManager>();  
+            battleManager = FindObjectOfType<BattleManager>();
 
-
-        helpPanel.SetActive(false);
+        helpPanel?.SetActive(false);
 
 
         if (battleMusicState == null)
@@ -47,7 +48,7 @@ public class GameManagerScript : MonoBehaviour
 
     }
 
-    }
+    
 
     private void Update()
     {
