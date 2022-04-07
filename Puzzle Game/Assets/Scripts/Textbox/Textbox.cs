@@ -65,7 +65,7 @@ public class Textbox : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
         {
             Go = true;
         }

@@ -248,6 +248,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b015c9fba80ff0f46841349a539eba22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicMotor: {fileID: 0}
+  overworldMusicState: {fileID: 0}
+  battleMusicState: {fileID: 0}
+  bossBattleMusicState: {fileID: 0}
   joystick: {fileID: 0}
   playerMovement: {fileID: 0}
   gridManager: {fileID: 306445596841661599}
@@ -283,6 +287,7 @@ MonoBehaviour:
   - {fileID: 7550765613192327758, guid: 2afdd00831a49084aa6b9fbfa13c265e, type: 3}
   - {fileID: 7550765613192327758, guid: 2afdd00831a49084aa6b9fbfa13c265e, type: 3}
   - {fileID: 7550765613192327758, guid: 2afdd00831a49084aa6b9fbfa13c265e, type: 3}
+  eventID: -1
 --- !u!1 &306445598580926077
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,7 +636,7 @@ PrefabInstance:
     - target: {fileID: 1055137931144831007, guid: 6eecf128be180a14d811f67897943273,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 1055137931144831007, guid: 6eecf128be180a14d811f67897943273,
         type: 3}
@@ -823,7 +828,7 @@ PrefabInstance:
     - target: {fileID: 152416184227924210, guid: 5a6ab051b60793647b7fe34dc048eea5,
         type: 3}
       propertyPath: offset
-      value: 1.1
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 152416184227924211, guid: 5a6ab051b60793647b7fe34dc048eea5,
         type: 3}

@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
+  enemyType: 0
   gameManagerScript: {fileID: 0}
   radius: 1.5
   introEnemyDialogue: {fileID: 11400000, guid: 2e444ce1465c80d4982f060adc55c83d, type: 2}
@@ -109,6 +110,7 @@ MonoBehaviour:
   lossEnemyDialogue: {fileID: 11400000, guid: d2b6e6365d976424191becd6974b8700, type: 2}
   battle:
   - {fileID: -6778336949315987279}
+  myID: 0
 --- !u!58 &2125356674333146480
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -270,15 +272,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2ebb9cf16674143b82d4dfb22fd3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 100
+  MaxHP: 1500
   HP: 100
   enemyName: Fungal Drifter
-  staggerLimit: 10
+  staggerLimit: 24
   staggerCount: 0
   redAff: 1
-  blueAff: 1
-  greenAff: 1
-  extraTurnTimer: 3
+  blueAff: 1.5
+  greenAff: 0.75
+  extraTurnTimer: 2
   extraCounter: 0
   enemyActions:
   - {fileID: 11400000, guid: 5760a2c751820934a89a0af403724352, type: 2}
+  - {fileID: 11400000, guid: 2e36f9765cb18ab43a57804a1124fc32, type: 2}
+  - {fileID: 11400000, guid: 0bf61142c08d85f488fd6861eedba2b3, type: 2}
+  - {fileID: 11400000, guid: 0bf61142c08d85f488fd6861eedba2b3, type: 2}
