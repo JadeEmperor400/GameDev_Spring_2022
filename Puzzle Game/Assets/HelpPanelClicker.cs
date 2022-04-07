@@ -5,13 +5,16 @@ using UnityEngine;
 public class HelpPanelClicker : MonoBehaviour
 {
 
-
+    public UltimateJoystick joystick;
     public GameObject rulesPanel;
    
     // Start is called before the first frame update
     void Start()
     {
         rulesPanel.SetActive(false);
+
+        if (joystick == null)
+            joystick = FindObjectOfType<UltimateJoystick>();
     }
 
     // Update is called once per frame
@@ -24,11 +27,13 @@ public class HelpPanelClicker : MonoBehaviour
 
    public void TurnRulePanelOff()
     {
+        joystick.gameObject.SetActive(true);
         rulesPanel.SetActive(false);
     }
 
    public void TurnRulePanelOn()
     {
+        joystick.gameObject.SetActive(false);
         rulesPanel.SetActive(true);
     }
 }

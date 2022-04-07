@@ -123,8 +123,27 @@ public class BattleManager : MonoBehaviour
         }     
     }
 
-    public void BeginBattle(List<EnemyStats> SpawnThese ) {
-       StartCoroutine( musicMotor.changeState(battleMusicState));
+    public void BeginBattle(List<EnemyStats> SpawnThese) {
+        StartCoroutine(musicMotor.changeState(battleMusicState));
+
+        if (enemy.Count != 0)
+        {
+            var enemyType = enemy[0].gameObject.GetComponent<EnemyDialogue>().GetEnemyType();
+
+            if(enemyType == EnemyType.BossEnemy)
+            {
+                //go to boss music state
+              
+                StartCoroutine(musicMotor.changeState(bossBattleMusicState));
+            }
+            else
+            {
+               
+                StartCoroutine(musicMotor.changeState(battleMusicState));
+            }
+        }
+
+
 
         if (SpawnThese == null || SpawnThese.Count <= 0)
         {
