@@ -1,22 +1,28 @@
 fileFormatVersion: 2
-guid: bbf80eb08fc057c4fa75820f7ab9a2c7
+guid: bbb8e190ae0da5746bd183b3302ef209
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5980125802019139113
-    second: RockSolid_0
+      213: 1161201145128540330
+    second: Icons_0
   - first:
-      213: 4549406699153938022
-    second: RockSolid_1
+      213: 2130535880278150251
+    second: Icons_1
   - first:
-      213: 9038059408622786457
-    second: RockSolid_2
+      213: 184950751378207249
+    second: Icons_2
   - first:
-      213: -6828931478312094509
-    second: RockSolid_3
+      213: 1202984965197363600
+    second: Icons_3
   - first:
-      213: -1123217570937058123
-    second: RockSolid_4
+      213: 5543941588292853863
+    second: orb
+  - first:
+      213: -1863859237976802683
+    second: Icons_5
+  - first:
+      213: 7576617242518483205
+    second: Icons_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -118,135 +124,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RockSolid_0
+      name: Icons_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 22
-        width: 55
-        height: 56
-      alignment: 9
-      pivot: {x: 0.385, y: 0.325}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -14.5, y: -18}
-        - {x: -27.5, y: -15}
-        - {x: -26.5, y: -5}
-        - {x: 10.5, y: -5}
-        - {x: 12.5, y: -14}
-        - {x: 8.5, y: -19}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7d150826443520da0800000000000000
-      internalID: -5980125802019139113
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RockSolid_1
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 17
-        width: 132
-        height: 64
-      alignment: 9
-      pivot: {x: 0.4, y: 0.34}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -46, y: -14}
-        - {x: -50, y: -18}
-        - {x: -60, y: -17}
-        - {x: -60, y: -8}
-        - {x: -56, y: -6}
-        - {x: -54, y: 5}
-        - {x: -30, y: 0}
-        - {x: -33, y: -12}
-      - - {x: 13, y: -27}
-        - {x: 10, y: -23}
-        - {x: 11, y: -8}
-        - {x: 31, y: -9}
-        - {x: 42, y: -9}
-        - {x: 60, y: -8}
-        - {x: 59, y: -18}
-        - {x: 42, y: -21}
-        - {x: 41, y: -28}
-      - - {x: 8, y: -17}
-        - {x: 9, y: -14}
-        - {x: 11, y: -7}
-        - {x: 10, y: -9}
-        - {x: 8, y: -13}
-        - {x: 11, y: -7}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6665ad10a4db22f30800000000000000
-      internalID: 4549406699153938022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RockSolid_2
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 1
-        width: 25
-        height: 13
-      alignment: 9
-      pivot: {x: 0.44, y: 0.557}
+        x: 1
+        y: 98
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99796dd7523ad6d70800000000000000
-      internalID: 9038059408622786457
+      spriteID: aa8d9280a4a6d1010800000000000000
+      internalID: 1161201145128540330
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RockSolid_3
+      name: Icons_1
       rect:
         serializedVersion: 2
-        x: 37
-        y: 2
-        width: 19
-        height: 14
-      alignment: 9
-      pivot: {x: 0.4125, y: 0.5175}
+        x: 65
+        y: 97
+        width: 33
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d479bf6003ca31a0800000000000000
-      internalID: -6828931478312094509
+      spriteID: b6c0435581f219d10800000000000000
+      internalID: 2130535880278150251
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RockSolid_4
+      name: Icons_2
       rect:
         serializedVersion: 2
-        x: 59
-        y: 3
-        width: 21
-        height: 13
-      alignment: 9
-      pivot: {x: 0.3125, y: 0.35}
+        x: 97
+        y: 99
+        width: 31
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bcc1def1978960f0800000000000000
-      internalID: -1123217570937058123
+      spriteID: 112f6dc7ab3119200800000000000000
+      internalID: 184950751378207249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icons_3
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 122
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09979b0c37cd1b010800000000000000
+      internalID: 1202984965197363600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orb
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 104
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 760e5b1608900fc40800000000000000
+      internalID: 5543941588292853863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icons_5
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 97
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58aff01f5ed3226e0800000000000000
+      internalID: -1863859237976802683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icons_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 66
+        width: 29
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 501f96b4d3d852960800000000000000
+      internalID: 7576617242518483205
       vertices: []
       indices: 
       edges: []
