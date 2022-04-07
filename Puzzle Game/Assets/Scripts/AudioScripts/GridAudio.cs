@@ -60,7 +60,7 @@ public class GridAudio : MonoBehaviour
     {
         
         audioSource.pitch = 1f + Random.Range(-0.2f, 0.2f);
-        audioSource.Play();
+        audioSource.PlayOneShot(audioSource.clip);
     }
 
 }

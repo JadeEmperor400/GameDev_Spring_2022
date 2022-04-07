@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PoemSoundTrigger : MonoBehaviour
 {
+    [SerializeField]
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+     if(audioSource == null)
+            audioSource = GetComponent<AudioSource>();  
     }
 
     // Update is called once per frame
@@ -19,6 +23,6 @@ public class PoemSoundTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
-            Debug.Log("Trigger sound");
+            audioSource.Play();
     }
 }

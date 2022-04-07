@@ -53,7 +53,12 @@ public class AudioManager : MonoBehaviour
         musicSource.loop = true;
         musicSource2.loop = true;
 
-       musicSource.outputAudioMixerGroup = outputAudioMixerGroup;
+
+        AudioMixer mixer = Resources.Load("Master") as AudioMixer;
+
+        string _OutputMixer = "Music";
+        
+        musicSource.outputAudioMixerGroup = outputAudioMixerGroup;
     }
 
     #region Pete Audio Methods (with only a single audiosource)

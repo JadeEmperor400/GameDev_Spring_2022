@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class MainMenuOptionsPanel : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class MainMenuOptionsPanel : MonoBehaviour
 
     public GameObject optionsPanel;
     private bool clickedOn = false;
+    [SerializeField]
+    private Slider sfxSlider;
 
     [SerializeField]
     private AudioMixer audioMixer;
@@ -18,6 +21,12 @@ public class MainMenuOptionsPanel : MonoBehaviour
     void Start()
     {
         OptionsOff();
+
+        //sfx slider onvaluechange in editor doesnt work, so im scripting it in
+        sfxSlider.onValueChanged.AddListener((v) =>
+        {
+            audioMixer.SetFloat("SFXVol", Mathf.Log10(v) * 20);
+        });
     }
 
     // Update is called once per frame
@@ -26,15 +35,15 @@ public class MainMenuOptionsPanel : MonoBehaviour
 
     }
 
+   
 
     public void SetMasterVolume(float masterVolume)
     {
         audioMixer.SetFloat("MasterVolume", Mathf.Log10(masterVolume) * 20);
     }
 
-    public void SetSFXVolume(float sfxVol)
-    {
-       
+    public void SetSFXVolume(float sfxVol) //not being used
+    {    
         audioMixer.SetFloat("SFXVol", Mathf.Log10(sfxVol) * 20);
     }
 

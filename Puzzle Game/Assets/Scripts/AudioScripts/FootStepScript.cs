@@ -13,6 +13,9 @@ public class FootStepScript : MonoBehaviour
     public List<AudioClip> footSteps;
     public AudioSource audioSource;
 
+
+  
+
     // Update is called once per frame
     void Update()
     {
