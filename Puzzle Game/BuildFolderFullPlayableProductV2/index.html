@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Hiraeth</title>
+  </head>
+  <body style="text-align: center">
+    <canvas id="unity-canvas" width=1280 height=720 style="width: 1280px; height: 720px; background: #231F20"></canvas>
+    <script src="Build/BuildFolderFullPlayableProductV2.loader.js"></script>
+    <script>
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/BuildFolderFullPlayableProductV2.data.gz",
+        frameworkUrl: "Build/BuildFolderFullPlayableProductV2.framework.js.gz",
+        codeUrl: "Build/BuildFolderFullPlayableProductV2.wasm.gz",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Spark Dev",
+        productName: "Hiraeth",
+        productVersion: "0.0.8",
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      });
+    </script>
+  </body>
+</html>
