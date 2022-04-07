@@ -126,21 +126,21 @@ public class BattleManager : MonoBehaviour
     public void BeginBattle(List<EnemyStats> SpawnThese) {
         //  StartCoroutine(musicMotor.changeState(battleMusicState));
 
-        Debug.Log(enemy.Count + " IS THE ENEMEY COUNT ");
+      
         if (enemy.Count != 0)
         {
-            Debug.Log("enemy count is not zero");
+         
             var enemyType = enemy[0].gameObject.GetComponent<EnemyDialogue>().GetEnemyType();
             Debug.Log(enemyType);
             if(enemyType == EnemyType.BossEnemy)
             {
                 //go to boss music state
-                Debug.Log("bosssss"); 
+              
                 StartCoroutine(musicMotor.changeState(bossBattleMusicState));
             }
             else
             {
-                Debug.Log("normal enemy");
+              
 
                 StartCoroutine(musicMotor.changeState(battleMusicState));
             }
@@ -155,6 +155,7 @@ public class BattleManager : MonoBehaviour
 
         if (state == State.Off) {
             playerMovement.FreezePlayer();
+           
             joystick.gameObject.SetActive(false);
             state = State.Start;
             //DisableSprites();

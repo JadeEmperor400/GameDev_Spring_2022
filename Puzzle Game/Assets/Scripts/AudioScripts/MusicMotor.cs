@@ -17,12 +17,12 @@ public class MusicMotor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(activeState);
+        //Debug.Log(activeState);
     }
 
     public IEnumerator changeState(MusicState state)
     {
-        Debug.Log(state.ToString());
+        //Debug.Log(state.ToString());
         activeState.StopPlaying();
         //2-3 sec buffer wait time here 
         yield return new WaitForSeconds(2);
