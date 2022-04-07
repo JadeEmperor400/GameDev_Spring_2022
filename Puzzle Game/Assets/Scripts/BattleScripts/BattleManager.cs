@@ -125,29 +125,6 @@ public class BattleManager : MonoBehaviour
 
     public void BeginBattle(List<EnemyStats> SpawnThese) {
         //  StartCoroutine(musicMotor.changeState(battleMusicState));
-
-      
-        if (enemy.Count != 0)
-        {
-         
-            var enemyType = enemy[0].gameObject.GetComponent<EnemyDialogue>().GetEnemyType();
-            Debug.Log(enemyType);
-            if(enemyType == EnemyType.BossEnemy)
-            {
-                //go to boss music state
-              
-                StartCoroutine(musicMotor.changeState(bossBattleMusicState));
-            }
-            else
-            {
-              
-
-                StartCoroutine(musicMotor.changeState(battleMusicState));
-            }
-        }
-
-
-
         if (SpawnThese == null || SpawnThese.Count <= 0)
         {
             return;
@@ -196,10 +173,28 @@ public class BattleManager : MonoBehaviour
             }
 
             EnemyHPBAR playerBar = player.GetComponentInChildren<EnemyHPBAR>();
+
             if (playerBar != null) {
                 Destroy(playerBar.gameObject);
             }
             Instantiate(playerHPBar.gameObject, player.transform);
+
+
+            if (enemy.Count != 0)
+            {
+                var enemyType = enemy[0].gameObject.GetComponent<EnemyDialogue>().GetEnemyType();
+                Debug.Log(enemyType);
+                if (enemyType == EnemyType.BossEnemy)
+                {
+                    //go to boss music state
+                    StartCoroutine(musicMotor.changeState(bossBattleMusicState));
+                }
+                else
+                {
+                    StartCoroutine(musicMotor.changeState(battleMusicState));
+                }
+            }
+
             BattleStart();
         }
     }
