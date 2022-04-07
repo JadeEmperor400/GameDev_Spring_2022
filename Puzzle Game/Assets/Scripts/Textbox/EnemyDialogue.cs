@@ -63,7 +63,7 @@ public class EnemyDialogue : DisplayDialogue
     // Update is called once per frame
     void Update()
     {
-        if (nearPlayer && (Input.GetKeyDown(KeyCode.E)) && !Textbox.On)
+        if (nearPlayer && !Textbox.On)
         {
             displayFirstDialogue(introEnemyDialogue);
         }
@@ -71,13 +71,20 @@ public class EnemyDialogue : DisplayDialogue
 
     private void OnMouseDown()
     {
-        if(nearPlayer && !Textbox.On)
+       /* if(nearPlayer && !Textbox.On)
         {
             displayFirstDialogue(introEnemyDialogue);
-        }
+        }*/
        
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            displayFirstDialogue(introEnemyDialogue);
+        }
+    }
 
     public EnemyType GetEnemyType()
     {
