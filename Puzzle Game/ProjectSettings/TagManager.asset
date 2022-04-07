@@ -55,6 +55,15 @@ TagManager:
   - name: Layer 3
     uniqueID: 4189426099
     locked: 0
+  - name: BattleBG
+    uniqueID: 885271269
+    locked: 0
+  - name: Battle
+    uniqueID: 2755014705
+    locked: 0
   - name: Display
     uniqueID: 564503041
+    locked: 0
+  - name: Overlay
+    uniqueID: 3754669813
     locked: 0

@@ -13,7 +13,8 @@ public class Line : MonoBehaviour
      
     private void Start()
     {
-      //  dragging = false;
+        //  dragging = false;
+        lineRenderer.sortingLayerName ="Display";
     }
 
     // Update is called once per frame

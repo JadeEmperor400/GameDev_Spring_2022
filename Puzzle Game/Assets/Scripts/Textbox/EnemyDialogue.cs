@@ -6,7 +6,7 @@ public class EnemyDialogue : DisplayDialogue
 {
     public PlayerMovement playerMovement;
   
-    
+    public GameManagerScript gameManagerScript;
     public float radius = 1.5f;
 
     public Dialogue_Set introEnemyDialogue = null;
@@ -14,11 +14,17 @@ public class EnemyDialogue : DisplayDialogue
     public Dialogue_Set winEnemyDialogue = null;
     public Dialogue_Set lossEnemyDialogue = null;
 
+    public List<EnemyStats> battle;
+
     public override void displayFirstDialogue(Dialogue_Set enemyDialogueSet)
     {
         playerMovement.FreezePlayer();
         enemyDialogueSet?.sendDialogue();
         fightEnemyDialogue?.sendDialogue();
+        if (battle != null && battle.Count > 0) {
+            GameManagerScript.instance.SetNextbattle(battle);
+        }
+        //gameManagerScript.StartBattle();
     }
 
     public void displayWinEnemyDialogue()

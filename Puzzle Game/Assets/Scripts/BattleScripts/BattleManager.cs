@@ -2,17 +2,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Tilemaps;
 
 
 public enum State{
-        PlayerPhase, Calculating, EnemyPhase, GameOver, Victory, Start
-    };
+    PlayerPhase,
+    Calculating,
+    EnemyPhase,
+    GameOver,
+    Victory,
+    Start, // battle system is rready to go
+    Off
+};
 
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager BM;
-
+    public UltimateJoystick joystick;
+    public PlayerMovement playerMovement;
     public GridManager gridManager;
     public GridComboManager comboManager;
     public TimerSlider timer;
@@ -27,7 +34,13 @@ public class BattleManager : MonoBehaviour
 
     public EnemyStats TargetEnemy
     {
-        get { return enemy[targetEnemy]; }
+        get {
+            if (enemy == null || targetEnemy >= enemy.Count) {
+                return null;
+            }
+
+            return enemy[targetEnemy];
+        }
     }
 
     [SerializeField]
@@ -46,16 +59,23 @@ public class BattleManager : MonoBehaviour
     private List<Sprite> numbers = new List<Sprite>();
     [SerializeField]
     private SpriteRenderer _numBit;
+    [SerializeField]
+    private EnemyHPBAR enemyHPBAR;
+    [SerializeField]
+    private EnemyHPBAR playerHPBar;
 
     public State state{
         get; 
         private set;
-    } = State.Start;
+    } = State.Off;
 
     [SerializeField]
     private BattleMessenger messenger;
 
-    void Start()
+    [SerializeField]
+    private List<EnemyStats> testTeam;
+
+    void Awake()
     {
         if (BM == null)
         {
@@ -64,27 +84,104 @@ public class BattleManager : MonoBehaviour
         else if (BM != this) {
             Destroy(this.gameObject);
         }
-
-        state = State.Start;
-        BattleStart();
+        player.gameObject.SetActive(false);
+        gridManager.gameObject.SetActive(false);
+        timer.gameObject.SetActive(false);
+        state = State.Off;
+        //BattleStart();
     }
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.T) && Input.GetKeyDown(KeyCode.B)) {
+            if (testTeam != null && testTeam.Count > 0)
+            {
+                if (state == State.Off)
+                {
+                    BeginBattle(testTeam);
+                }
+                else {
+                    Debug.Log("Battle in Progress");
+                }
+            }
+            else {
+                Debug.Log("No test team available");
+            }
+        }
+
         if (timer.getIsReset() && state == State.PlayerPhase) {
             playerCalc();
         }     
     }
 
+    public void BeginBattle(List<EnemyStats> SpawnThese ) {
+        if (SpawnThese == null || SpawnThese.Count <= 0)
+        {
+            return;
+        }
+
+        if (state == State.Off) {
+            playerMovement.FreezePlayer();
+            joystick.gameObject.SetActive(false);
+            state = State.Start;
+            //DisableSprites();
+            player.gameObject.SetActive(true);
+
+            if (enemy.Count != 0)
+            {
+                foreach (EnemyStats e in enemy)
+                {
+                    if (e == null) { continue; }
+                    Destroy(e.gameObject);
+                }
+
+                enemy.Clear();
+            }
+
+            for (int i = 0; i < SpawnThese.Count; i++) {
+                if (i == 3) {
+                    break;
+                }
+
+                EnemyStats e = Instantiate(SpawnThese[i]);
+
+                switch (i) {
+                    case 0:
+                        e.gameObject.transform.position = new Vector3(5,-0.5f,0);
+                        break;
+                    case 1:
+                        e.gameObject.transform.position = new Vector3(7, -3.5f, 0);
+                        break;
+                    case 2:
+                        e.gameObject.transform.position = new Vector3(7, 1.5f, 0);
+                        break;
+                }
+
+                enemy.Add(e);
+                Instantiate(enemyHPBAR.gameObject, e.transform);
+            }
+
+            EnemyHPBAR playerBar = player.GetComponentInChildren<EnemyHPBAR>();
+            if (playerBar != null) {
+                Destroy(playerBar.gameObject);
+            }
+            Instantiate(playerHPBar.gameObject, player.transform);
+            BattleStart();
+        }
+    }
+
     void BattleStart() {
-        gridManager.gameObject.SetActive(false);//turn on gridmanager
-        timer.gameObject.SetActive(false);//turn on slider
+        gridManager.gameObject.SetActive(false);
+        timer.gameObject.SetActive(false);
         SetMessage("THEY APPROACH!", 2.0f);
         player.Init();
         foreach (EnemyStats e in enemy) {
             e.gameObject.SetActive(true);
             e.Init();
         }
+
+        
+
         StartCoroutine(StartUp());
     }
 
@@ -633,7 +730,10 @@ public class BattleManager : MonoBehaviour
     }
 
     public void SetMessage(string message, float delay = 0.5f) {
-            mesRoutine = StartCoroutine(ShowMessage( message, delay));
+        if (mesRoutine != null) {
+            StopCoroutine(mesRoutine);
+        }
+        mesRoutine = StartCoroutine(ShowMessage( message, delay));
     }
 
     private IEnumerator ShowMessage(string message, float delay = 0.5f) {
@@ -670,16 +770,32 @@ public class BattleManager : MonoBehaviour
 
     private void Victory()
     {
+        playerMovement.UnFreezePlayer();
+        joystick.gameObject.SetActive(true);
         StartCoroutine(VictoryAnimate());
     }
 
     private IEnumerator VictoryAnimate() {
         SetMessage("You Win!!", 2.0f);
         yield return new WaitForSecondsRealtime(3.5f);
-        Start();
+        if (enemy.Count != 0)
+        {
+            foreach (EnemyStats e in enemy)
+            {
+                if(e != null)
+                    Destroy(e.gameObject);
+            }
+
+            enemy.Clear();
+        }
+        player.gameObject.SetActive(false);
+        //EnableSprites();
+        state = State.Off;
     }
 
     private void GameOver() {
+        playerMovement.UnFreezePlayer();
+        joystick.gameObject.SetActive(true);
         StartCoroutine(GameOverAnimate());
     }
 
@@ -688,7 +804,60 @@ public class BattleManager : MonoBehaviour
         player.gameObject.SetActive(false);
         SetMessage("You Lose!!", 2.0f);
         yield return new WaitForSecondsRealtime(3.5f);
-        player.gameObject.SetActive(true);
-        Start();
+        if (enemy.Count != 0)
+        {
+            foreach (EnemyStats e in enemy)
+            {
+                if(e != null)
+                    Destroy(e.gameObject);
+            }
+
+            enemy.Clear();
+        }
+        //EnableSprites();
+        state = State.Off;
+    }
+
+    private void DisableSprites() {
+        SpriteRenderer[] renderers = FindObjectsOfType<SpriteRenderer>();
+
+        foreach (SpriteRenderer sr in renderers) {
+            if (sr.sortingLayerName != "BattleBG" && sr.sortingLayerName != "Battle" && sr.sortingLayerName != "Display" && sr.sortingLayerName != "Overlay") {
+                sr.forceRenderingOff = true;
+            }
+        }
+
+        TilemapRenderer[] tilemapRenderers = FindObjectsOfType<TilemapRenderer>();
+        foreach (TilemapRenderer tr in tilemapRenderers)
+        {
+            if (tr.sortingLayerName != "BattleBG" && tr.sortingLayerName != "Battle" && tr.sortingLayerName != "Display" && tr.sortingLayerName != "Overlay")
+            {
+                tr.forceRenderingOff = true;
+            }
+        }
+
+    }
+
+    private void EnableSprites()
+    {
+        SpriteRenderer[] renderers = FindObjectsOfType<SpriteRenderer>();
+
+        foreach (SpriteRenderer sr in renderers)
+        {
+            if (sr.sortingLayerName != "BattleBG" && sr.sortingLayerName != "Battle" && sr.sortingLayerName != "Display" && sr.sortingLayerName != "Overlay")
+            {
+                sr.forceRenderingOff = false;
+            }
+        }
+
+        TilemapRenderer[] tilemapRenderers = FindObjectsOfType<TilemapRenderer>();
+        foreach (TilemapRenderer tr in tilemapRenderers)
+        {
+            if (tr.sortingLayerName != "BattleBG" && tr.sortingLayerName != "Battle" && tr.sortingLayerName != "Display" && tr.sortingLayerName != "Overlay")
+            {
+                tr.forceRenderingOff = false;
+            }
+        }
+
     }
 }

@@ -9,28 +9,34 @@ public class GameManagerScript : MonoBehaviour
 
     //reference to all the enemies 
 
+    public BattleManager battleManager;
 
+    public List<EnemyStats> nextBattle = null;
+    public List<EnemyStats> coralWyrm;
     public GameObject helpPanel;
     private bool switcher = false;
     public MusicMotor musicMotor;
     public MusicState battleMusicState;
     public MusicState overworldState;
 
-
-
-
-
     //Singleton
-    private static GameManagerScript instance;
+    public static GameManagerScript instance;
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else {
+            Destroy(gameObject);
+            return;
+        }
 
-        DontDestroyOnLoad(this.gameObject);
+        if(battleManager == null)
+            battleManager = FindObjectOfType<BattleManager>();
 
-
-
-        helpPanel.SetActive(false);
+        helpPanel?.SetActive(false);
 
 
         if (battleMusicState == null)
@@ -42,24 +48,50 @@ public class GameManagerScript : MonoBehaviour
 
     }
 
-
+    
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.H))
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            StartBattle();
+        }   
+         if(Input.GetKeyDown(KeyCode.H))
         {
             switcher = !switcher;
             helpPanel.SetActive(switcher);
-        }
+        }        
     }
-
     public void StartBattle()
-    {
+    {   
+        if(nextBattle == null || nextBattle.Count <= 0){
+
+            return;
+        }
+        battleManager.BeginBattle(nextBattle);
         StartCoroutine(musicMotor.changeState(battleMusicState));
-        //start battle with the enemies stats
-
-
     }
+
+    public void SetNextbattle(List<EnemyStats> enemyStats) {
+        if(enemyStats == null || enemyStats.Count <= 0){
+            return;
+
+        }
+
+        nextBattle = enemyStats;
+    }
+
+    public void ClearNextBattle() {
+        if (nextBattle == null) { return; }
+        nextBattle.Clear();
+        nextBattle = null;
+    }
+
+    public void StartBossBattle()
+    {
+        
+    }
+   
     public void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
