@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 938523616727684738}
   - component: {fileID: 938523616727684737}
+  - component: {fileID: 8774011945328400545}
   - component: {fileID: 938523616727684736}
   - component: {fileID: 938523616727684739}
   - component: {fileID: 938523616727684748}
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1869315837
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 898ff8f39c3d0184598d499d365da07f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -86,6 +87,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8774011945328400545
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938523616727684743}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &938523616727684736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +155,9 @@ MonoBehaviour:
   m_AudioSource: {fileID: 938523616727684749}
   m_AudioClips:
   - {fileID: 8300000, guid: 196efbc60fff60a438c6a35dfbb8c39c, type: 3}
+  m_Motor: {fileID: 0}
+  preBossTensionMusicState: {fileID: 0}
+  overworldMusicState: {fileID: 0}
 --- !u!82 &938523616727684749
 AudioSource:
   m_ObjectHideFlags: 0

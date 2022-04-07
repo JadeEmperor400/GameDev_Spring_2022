@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2125356674333146480}
   - component: {fileID: 2125356674333146483}
   - component: {fileID: 2125356674333146482}
+  - component: {fileID: 6864585148138458844}
   m_Layer: 0
   m_Name: FungalDrifter
   m_TagString: Untagged
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1869315837
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5a72bb7361144d94097fd42a6c16ffd1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -135,6 +136,9 @@ MonoBehaviour:
   m_AudioSource: {fileID: 2125356674333146482}
   m_AudioClips:
   - {fileID: 8300000, guid: c8b2dadbce52b8b4bbda87b7e8ceb6c8, type: 3}
+  m_Motor: {fileID: 0}
+  preBossTensionMusicState: {fileID: 0}
+  overworldMusicState: {fileID: 0}
 --- !u!82 &2125356674333146482
 AudioSource:
   m_ObjectHideFlags: 0
@@ -231,3 +235,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &6864585148138458844
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125356674333146484}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

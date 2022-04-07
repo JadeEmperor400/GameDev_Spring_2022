@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 834596056836418515}
   - component: {fileID: 834596056836418514}
   - component: {fileID: 834596056836418525}
-  - component: {fileID: 4229584391204990176}
+  - component: {fileID: 5156288769011351186}
   m_Layer: 0
   m_Name: CoralWyrm
   m_TagString: Untagged
@@ -235,15 +235,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4229584391204990176
-MonoBehaviour:
+--- !u!95 &5156288769011351186
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834596056836418519}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0212b363de69cee48a5d9cefe2a1f839, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

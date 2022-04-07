@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5158165667536833845}
   - component: {fileID: 5158165667536833846}
   - component: {fileID: 5158165667536833847}
+  - component: {fileID: 4689462243662897501}
   m_Layer: 0
   m_Name: OctomochiObject
   m_TagString: Untagged
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1869315837
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 87879a66c599cc849944625fe32ce783, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -135,6 +136,9 @@ MonoBehaviour:
   m_AudioSource: {fileID: 5158165667536833847}
   m_AudioClips:
   - {fileID: 8300000, guid: bc08dff0053366e46988d102dbe7df68, type: 3}
+  m_Motor: {fileID: 0}
+  preBossTensionMusicState: {fileID: 0}
+  overworldMusicState: {fileID: 0}
 --- !u!82 &5158165667536833847
 AudioSource:
   m_ObjectHideFlags: 0
@@ -231,3 +235,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &4689462243662897501
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5158165667536833865}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

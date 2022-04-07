@@ -42,7 +42,13 @@ public class EnemyDialogue : DisplayDialogue
         }
     }
 
-  
+
+    private void Start()
+    {
+        if(playerMovement == null)
+            playerMovement = FindObjectOfType<PlayerMovement>();    
+    }
+
 
     // Update is called once per frame
     void Update()

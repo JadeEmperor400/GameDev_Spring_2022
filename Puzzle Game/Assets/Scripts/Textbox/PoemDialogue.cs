@@ -39,7 +39,8 @@ public class PoemDialogue : DisplayDialogue
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(playerMovement == null)
+            playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
     // Update is called once per frame
