@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 834596056836418514}
   - component: {fileID: 834596056836418525}
   - component: {fileID: 5156288769011351186}
+  - component: {fileID: 4734137188629812555}
   m_Layer: 0
   m_Name: CoralWyrm
   m_TagString: Untagged
@@ -100,11 +101,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
+  gameManagerScript: {fileID: 0}
   radius: 1.5
   introEnemyDialogue: {fileID: 11400000, guid: 243763340df986947ade6592dc0a929d, type: 2}
   fightEnemyDialogue: {fileID: 11400000, guid: fb54eaa012265334ab085866265c5adb, type: 2}
   winEnemyDialogue: {fileID: 11400000, guid: 730ad7f717f654a47b44e497a3585d59, type: 2}
   lossEnemyDialogue: {fileID: 11400000, guid: ca71ad8b6b2fabd439b220e89f6c1d55, type: 2}
+  battle:
+  - {fileID: 4734137188629812555}
 --- !u!58 &834596056836418515
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -254,3 +258,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4734137188629812555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834596056836418519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2ebb9cf16674143b82d4dfb22fd3f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHP: 100
+  HP: 100
+  enemyName: Coral Wyrm
+  staggerLimit: 10
+  staggerCount: 0
+  redAff: 1
+  blueAff: 1
+  greenAff: 1
+  extraTurnTimer: 3
+  extraCounter: 0
+  enemyActions:
+  - {fileID: 11400000, guid: 5760a2c751820934a89a0af403724352, type: 2}
