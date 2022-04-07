@@ -46,10 +46,10 @@ public class PoemDialogue : DisplayDialogue
     // Update is called once per frame
     void Update()
     {
-        if (nearPlayer && Input.GetKeyDown(KeyCode.E) && !Textbox.On)
-        {
-            displayFirstDialogue(poemDialogue);
-        }
+        //if (nearPlayer && !Textbox.On)
+      // {
+        //    displayFirstDialogue(poemDialogue);
+       // }
 
         /*
         if (talkIcon != null)
@@ -57,5 +57,11 @@ public class PoemDialogue : DisplayDialogue
             talkIcon?.gameObject?.SetActive(nearPlayer);
         }
         */
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+            displayFirstDialogue(poemDialogue);
     }
 }

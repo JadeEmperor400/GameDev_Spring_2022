@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum EnemyType { normalEnemy, BossEnemy}
 public class EnemyDialogue : DisplayDialogue
 {
+    
+
     public PlayerMovement playerMovement;
-  
+    public EnemyType enemyType; 
     public GameManagerScript gameManagerScript;
     public float radius = 1.5f;
 
@@ -59,7 +63,7 @@ public class EnemyDialogue : DisplayDialogue
     // Update is called once per frame
     void Update()
     {
-        if (nearPlayer && (Input.GetKeyDown(KeyCode.E)) && !Textbox.On)
+        if (nearPlayer && !Textbox.On)
         {
             displayFirstDialogue(introEnemyDialogue);
         }
@@ -67,11 +71,24 @@ public class EnemyDialogue : DisplayDialogue
 
     private void OnMouseDown()
     {
-        if(nearPlayer && !Textbox.On)
+       /* if(nearPlayer && !Textbox.On)
+        {
+            displayFirstDialogue(introEnemyDialogue);
+        }*/
+       
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
         {
             displayFirstDialogue(introEnemyDialogue);
         }
-       
+    }
+
+    public EnemyType GetEnemyType()
+    {
+        return enemyType;
     }
 
 }

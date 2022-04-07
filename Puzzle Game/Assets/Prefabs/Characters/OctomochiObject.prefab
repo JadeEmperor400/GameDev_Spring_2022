@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5158165667536833846}
   - component: {fileID: 5158165667536833847}
   - component: {fileID: 4689462243662897501}
+  - component: {fileID: 5053111116586871441}
   m_Layer: 0
   m_Name: OctomochiObject
   m_TagString: Untagged
@@ -100,11 +101,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
+  gameManagerScript: {fileID: 0}
   radius: 1.5
   introEnemyDialogue: {fileID: 11400000, guid: 2cc67a29a7a77a549a35842b2bf4eb14, type: 2}
   fightEnemyDialogue: {fileID: 11400000, guid: 98f1d34e02a45934a971e34cb2a0709d, type: 2}
   winEnemyDialogue: {fileID: 11400000, guid: 5d919143e64ce164d9e658ea3c8d0dc1, type: 2}
   lossEnemyDialogue: {fileID: 11400000, guid: 5dc67b231fc1d4b46a5258f81f22b681, type: 2}
+  battle:
+  - {fileID: 5053111116586871441}
 --- !u!58 &5158165667536833845
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -254,3 +258,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5053111116586871441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5158165667536833865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2ebb9cf16674143b82d4dfb22fd3f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHP: 100
+  HP: 100
+  enemyName: Octomochi
+  staggerLimit: 10
+  staggerCount: 0
+  redAff: 1
+  blueAff: 1
+  greenAff: 1
+  extraTurnTimer: 3
+  extraCounter: 0
+  enemyActions:
+  - {fileID: 11400000, guid: 5760a2c751820934a89a0af403724352, type: 2}
