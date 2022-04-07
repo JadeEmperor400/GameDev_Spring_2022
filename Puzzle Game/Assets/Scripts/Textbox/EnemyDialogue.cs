@@ -73,7 +73,7 @@ public class EnemyDialogue : DisplayDialogue
     {
         if (nearPlayer && !Textbox.On)
         {
-            displayFirstDialogue(introEnemyDialogue);
+            //displayFirstDialogue(introEnemyDialogue);
         }
     }
 
