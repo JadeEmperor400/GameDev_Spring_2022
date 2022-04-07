@@ -75,6 +75,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     private List<EnemyStats> testTeam;
 
+    public int eventID = -1;
+
     void Awake()
     {
         if (BM == null)
@@ -144,7 +146,7 @@ public class BattleManager : MonoBehaviour
                 }
 
                 EnemyStats e = Instantiate(SpawnThese[i]);
-
+                e.GetComponent<Renderer>().sortingLayerName = "Battle";
                 switch (i) {
                     case 0:
                         e.gameObject.transform.position = new Vector3(5,-0.5f,0);
@@ -789,6 +791,8 @@ public class BattleManager : MonoBehaviour
             enemy.Clear();
         }
         player.gameObject.SetActive(false);
+        EventSystem.eventController.BattleEndEvent(EventSystem.eventController.killID);
+        EventSystem.eventController.killID = -1;
         //EnableSprites();
         state = State.Off;
     }

@@ -9,7 +9,7 @@ public class EnemyDialogue : DisplayDialogue
     
 
     public PlayerMovement playerMovement;
-    public EnemyType enemyType; 
+    public EnemyType enemyType = EnemyType.normalEnemy; 
     public GameManagerScript gameManagerScript;
     public float radius = 1.5f;
 
@@ -20,6 +20,10 @@ public class EnemyDialogue : DisplayDialogue
 
     public List<EnemyStats> battle;
 
+    public static int EnemyCount = 0;
+    [SerializeField]
+    private int myID;
+
     public override void displayFirstDialogue(Dialogue_Set enemyDialogueSet)
     {
         playerMovement.FreezePlayer();
@@ -27,6 +31,8 @@ public class EnemyDialogue : DisplayDialogue
         fightEnemyDialogue?.sendDialogue();
         if (battle != null && battle.Count > 0) {
             GameManagerScript.instance.SetNextbattle(battle);
+            EventSystem.eventController.OnBattleEnd += MyEvent;
+            EventSystem.eventController.killID = myID;
         }
         //gameManagerScript.StartBattle();
     }
@@ -55,6 +61,9 @@ public class EnemyDialogue : DisplayDialogue
 
     private void Start()
     {
+        myID = EnemyCount;
+        EnemyCount++;
+
         if(playerMovement == null)
             playerMovement = FindObjectOfType<PlayerMovement>();    
     }
@@ -84,4 +93,19 @@ public class EnemyDialogue : DisplayDialogue
         return enemyType;
     }
 
+    public void MyEvent(int id = -1) {
+        if (id == myID) {
+            switch (enemyType) {
+                case EnemyType.normalEnemy:
+                    Destroy(gameObject);
+                    Debug.Log("Dissappear");
+                    break;
+                case EnemyType.BossEnemy:
+                    Destroy(gameObject);
+                    Debug.Log("Go To Credits");
+                    break;
+            }
+        }
+        return;
+    }
 }

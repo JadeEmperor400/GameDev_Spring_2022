@@ -64,7 +64,7 @@ public class EnemyStats : BattleEntity
     private void Awake()
     {
         if (GetComponent<SpriteRenderer>() != null) {
-            GetComponent<SpriteRenderer>().sortingLayerName = "Battle";
+            //GetComponent<SpriteRenderer>().sortingLayerName = "Battle";
         }
     }
 
