@@ -5,18 +5,19 @@ using UnityEngine;
 public class BattleBG : MonoBehaviour
 {
     [SerializeField]
-     private MeshRenderer mR;
+     private Renderer mR;
 
     // Start is called before the first frame update
     void Awake()
     {
-        mR = GetComponent<MeshRenderer>();
+        mR = GetComponent<Renderer>();
         if (mR == null) {
             Debug.Log("no mesh renderer");
             enabled = false;
             return;
         }
         mR.sortingLayerName = "BattleBG";
+        mR.sortingOrder = -1;
 
     }
 
@@ -25,10 +26,10 @@ public class BattleBG : MonoBehaviour
     {
         if (BattleManager.BM != null && BattleManager.BM.state != State.Off)
         {
-            mR.enabled = false;
+            mR.enabled = true;
         }
         else {
-            mR.enabled = true;
+            mR.enabled = false;
         }
     }
 }

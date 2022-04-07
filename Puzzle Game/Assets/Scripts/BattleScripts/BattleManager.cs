@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Tilemaps;
 
 
 public enum State{
@@ -124,6 +124,7 @@ public class BattleManager : MonoBehaviour
             playerMovement.FreezePlayer();
             joystick.gameObject.SetActive(false);
             state = State.Start;
+            //DisableSprites();
             player.gameObject.SetActive(true);
 
             if (enemy.Count != 0)
@@ -788,6 +789,7 @@ public class BattleManager : MonoBehaviour
             enemy.Clear();
         }
         player.gameObject.SetActive(false);
+        //EnableSprites();
         state = State.Off;
     }
 
@@ -812,6 +814,50 @@ public class BattleManager : MonoBehaviour
 
             enemy.Clear();
         }
+        //EnableSprites();
         state = State.Off;
+    }
+
+    private void DisableSprites() {
+        SpriteRenderer[] renderers = FindObjectsOfType<SpriteRenderer>();
+
+        foreach (SpriteRenderer sr in renderers) {
+            if (sr.sortingLayerName != "BattleBG" && sr.sortingLayerName != "Battle" && sr.sortingLayerName != "Display" && sr.sortingLayerName != "Overlay") {
+                sr.forceRenderingOff = true;
+            }
+        }
+
+        TilemapRenderer[] tilemapRenderers = FindObjectsOfType<TilemapRenderer>();
+        foreach (TilemapRenderer tr in tilemapRenderers)
+        {
+            if (tr.sortingLayerName != "BattleBG" && tr.sortingLayerName != "Battle" && tr.sortingLayerName != "Display" && tr.sortingLayerName != "Overlay")
+            {
+                tr.forceRenderingOff = true;
+            }
+        }
+
+    }
+
+    private void EnableSprites()
+    {
+        SpriteRenderer[] renderers = FindObjectsOfType<SpriteRenderer>();
+
+        foreach (SpriteRenderer sr in renderers)
+        {
+            if (sr.sortingLayerName != "BattleBG" && sr.sortingLayerName != "Battle" && sr.sortingLayerName != "Display" && sr.sortingLayerName != "Overlay")
+            {
+                sr.forceRenderingOff = false;
+            }
+        }
+
+        TilemapRenderer[] tilemapRenderers = FindObjectsOfType<TilemapRenderer>();
+        foreach (TilemapRenderer tr in tilemapRenderers)
+        {
+            if (tr.sortingLayerName != "BattleBG" && tr.sortingLayerName != "Battle" && tr.sortingLayerName != "Display" && tr.sortingLayerName != "Overlay")
+            {
+                tr.forceRenderingOff = false;
+            }
+        }
+
     }
 }

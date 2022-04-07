@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1869315837
-  m_SortingLayer: 1
+  m_SortingLayerID: -1539952591
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 898ff8f39c3d0184598d499d365da07f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &938523616727684736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,11 +100,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
+  gameManagerScript: {fileID: 0}
   radius: 1.5
   introEnemyDialogue: {fileID: 11400000, guid: 3b7c6e66843e3af4abc12d776e7708f2, type: 2}
   fightEnemyDialogue: {fileID: 11400000, guid: ba3e306bf335ea94f97f17fd63aaa9d3, type: 2}
   winEnemyDialogue: {fileID: 11400000, guid: d4f0c74fd0f73d84c8470a8a67d38883, type: 2}
   lossEnemyDialogue: {fileID: 11400000, guid: ee01a2e58abb4ec4a9e78341be9e12ab, type: 2}
+  battle: []
 --- !u!58 &938523616727684739
 CircleCollider2D:
   m_ObjectHideFlags: 0
