@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
+  enemyType: 1
   gameManagerScript: {fileID: 0}
   radius: 1.5
   introEnemyDialogue: {fileID: 11400000, guid: 243763340df986947ade6592dc0a929d, type: 2}

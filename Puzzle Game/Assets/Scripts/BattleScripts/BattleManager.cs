@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 
@@ -17,6 +18,12 @@ public enum State{
 
 public class BattleManager : MonoBehaviour
 {
+
+    public MusicMotor musicMotor;
+    public MusicState overworldMusicState;
+    public MusicState battleMusicState;
+    public MusicState bossBattleMusicState;
+
     public static BattleManager BM;
     public UltimateJoystick joystick;
     public PlayerMovement playerMovement;
@@ -117,6 +124,8 @@ public class BattleManager : MonoBehaviour
     }
 
     public void BeginBattle(List<EnemyStats> SpawnThese ) {
+       StartCoroutine( musicMotor.changeState(battleMusicState));
+
         if (SpawnThese == null || SpawnThese.Count <= 0)
         {
             return;
@@ -772,11 +781,27 @@ public class BattleManager : MonoBehaviour
 
     private void Victory()
     {
+        StartCoroutine(musicMotor.changeState(overworldMusicState));
         playerMovement.UnFreezePlayer();
         joystick.gameObject.SetActive(true);
         StartCoroutine(VictoryAnimate());
+        DeterminingEndingWin();
     }
+    private void DeterminingEndingWin()
+    {
 
+        StartCoroutine(waitTimeMethod(3.51f));
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if(enemy.Count != 0)
+        {
+            var enemyDialogue = enemy[0].gameObject.GetComponent<EnemyDialogue>();  
+            if(enemyDialogue.GetEnemyType() == EnemyType.BossEnemy)
+            {
+                AudioManager.Instance.StopMusicFadeOut();
+                SceneManager.LoadScene("EndCreditsScene");
+            }
+        }
+    }
     private IEnumerator VictoryAnimate() {
         SetMessage("You Win!!", 2.0f);
         yield return new WaitForSecondsRealtime(3.5f);
@@ -801,25 +826,23 @@ public class BattleManager : MonoBehaviour
         playerMovement.UnFreezePlayer();
         joystick.gameObject.SetActive(true);
         StartCoroutine(GameOverAnimate());
-        DeterminingEnding();
+       
+        DeterminingEndingLoss();
            
     }
 
-    private void DeterminingEnding()
+    private void DeterminingEndingLoss()
     {
-       if(enemy != null)
-        {
-            var enemyDialogue = enemy[0].gameObject.GetComponent<EnemyDialogue>();
-            if(enemyDialogue != null)
-            {
-                if (enemyDialogue.GetEnemyType() == EnemyType.normalEnemy)
-                {
-                   // SceneManager.
-                }
-            }
-        }
+
+        StartCoroutine(waitTimeMethod(3.51f));
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    private IEnumerator waitTimeMethod(float timeToWait)
+    {
+        yield return new WaitForSecondsRealtime(timeToWait);
+    }
     private IEnumerator GameOverAnimate()
     {
         player.gameObject.SetActive(false);

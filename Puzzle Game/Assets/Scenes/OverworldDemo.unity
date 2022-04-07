@@ -311,6 +311,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 834596056836418515, guid: 6f8c2fda4824f0d458282df43b7a47df,
+        type: 3}
+      propertyPath: m_Radius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 834596056836418518, guid: 6f8c2fda4824f0d458282df43b7a47df,
         type: 3}
       propertyPath: EnemyType
@@ -1775,6 +1780,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 105300549}
     m_Modifications:
+    - target: {fileID: -6778336949315987279, guid: f23c8f216f7cf4349962ff641f380991,
+        type: 3}
+      propertyPath: redAff
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2125356674333146480, guid: f23c8f216f7cf4349962ff641f380991,
         type: 3}
       propertyPath: m_Radius
@@ -2758,9 +2768,24 @@ PrefabInstance:
       objectReference: {fileID: 463500263}
     - target: {fileID: 306445597898965906, guid: 8b9424ab548b0904a8deee1c1ba37563,
         type: 3}
+      propertyPath: musicMotor
+      value: 
+      objectReference: {fileID: 2118948144}
+    - target: {fileID: 306445597898965906, guid: 8b9424ab548b0904a8deee1c1ba37563,
+        type: 3}
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 1182452746}
+    - target: {fileID: 306445597898965906, guid: 8b9424ab548b0904a8deee1c1ba37563,
+        type: 3}
+      propertyPath: battleMusicState
+      value: 
+      objectReference: {fileID: 616086960}
+    - target: {fileID: 306445597898965906, guid: 8b9424ab548b0904a8deee1c1ba37563,
+        type: 3}
+      propertyPath: overworldMusicState
+      value: 
+      objectReference: {fileID: 616086958}
     - target: {fileID: 5609383057527772575, guid: 8b9424ab548b0904a8deee1c1ba37563,
         type: 3}
       propertyPath: m_AnchorMax.x
