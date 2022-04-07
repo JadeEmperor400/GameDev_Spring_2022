@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public enum EnemyType { normalEnemy, BossEnemy}
 public class EnemyDialogue : DisplayDialogue
 {
-    
-
     public PlayerMovement playerMovement;
     public EnemyType enemyType = EnemyType.normalEnemy; 
     public GameManagerScript gameManagerScript;
@@ -108,6 +107,7 @@ public class EnemyDialogue : DisplayDialogue
                     Debug.Log("Dissappear");
                     break;
                 case EnemyType.BossEnemy:
+                    SceneManager.LoadScene("EndCreditsScene");
                     Destroy(gameObject);
                     Debug.Log("Go To Credits");
                     break;

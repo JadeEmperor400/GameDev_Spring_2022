@@ -798,7 +798,7 @@ public class BattleManager : MonoBehaviour
             if(enemyDialogue.GetEnemyType() == EnemyType.BossEnemy)
             {
                 AudioManager.Instance.StopMusicFadeOut();
-                SceneManager.LoadScene("EndCreditsScene");
+                //SceneManager.LoadScene("EndCreditsScene");
             }
         }
     }
