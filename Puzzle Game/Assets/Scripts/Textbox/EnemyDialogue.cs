@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum EnemyType { normalEnemy, BossEnemy}
 public class EnemyDialogue : DisplayDialogue
 {
+    
+
     public PlayerMovement playerMovement;
-  
+    public EnemyType enemyType; 
     public GameManagerScript gameManagerScript;
     public float radius = 1.5f;
 
@@ -72,6 +76,12 @@ public class EnemyDialogue : DisplayDialogue
             displayFirstDialogue(introEnemyDialogue);
         }
        
+    }
+
+
+    public EnemyType GetEnemyType()
+    {
+        return enemyType;
     }
 
 }

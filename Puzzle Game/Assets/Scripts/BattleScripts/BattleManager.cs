@@ -797,6 +797,23 @@ public class BattleManager : MonoBehaviour
         playerMovement.UnFreezePlayer();
         joystick.gameObject.SetActive(true);
         StartCoroutine(GameOverAnimate());
+        DeterminingEnding();
+           
+    }
+
+    private void DeterminingEnding()
+    {
+       if(enemy != null)
+        {
+            var enemyDialogue = enemy[0].gameObject.GetComponent<EnemyDialogue>();
+            if(enemyDialogue != null)
+            {
+                if (enemyDialogue.GetEnemyType() == EnemyType.normalEnemy)
+                {
+                   // SceneManager.
+                }
+            }
+        }
     }
 
     private IEnumerator GameOverAnimate()
