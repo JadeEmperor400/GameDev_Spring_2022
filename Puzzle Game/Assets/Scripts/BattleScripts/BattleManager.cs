@@ -810,6 +810,8 @@ public class BattleManager : MonoBehaviour
     {
         StartCoroutine(VictoryAnimate());
         DeterminingEndingWin();
+       
+        joystick.gameObject.SetActive(true);
     }
     private void DeterminingEndingWin()
     {
@@ -843,7 +845,7 @@ public class BattleManager : MonoBehaviour
         }
         player.gameObject.SetActive(false);
         playerMovement.UnFreezePlayer();
-        joystick.gameObject.SetActive(true);
+      
         EventSystem.eventController.BattleEndEvent(EventSystem.eventController.killID);
         EventSystem.eventController.killID = -1;
         //EnableSprites();
