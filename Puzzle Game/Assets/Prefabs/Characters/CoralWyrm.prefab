@@ -110,6 +110,7 @@ MonoBehaviour:
   lossEnemyDialogue: {fileID: 11400000, guid: ca71ad8b6b2fabd439b220e89f6c1d55, type: 2}
   battle:
   - {fileID: 4734137188629812555}
+  myID: 0
 --- !u!58 &834596056836418515
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -271,10 +272,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2ebb9cf16674143b82d4dfb22fd3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 100
+  MaxHP: 3000
   HP: 100
   enemyName: Coral Wyrm
-  staggerLimit: 10
+  staggerLimit: 32
   staggerCount: 0
   redAff: 1
   blueAff: 1
@@ -283,3 +284,9 @@ MonoBehaviour:
   extraCounter: 0
   enemyActions:
   - {fileID: 11400000, guid: 5760a2c751820934a89a0af403724352, type: 2}
+  - {fileID: 11400000, guid: 5760a2c751820934a89a0af403724352, type: 2}
+  - {fileID: 11400000, guid: 806578384c7efa149890106c6ea57dd3, type: 2}
+  - {fileID: 11400000, guid: 868b617cdd1999049be14107d7736b2f, type: 2}
+  - {fileID: 11400000, guid: 868b617cdd1999049be14107d7736b2f, type: 2}
+  - {fileID: 11400000, guid: 9d2f1fa66e4e41a4097f5dacecf54ec5, type: 2}
+  - {fileID: 11400000, guid: c358430f4931c0743b40a37248540722, type: 2}

@@ -83,6 +83,10 @@ public class EnemyStats : BattleEntity
 
         int choose = Random.Range(0, enemyActions.Count);
 
+        if (choose >= enemyActions.Count) {
+            return null;
+        }
+
         return enemyActions[choose];
     }
 }

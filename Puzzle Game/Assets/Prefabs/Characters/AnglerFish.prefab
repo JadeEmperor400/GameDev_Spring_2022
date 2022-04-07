@@ -119,11 +119,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
+  enemyType: 0
+  gameManagerScript: {fileID: 0}
   radius: 1.5
   introEnemyDialogue: {fileID: 11400000, guid: 3b7c6e66843e3af4abc12d776e7708f2, type: 2}
   fightEnemyDialogue: {fileID: 11400000, guid: ba3e306bf335ea94f97f17fd63aaa9d3, type: 2}
   winEnemyDialogue: {fileID: 11400000, guid: d4f0c74fd0f73d84c8470a8a67d38883, type: 2}
   lossEnemyDialogue: {fileID: 11400000, guid: ee01a2e58abb4ec4a9e78341be9e12ab, type: 2}
+  battle:
+  - {fileID: 5053111116586871441, guid: 257f672234007e64f8ad386e17799dbc, type: 3}
+  - {fileID: -6778336949315987279, guid: f23c8f216f7cf4349962ff641f380991, type: 3}
+  myID: 0
 --- !u!58 &938523616727684739
 CircleCollider2D:
   m_ObjectHideFlags: 0

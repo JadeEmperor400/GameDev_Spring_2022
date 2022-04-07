@@ -333,7 +333,7 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator EnemyStunned(EnemyStats user) {
         Debug.Log("ENEMY ACTING : " + user.name + " IS STUNNED!! ");
-        SetMessage(user.name + " Is Stunned!!", 1.5f);
+        SetMessage(user.EnemyName + " Is Stunned!!", 1.5f);
         yield return new WaitForSecondsRealtime(2.25f);
         enemyTurnNo++;
         enemyAct();
@@ -347,7 +347,7 @@ public class BattleManager : MonoBehaviour
         for (int i = 0; i < enemyActions.Count; i++) {
             //TODO: ADD ACTION NOTIFIACTION
             Debug.Log("ENEMY ACTING : " + user.name + " used " + enemyActions[i].name + ".");
-            SetMessage(user.name + " used " + enemyActions[i].name, 1.5f);
+            SetMessage(user.EnemyName + " used " + enemyActions[i].name, 1.5f);
             yield return new WaitForSecondsRealtime(0.5f);
             //TODO: SPAWN DAMAGE NUMBER
             switch (enemyActions[i].actionType) {
@@ -435,7 +435,16 @@ public class BattleManager : MonoBehaviour
 
             }
             int fullStagger = baseStagger + staggerBoost;
-            int fullDmg = DealDamage(baseDamage, supportDMG, fullStagger, comboSize, firstConnectionColorType);
+            int fullDmg;
+            try
+            {
+                fullDmg = DealDamage(baseDamage, supportDMG, fullStagger, comboSize, firstConnectionColorType);
+            }
+            catch (ArgumentOutOfRangeException e) {
+                Debug.Log(e);
+                fullDmg = DealDamage(baseDamage, supportDMG, fullStagger, comboSize, ColorEnum.RED);
+            }
+            
 
             StartCoroutine(DisplayNumber(fullDmg, enemy[targetEnemy].gameObject, Color.white));
             if (TargetEnemy.HP <= 0) {
@@ -563,7 +572,7 @@ public class BattleManager : MonoBehaviour
         switch (colorType)
         {
             case ColorEnum.GREEN:
-                return 0.25f;
+                return 0.10f;
             default:
                 break;
         }
@@ -781,9 +790,6 @@ public class BattleManager : MonoBehaviour
 
     private void Victory()
     {
-        StartCoroutine(musicMotor.changeState(overworldMusicState));
-        playerMovement.UnFreezePlayer();
-        joystick.gameObject.SetActive(true);
         StartCoroutine(VictoryAnimate());
         DeterminingEndingWin();
     }
@@ -803,6 +809,8 @@ public class BattleManager : MonoBehaviour
         }
     }
     private IEnumerator VictoryAnimate() {
+        StartCoroutine(musicMotor.changeState(overworldMusicState));
+        
         SetMessage("You Win!!", 2.0f);
         yield return new WaitForSecondsRealtime(3.5f);
         if (enemy.Count != 0)
@@ -816,6 +824,8 @@ public class BattleManager : MonoBehaviour
             enemy.Clear();
         }
         player.gameObject.SetActive(false);
+        playerMovement.UnFreezePlayer();
+        joystick.gameObject.SetActive(true);
         EventSystem.eventController.BattleEndEvent(EventSystem.eventController.killID);
         EventSystem.eventController.killID = -1;
         //EnableSprites();
@@ -823,8 +833,6 @@ public class BattleManager : MonoBehaviour
     }
 
     private void GameOver() {
-        playerMovement.UnFreezePlayer();
-        joystick.gameObject.SetActive(true);
         StartCoroutine(GameOverAnimate());
        
         DeterminingEndingLoss();
@@ -858,6 +866,10 @@ public class BattleManager : MonoBehaviour
 
             enemy.Clear();
         }
+
+        playerMovement.UnFreezePlayer();
+        joystick.gameObject.SetActive(true);
+        StartCoroutine(musicMotor.changeState(overworldMusicState));
         //EnableSprites();
         state = State.Off;
     }

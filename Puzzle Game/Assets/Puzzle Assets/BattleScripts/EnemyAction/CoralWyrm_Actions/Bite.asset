@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54ff5d476d0b8944c9e9fde3dcffd136, type: 3}
-  m_Name: Plasma Wave
+  m_Script: {fileID: 11500000, guid: 2ed3ada7488990d498f5b1ccdf3637e1, type: 3}
+  m_Name: Bite
   m_EditorClassIdentifier: 
-  power: 100
-  drainRt: 0.25
+  power: 80
+  drainRt: 0.75
   attackAnim: {fileID: 0}
-  stagger: 0
-  type: 2
+  actionType: 0
+  targetType: 0
+  timeReduction: 0
+  barrierReduction: 0

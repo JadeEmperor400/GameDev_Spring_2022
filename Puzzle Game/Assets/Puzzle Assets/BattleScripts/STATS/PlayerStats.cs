@@ -18,9 +18,9 @@ public class PlayerStats : BattleEntity
         set
         {
             barrier = value;
-            if (barrier > 0.9f)
+            if (barrier > 0.5f)
             {
-                barrier = 0.9f;
+                barrier = 0.5f;
             }
 
             if (barrier < -0.5f)
