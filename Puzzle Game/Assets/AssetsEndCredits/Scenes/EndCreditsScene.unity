@@ -336,7 +336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -75, y: -1050}
+  m_AnchoredPosition: {x: -75, y: 27}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &462358126
@@ -530,77 +530,79 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Emil L. (Vulcan#4152)
+  m_Text: 'Emil Lopez. (Vulcan#4152)
 
 
 
 
 
-    Peterson N. (Agent_Pete#0284)
+    Peterson Normil. (Agent_Pete#0284)
 
 
 
 
 
     Sofia
-    H. (sofi_JMJ4ever#0716)
+    Hayden. (sofi_JMJ4ever#0716)
 
 
 
 
 
-    Luis A. (Abstrack#3752)
+    Luis Ahumada. (Abstrack#3752)
 
 
 
 
 
-    Laura D. (HoneyBunny115#8126)
+    Laura
+    Davalos. (HoneyBunny115#8126)
 
 
 
 
 
-    Emanuel
-    R. (Emasaur#5569)
+    Emanuel Rivas. (Emasaur#5569)
 
-    Mark G. (Squeeze#4300)
+    Mark
+    Gonzalez. (Squeeze#4300)
 
-    Jaelene D. (dunkies#0128)
+    Jaelene Dela Cruz. (dunkies#0128)
 
-    Carlos
-    C. (FireHeaven24#8750)
+    Carlos Correa.
+    (FireHeaven24#8750)
 
-    Stephanie C. (Stephie#1173)
+    Stephanie Castillo. (Stephie#1173)
 
-    Rajiv C. (float#0158)
-
-
-
-
-
-
-    Leslie
-    H. (lesliehm#2869)
-
-    Samuel P. (Master Shake#5892)
-
-    Maria R. (Reverie#0260)
-
-    Chenying
-    W. (ChenY#4416)
-
-    Anthony V. (Anthony Velasquez#8038)
+    Rajiv Chevannes.
+    (float#0158)
 
 
 
 
 
 
-    Johnathan
-    M. (It''s-A-Jon#0738)
+    Leslie Hinojosa-Mora. (lesliehm#2869)
 
-    Andres S. (Pious#5865)
+    Samuel Pellot.
+    (Master Shake#5892)
+
+    Maria Rivera. (Reverie#0260)
+
+    Chenying Wu. (ChenY#4416)
+
+    Anthony
+    Velasquez. (Anthony Velasquez#8038)
+
+
+
+
+
+
+    Johnathan Muniz. (It''s-A-Jon#0738)
+
+    Andres
+    Solorzano. (Pious#5865)
 
 '
 --- !u!222 &531336387

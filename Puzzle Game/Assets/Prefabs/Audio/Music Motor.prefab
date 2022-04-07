@@ -263,6 +263,7 @@ Transform:
   - {fileID: 782678514083749381}
   - {fileID: 782678515298380861}
   - {fileID: 782678514186512237}
+  - {fileID: 2940278438634379121}
   m_Father: {fileID: 782678514596757192}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -312,3 +313,48 @@ MonoBehaviour:
   motor: {fileID: 0}
   clip: {fileID: 8300000, guid: e5c889b2fd360b14ab9cfc7a24293042, type: 3}
   overworldMusicState: {fileID: 782678514083749380}
+--- !u!1 &6794049153526930109
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2940278438634379121}
+  - component: {fileID: 8622713585802782184}
+  m_Layer: 0
+  m_Name: BossMusicState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2940278438634379121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6794049153526930109}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 782678514978487089}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8622713585802782184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6794049153526930109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c6b0788d21f2f646ab624a36b4ebdc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motor: {fileID: 782678514596757193}
+  clip: {fileID: 8300000, guid: e649c472cb91ac8488a7969f9e4b1ca8, type: 3}

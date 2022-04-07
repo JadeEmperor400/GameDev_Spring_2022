@@ -23,6 +23,13 @@ public class TitleScreen : MonoBehaviour
 
     }
 
+    public void PlayCredits()
+    {
+        AudioManager.Instance.StopMusicFadeOut();
+        SceneManager.LoadScene(2);
+    }
+
+
     public void QuitGame()
     {
         Debug.Log("Quit");
