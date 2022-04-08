@@ -90,6 +90,14 @@ public class EnemyDialogue : DisplayDialogue
     {
         if (collision.CompareTag("Player"))
         {
+            if (BattleManager.BM != null && BattleManager.BM.state != State.Off) {
+                return;
+            }
+
+            if (EventSystem.eventController.killID != -1) {
+                return;
+            }
+
             displayFirstDialogue(introEnemyDialogue);
         }
     }

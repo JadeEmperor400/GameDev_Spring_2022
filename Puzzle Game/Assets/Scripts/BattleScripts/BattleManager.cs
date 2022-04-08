@@ -197,6 +197,7 @@ public class BattleManager : MonoBehaviour
                 if (enemyType == EnemyType.BossEnemy)
                 {
                     //go to boss music state
+                    enemy[0].transform.position = new Vector3(8,-4,0); 
                     StartCoroutine(musicMotor.changeState(bossBattleMusicState));
                 }
                 else
@@ -376,6 +377,11 @@ public class BattleManager : MonoBehaviour
             //TODO: ADD ACTION NOTIFIACTION
             Debug.Log("ENEMY ACTING : " + user.name + " used " + enemyActions[i].name + ".");
             SetMessage(user.EnemyName + " used " + enemyActions[i].name, 1.5f);
+
+            if (user.GetComponent<Animator>() != null) {
+                user.GetComponent<Animator>().SetTrigger("Attack");
+            }
+
             yield return new WaitForSecondsRealtime(0.5f);
             //TODO: SPAWN DAMAGE NUMBER
             switch (enemyActions[i].actionType) {
