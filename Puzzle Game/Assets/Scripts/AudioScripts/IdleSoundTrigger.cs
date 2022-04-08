@@ -45,6 +45,10 @@ public class IdleSoundTrigger : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
 
+            if (BattleManager.BM != null && BattleManager.BM.state != State.Off) {
+                return;
+            }
+
            StartCoroutine( m_Motor.changeState(preBossTensionMusicState));
 
 

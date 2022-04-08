@@ -23,15 +23,8 @@ public class GameManagerScript : MonoBehaviour
     public static GameManagerScript instance;
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else {
-            Destroy(gameObject);
-            return;
-        }
+
+        instance = this;
 
         if(battleManager == null)
             battleManager = FindObjectOfType<BattleManager>();
