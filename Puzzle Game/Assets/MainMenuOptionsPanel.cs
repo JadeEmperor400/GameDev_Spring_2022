@@ -17,7 +17,6 @@ public class MainMenuOptionsPanel : MonoBehaviour
     private AudioMixer audioMixer;
 
     public Button buttonToSelectAfterClose;
-    public Button buttonToBeSelectedAtFirst;
 
     // Start is called before the first frame update
     void Start()
@@ -67,7 +66,6 @@ public class MainMenuOptionsPanel : MonoBehaviour
     public void OptionsOn()
     {
         optionsPanel.SetActive(true);
-        FirstButton(buttonToBeSelectedAtFirst);
     }
 
 
@@ -81,8 +79,4 @@ public class MainMenuOptionsPanel : MonoBehaviour
         destinationButton.Select();
     }
 
-    public void FirstButton(Button firstButton)
-    {
-        firstButton.Select();
-    }
 }
