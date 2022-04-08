@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class TitleScreen : MonoBehaviour
 {
     public AudioClip mainmenuMusic;
+
+    public Button firstButton;
 
 
     // Start is called before the first frame update
     private void Start()
     {
         AudioManager.Instance.PlayMusicFadeIn(mainmenuMusic);
+        DestinationButton(firstButton);
     }
     public void PlayDemo()
     {
@@ -34,5 +38,10 @@ public class TitleScreen : MonoBehaviour
     {
         Debug.Log("Quit");
         Application.Quit();
+    }
+
+    public void DestinationButton(Button button)
+    {
+        button.Select();
     }
 }
