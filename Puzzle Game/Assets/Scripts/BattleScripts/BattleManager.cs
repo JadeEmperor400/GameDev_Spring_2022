@@ -153,8 +153,13 @@ public class BattleManager : MonoBehaviour
                 if (i == 3) {
                     break;
                 }
+                GameObject g = Instantiate(SpawnThese[i].gameObject);
+                EnemyStats e = g.GetComponent<EnemyStats>();
 
-                EnemyStats e = Instantiate(SpawnThese[i]);
+                if (e == null) {
+                    continue;
+                }
+
                 e.GetComponent<Renderer>().sortingLayerName = "Battle";
                 switch (i) {
                     case 0:
@@ -271,15 +276,16 @@ public class BattleManager : MonoBehaviour
         // First connection color determines attack
         //Subsequent connections stack support effects
         timer.isPause = true;
+
         try
         {
             batteRoutine = StartCoroutine(CalculatePlayerAttack(comboManager.currentComboQueue()));
         }
-        catch (NullReferenceException n) {
+        catch (NullReferenceException n)
+        {
             Debug.Log("NULL REF : " + n);
             batteRoutine = StartCoroutine(CalculatePlayerAttack(null));
         }
-        
 
         //apply attack to enemy
 
@@ -456,7 +462,7 @@ public class BattleManager : MonoBehaviour
             int baseStagger = DetermineSupportStagger(firstConnectionColorType);
             int staggerBoost = 0;
             int supportDMG = 0;
-
+            int length = firstConnection.getLengthOfConnection();
             for(int i = 1; i < comboSize; i++)
             {
                 //subsequent attacks
@@ -466,17 +472,19 @@ public class BattleManager : MonoBehaviour
                 supportDMG += DetermineSupportDamage(colorType);
                 staggerBoost += DetermineSupportStagger(colorType);
                 player.Barrier = player.Barrier + DetermineSupportBarrier(colorType);
-
+                length += combo.getLengthOfConnection();
             }
             int fullStagger = baseStagger + staggerBoost;
             int fullDmg;
+            //minor boost for clearing a lot of blocks
+            length = (length / 10) * 10;
             try
             {
-                fullDmg = DealDamage(baseDamage, supportDMG, fullStagger, comboSize, firstConnectionColorType);
+                fullDmg = DealDamage(baseDamage + length , supportDMG, fullStagger, comboSize, firstConnectionColorType);
             }
             catch (ArgumentOutOfRangeException e) {
                 Debug.Log(e);
-                fullDmg = DealDamage(baseDamage, supportDMG, fullStagger, comboSize, ColorEnum.RED);
+                fullDmg = DealDamage(baseDamage + length, supportDMG, fullStagger, comboSize, ColorEnum.RED);
             }
             
 
@@ -882,9 +890,10 @@ public class BattleManager : MonoBehaviour
     private void DeterminingEndingLoss()
     {
 
-        StartCoroutine(waitTimeMethod(3.51f));
-        
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //StartCoroutine(waitTimeMethod(3.51f));
+
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //playerMovement.transform.position = Vector3.zero;
     }
 
     private IEnumerator waitTimeMethod(float timeToWait)
@@ -896,6 +905,7 @@ public class BattleManager : MonoBehaviour
         player.gameObject.SetActive(false);
         SetMessage("You Lose!!", 2.0f);
         yield return new WaitForSecondsRealtime(3.5f);
+
         if (enemy.Count != 0)
         {
             foreach (EnemyStats e in enemy)
@@ -906,7 +916,9 @@ public class BattleManager : MonoBehaviour
 
             enemy.Clear();
         }
-
+        EventSystem.eventController.killID = -1;
+        playerMovement.transform.position = Vector3.zero;
+        playerMovement.movePoint.position = Vector3.zero;
         playerMovement.UnFreezePlayer();
         joystick.gameObject.SetActive(true);
         StartCoroutine(musicMotor.changeState(overworldMusicState));

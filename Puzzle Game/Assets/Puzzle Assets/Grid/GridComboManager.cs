@@ -10,8 +10,10 @@ public class GridComboManager : MonoBehaviour
     [SerializeField]
     private float fallTimer = 0.0f;
     [SerializeField]
-    private float fallTimeMax = 6.0f;
+    private float fallTimeMax = 3.0f;
     private bool countFall = false;
+    [SerializeField]
+    private ComboIndicator comboIndicator;
 
     public void AddToCombo(List<GameObject> connectionList) 
     {
@@ -22,21 +24,22 @@ public class GridComboManager : MonoBehaviour
         //take that newly made connection and add it to the combo
         if(connection != null)
         combo.AddConnection(connection);
-
-
+        comboIndicator.Boost(currentComboQueue().Count);
 
         if (!countFall)
         {
             countFall = true;
             fallTimer = 0;
+            if(currentComboQueue().Count == 1)
+                comboIndicator.SetColor(connection);
         }
         else {
+
             fallTimer -= 0.5f;
             if (fallTimer < 0) {
                 fallTimer = 0;
             }
         }
-        
     }
 
     public void Update()
@@ -84,8 +87,8 @@ public class GridComboManager : MonoBehaviour
 
     public void ClearCombo()
     {
-       
         combo.ClearCombo();
+        comboIndicator.ClearComboIndicator();
     }
 
     //GETTERS AND SETTERS
