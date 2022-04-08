@@ -692,11 +692,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: Template2D
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: D:\Git\GameDevSpring2022\Puzzle Game\Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: Spark Dev
+  metroCertificateIssuer: Spark Dev
+  metroCertificateNotAfter: 809ef056096ad901
   metroApplicationDescription: Template_2D
   wsaImages: {}
   metroTileShortName: Puzzle Game
