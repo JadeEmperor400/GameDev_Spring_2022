@@ -21,7 +21,7 @@ public class TargetFire : MonoBehaviour
                 return;
             }
 
-            transform.position = new Vector3( es.transform.position.x - 1f, es.transform.position.y, 0);
+            transform.position = new Vector3( es.transform.position.x - 1f, es.transform.position.y - 0.5f, 0);
             if (es.HP <= 0)
             {
                 GetComponent<SpriteRenderer>().color = Color.clear;

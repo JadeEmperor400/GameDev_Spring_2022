@@ -1,7 +1,13 @@
 fileFormatVersion: 2
-guid: 3e227201d21437d41aea1ce68a175ede
+guid: fc281df79beda324ba0bd5a33e2a24ae
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1404134127541556241
+    second: HiraethEnemyHealthBar_Final_0
+  - first:
+      213: 3721171241338779125
+    second: HiraethEnemyHealthBar_Final_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -125,7 +131,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: HiraethEnemyHealthBar_Final_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 44
+        height: 16
+      alignment: 9
+      pivot: {x: 0.6363636, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: febe1ee4373838ce0800000000000000
+      internalID: -1404134127541556241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HiraethEnemyHealthBar_Final_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 0
+        width: 32
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f5b564478144a330800000000000000
+      internalID: 3721171241338779125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

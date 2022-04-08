@@ -158,13 +158,13 @@ public class BattleManager : MonoBehaviour
                 e.GetComponent<Renderer>().sortingLayerName = "Battle";
                 switch (i) {
                     case 0:
-                        e.gameObject.transform.position = new Vector3(5,-0.5f,0);
+                        e.gameObject.transform.position = new Vector3(6,-0.5f,0);
                         break;
                     case 1:
-                        e.gameObject.transform.position = new Vector3(7, -3.5f, 0);
+                        e.gameObject.transform.position = new Vector3(8, -3.5f, 0);
                         break;
                     case 2:
-                        e.gameObject.transform.position = new Vector3(7, 1.5f, 0);
+                        e.gameObject.transform.position = new Vector3(8, 1.5f, 0);
                         break;
                 }
 
@@ -182,7 +182,17 @@ public class BattleManager : MonoBehaviour
 
             if (enemy.Count != 0)
             {
-                var enemyType = enemy[0].gameObject.GetComponent<EnemyDialogue>().GetEnemyType();
+                EnemyType enemyType = EnemyType.normalEnemy;
+
+                try
+                {
+                    enemyType = enemy[0].gameObject.GetComponent<EnemyDialogue>().GetEnemyType();
+                }
+                catch (Exception e) {
+                    Debug.Log("No Dialogue, Defaulting to normal enemy : \n\t" + e);
+                    enemyType = EnemyType.normalEnemy;
+                }
+                
                 Debug.Log(enemyType);
                 if (enemyType == EnemyType.BossEnemy)
                 {
@@ -523,25 +533,29 @@ public class BattleManager : MonoBehaviour
 
     private int DealDamage(int baseDMG, int supportDMG, int stagger, int comboSize, ColorEnum attackType)
     {
+        if (TargetEnemy == null) {
+            return 0;
+        }
+
         int fullDamage = baseDMG + supportDMG;
 
         float comboMult = 1;
         
         if (comboSize > 1) {
-            comboMult += (comboSize - 1) * 0.25f; ;
+            comboMult += (comboSize - 1) * 0.25f;
         }
 
         float colorMult = 1.0f;
 
         switch (attackType) {
             case ColorEnum.RED:
-                colorMult = enemy[targetEnemy].RedAff;
+                colorMult = TargetEnemy.RedAff;
                 break;
             case ColorEnum.BLUE:
-                colorMult = enemy[targetEnemy].BlueAff;
+                colorMult = TargetEnemy.BlueAff;
                 break;
             case ColorEnum.GREEN:
-                colorMult = enemy[targetEnemy].GreenAff;
+                colorMult = TargetEnemy.GreenAff;
                 break;
         }
 
@@ -549,8 +563,8 @@ public class BattleManager : MonoBehaviour
 
         fullDamage = (int)(fullDamage * comboMult * colorMult);
         
-        enemy[targetEnemy].TakeDamage(fullDamage);
-        enemy[targetEnemy].staggerCount += stagger;
+        TargetEnemy.TakeDamage(fullDamage);
+        TargetEnemy.staggerCount += stagger;
 
         //TODO: Call EnemyDamageNotification
 
