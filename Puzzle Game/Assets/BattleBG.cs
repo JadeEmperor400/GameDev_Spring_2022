@@ -17,7 +17,7 @@ public class BattleBG : MonoBehaviour
             return;
         }
         mR.sortingLayerName = "BattleBG";
-        mR.sortingOrder = -1;
+        mR.sortingOrder = -10;
 
     }
 

@@ -10,7 +10,7 @@ public class EnemyHPBAR : MonoBehaviour
     private void Start()
     {
         ownerStats = GetComponentInParent<BattleEntity>();
-        transform.localPosition = new Vector3(0,-0.75f,0);
+        transform.localPosition = new Vector3(0.5f,-1f,0);
 
         if (ownerStats == null) {
             gameObject.SetActive(false);

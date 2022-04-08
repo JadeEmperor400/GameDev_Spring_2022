@@ -1,7 +1,13 @@
 fileFormatVersion: 2
-guid: 3e227201d21437d41aea1ce68a175ede
+guid: 07b7ea5fe07673e4582c6964c37b8cb7
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -8446057601162044473
+    second: The_HP_Bar_0
+  - first:
+      213: 4815607215615113311
+    second: The_HP_Bar_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -125,7 +131,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: The_HP_Bar_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 46
+        height: 16
+      alignment: 9
+      pivot: {x: 0.65217394, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cb9f326c5399ca80800000000000000
+      internalID: -8446057601162044473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_HP_Bar_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 32
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f58fb889f3974d240800000000000000
+      internalID: 4815607215615113311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
