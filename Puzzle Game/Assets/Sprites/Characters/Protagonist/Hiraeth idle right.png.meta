@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 5fea58530cb43d545bfc30d3e017efcb
+guid: 2ea6b505a3d5e0d4aa01d14d3b3b3ef7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8974962204493860231
-    second: Hiraeth side_0
+      213: 2041509762009369813
+    second: Hiraeth idle right_0
   - first:
-      213: 6408734426669816719
-    second: Hiraeth side_1
+      213: 8615534077895460584
+    second: Hiraeth idle right_1
   - first:
-      213: -6030205530501679120
-    second: Hiraeth side_2
+      213: 2291123293572909936
+    second: Hiraeth idle right_2
   - first:
-      213: 2928345456155321421
-    second: Hiraeth side_3
+      213: 2160979735605828858
+    second: Hiraeth idle right_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -100,6 +100,18 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -139,85 +151,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hiraeth side_0
+      name: Hiraeth idle right_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 6
         y: 0
-        width: 32
+        width: 20
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78dc967d2987d8c70800000000000000
-      internalID: 8974962204493860231
+      spriteID: 5dc8f0aef46e45c10800000000000000
+      internalID: 2041509762009369813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hiraeth side_1
+      name: Hiraeth idle right_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 38
         y: 0
-        width: 32
-        height: 32
+        width: 20
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8b9871910660f850800000000000000
-      internalID: 6408734426669816719
+      spriteID: 8e64b37c896809770800000000000000
+      internalID: 8615534077895460584
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hiraeth side_2
+      name: Hiraeth idle right_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 70
         y: 0
-        width: 32
-        height: 32
+        width: 20
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f7f9d7f408605ca0800000000000000
-      internalID: -6030205530501679120
+      spriteID: 07b49022f74bbcf10800000000000000
+      internalID: 2291123293572909936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hiraeth side_3
+      name: Hiraeth idle right_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 102
         y: 0
-        width: 32
-        height: 32
+        width: 20
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4464c56da293a820800000000000000
-      internalID: 2928345456155321421
+      spriteID: afc5a93ce975dfd10800000000000000
+      internalID: 2160979735605828858
       vertices: []
       indices: 
       edges: []

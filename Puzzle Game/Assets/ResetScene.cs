@@ -22,4 +22,8 @@ public class ResetScene : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void GoToTitle() {
+        SceneManager.LoadScene(0);
+    }
 }
