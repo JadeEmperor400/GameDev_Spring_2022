@@ -16,6 +16,7 @@ public class MainMenuOptionsPanel : MonoBehaviour
     [SerializeField]
     private AudioMixer audioMixer;
 
+    public Button buttonToSelectAfterClose;
 
     // Start is called before the first frame update
     void Start()
@@ -33,9 +34,13 @@ public class MainMenuOptionsPanel : MonoBehaviour
     void Update()
     {
 
+        if (Input.GetKeyDown("joystick button 1"))
+        {
+            OptionsOff();
+            DestinationButton(buttonToSelectAfterClose);
+        }
+        
     }
-
-   
 
     public void SetMasterVolume(float masterVolume)
     {
@@ -68,4 +73,10 @@ public class MainMenuOptionsPanel : MonoBehaviour
     {
         optionsPanel.SetActive(false);
     }
+
+    public void DestinationButton(Button destinationButton)
+    {
+        destinationButton.Select();
+    }
+
 }
