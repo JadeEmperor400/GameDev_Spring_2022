@@ -38,7 +38,7 @@ public class GridManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> allTilesInGrid = new List<GameObject>(); //private list must be initialized, reference to all tiles in the grid 
     public List<GameObject> connectedTiles; //currently connected tiles
-
+    public SpriteRenderer dimmer;
     private Coroutine coroutine;
 
     private bool falling = false;
@@ -52,7 +52,14 @@ public class GridManager : MonoBehaviour
        
     }
 
-   private void GenerateGrid()
+    private void Update()
+    {
+        if (dimmer != null) {
+            dimmer.enabled = falling;
+        }
+    }
+
+    private void GenerateGrid()
     {
         allTilesInGrid.Clear();
         for (int x = 0; x < width; x++)
@@ -388,10 +395,10 @@ public class GridManager : MonoBehaviour
                     }
                 }
             }
-            yield return new WaitForSeconds(1 / ((float) allTilesInGrid.Count / Time.timeScale));
+            yield return new WaitForSecondsRealtime(1 / ((float) allTilesInGrid.Count));
         } Debug.Log("Drop : Reach End of Initial Setup");
 
-        yield return new WaitForSeconds(1/(30.0f / Time.timeScale));
+        yield return new WaitForSecondsRealtime(1/(30.0f));
         //Remove Tile
 
         Debug.Log("Drop: Start of Remove Tile");
@@ -402,7 +409,7 @@ public class GridManager : MonoBehaviour
             g.transform.localPosition = new Vector2 (g.transform.localPosition.x, height * offset);
             g.GetComponent<Tile>().SetInUse(false);
             g.SetActive(false);
-            yield return new WaitForSeconds(1 /( 60.0f / Time.timeScale));
+            yield return new WaitForSecondsRealtime(1 /( 60.0f));
         }
         Debug.Log("Drop: End of Remove Tile");
 
@@ -431,7 +438,7 @@ public class GridManager : MonoBehaviour
                     else {
                         tile.transform.localPosition = Vector3.Lerp(startLoc, gridPlacement, lerpTime/lerpFull);
                     }
-                    yield return new WaitForSeconds(1 / ((60.0f / Time.timeScale) * drops.Count));
+                    yield return new WaitForSecondsRealtime(1 / ((60.0f) * drops.Count));
                 }//End of Lerp
 
             }
@@ -473,7 +480,7 @@ public class GridManager : MonoBehaviour
                     {
                         tile.transform.localPosition = Vector3.Lerp(startLoc, gridPlacement, lerpTime / lerpFull);
                     }
-                    yield return new WaitForSeconds(2.0f / ((60.0f / Time.timeScale) * usedTiles.Count));
+                    yield return new WaitForSecondsRealtime(1.0f / ((60.0f) * usedTiles.Count));
                 }//End of Lerp
 
             }
@@ -484,7 +491,7 @@ public class GridManager : MonoBehaviour
 
         //Clear Connected Tiles
         RemoveTilesInList();
-
+        yield return new WaitForSecondsRealtime(0.33f);
         falling = false;
         coroutine = null;
         yield break;
