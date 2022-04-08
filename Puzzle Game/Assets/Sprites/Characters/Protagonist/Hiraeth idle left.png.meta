@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 0cc6f3a4106398848afb98bfdba1386c
+guid: 2ccc857494bc75e4488f3b9a9fcdd929
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6745792091089371945
-    second: Hiraeth sidewalk_0
+      213: -1533487412549891756
+    second: Hiraeth idle left_0
   - first:
-      213: -3091942113764747566
-    second: Hiraeth sidewalk_1
+      213: 962211638897779366
+    second: Hiraeth idle left_1
   - first:
-      213: -4038486616531728662
-    second: Hiraeth sidewalk_2
+      213: -1540084500493905888
+    second: Hiraeth idle left_2
   - first:
-      213: 6452720556016496771
-    second: Hiraeth sidewalk_3
+      213: -6488098871934403723
+    second: Hiraeth idle left_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -100,6 +100,18 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -139,85 +151,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hiraeth sidewalk_0
+      name: Hiraeth idle left_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 6
         y: 0
-        width: 32
-        height: 32
+        width: 20
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 2}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92385068a2edd9d50800000000000000
-      internalID: 6745792091089371945
+      spriteID: 4594e63b255f7bae0800000000000000
+      internalID: -1533487412549891756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hiraeth sidewalk_1
+      name: Hiraeth idle left_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 38
         y: 0
-        width: 32
-        height: 32
+        width: 20
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d65bf287073715d0800000000000000
-      internalID: -3091942113764747566
+      spriteID: 6a2af3733667a5d00800000000000000
+      internalID: 962211638897779366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hiraeth sidewalk_2
+      name: Hiraeth idle left_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 70
         y: 0
-        width: 32
-        height: 32
+        width: 20
+        height: 31
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae6057fa1d964f7c0800000000000000
-      internalID: -4038486616531728662
+      spriteID: 020d9f77e4580aae0800000000000000
+      internalID: -1540084500493905888
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hiraeth sidewalk_3
+      name: Hiraeth idle left_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 102
         y: 0
-        width: 32
+        width: 20
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3807930682bac8950800000000000000
-      internalID: 6452720556016496771
+      spriteID: 57bbcbe8374a5f5a0800000000000000
+      internalID: -6488098871934403723
       vertices: []
       indices: 
       edges: []
