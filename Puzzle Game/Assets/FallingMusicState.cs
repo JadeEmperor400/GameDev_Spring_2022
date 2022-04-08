@@ -38,16 +38,12 @@ public class FallingMusicState : MusicState
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
         if (collision.CompareTag("Player"))
         {
-            StartCoroutine(motor.changeState(overworldState)) ;
+            StartCoroutine(motor.changeState(overworldState));
         }
     }
+
+
 
 }
