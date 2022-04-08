@@ -12,4 +12,5 @@ public class SkipEndCreds : MonoBehaviour
         skipbutton.SetActive(false);
         SceneManager.LoadScene(StartingScreen);
     }
+    
 }
