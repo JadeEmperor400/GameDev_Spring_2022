@@ -281,7 +281,7 @@ public class BattleManager : MonoBehaviour
         {
             batteRoutine = StartCoroutine(CalculatePlayerAttack(comboManager.currentComboQueue()));
         }
-        catch (NullReferenceException n)
+        catch (Exception n)
         {
             Debug.Log("NULL REF : " + n);
             batteRoutine = StartCoroutine(CalculatePlayerAttack(null));
@@ -462,7 +462,6 @@ public class BattleManager : MonoBehaviour
             int baseStagger = DetermineSupportStagger(firstConnectionColorType);
             int staggerBoost = 0;
             int supportDMG = 0;
-            int length = firstConnection.getLengthOfConnection();
             for(int i = 1; i < comboSize; i++)
             {
                 //subsequent attacks
@@ -472,19 +471,17 @@ public class BattleManager : MonoBehaviour
                 supportDMG += DetermineSupportDamage(colorType);
                 staggerBoost += DetermineSupportStagger(colorType);
                 player.Barrier = player.Barrier + DetermineSupportBarrier(colorType);
-                length += combo.getLengthOfConnection();
             }
             int fullStagger = baseStagger + staggerBoost;
             int fullDmg;
             //minor boost for clearing a lot of blocks
-            length = (length / 10) * 10;
             try
             {
-                fullDmg = DealDamage(baseDamage + length , supportDMG, fullStagger, comboSize, firstConnectionColorType);
+                fullDmg = DealDamage(baseDamage , supportDMG, fullStagger, comboSize, firstConnectionColorType);
             }
             catch (ArgumentOutOfRangeException e) {
                 Debug.Log(e);
-                fullDmg = DealDamage(baseDamage + length, supportDMG, fullStagger, comboSize, ColorEnum.RED);
+                fullDmg = DealDamage(baseDamage, supportDMG, fullStagger, comboSize, ColorEnum.RED);
             }
             
 
