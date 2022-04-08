@@ -6,6 +6,7 @@ public class OverworldMusicState : MusicState
 {
     public MusicState battleMusicState;
     public MusicState PreBossTensionMusicState;
+    public MusicState fallingMusicState;
 
     // Start is called before the first frame update
     void Start()
@@ -45,5 +46,13 @@ public class OverworldMusicState : MusicState
 
     }
 
-   
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player") )
+        {
+            StartCoroutine(motor.changeState(fallingMusicState));
+        }
+    }
+
+
 }
