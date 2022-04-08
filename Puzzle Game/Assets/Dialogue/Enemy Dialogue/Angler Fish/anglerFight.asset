@@ -17,4 +17,15 @@ MonoBehaviour:
     line: "Oh, you didn\u2019t know? Blood is the main ingredient."
   - profile: {fileID: 0}
     line: "_sWhoops, I wasn\u2019t supposed to tell you yet. Oh well."
+  - profile: {fileID: 0}
+    line: By the way, do you know these guys?
+  - profile: {fileID: 6412501608689972254, guid: 1dd26dec890a5d849909d4bb65ffa082,
+      type: 3}
+    line: You were so mean. . .
+  - profile: {fileID: 8139253815935481400, guid: 1ec57adf2c2e6c548945304c5beb4787,
+      type: 3}
+    line: Time for our revenge.
+  - profile: {fileID: 4750381190942943263, guid: 1dd26dec890a5d849909d4bb65ffa082,
+      type: 3}
+    line: I'd rather run- Oh we're still doing this.
   linkedSet: []

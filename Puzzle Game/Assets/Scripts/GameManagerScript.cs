@@ -68,10 +68,20 @@ public class GameManagerScript : MonoBehaviour
     public void SetNextbattle(List<EnemyStats> enemyStats) {
         if(enemyStats == null || enemyStats.Count <= 0){
             return;
-
         }
 
-        nextBattle = enemyStats;
+        nextBattle = new List<EnemyStats>();
+
+        for (int i = 0; i < enemyStats.Count; i++) {
+            if (enemyStats[i] == null) {
+                continue;
+            }
+            nextBattle.Add(enemyStats[i]);
+        }
+
+        if (nextBattle.Count == 0) {
+            nextBattle = null;
+        }
     }
 
     public void ClearNextBattle() {
