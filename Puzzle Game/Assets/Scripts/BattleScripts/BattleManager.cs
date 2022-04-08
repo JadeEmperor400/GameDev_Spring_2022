@@ -279,7 +279,14 @@ public class BattleManager : MonoBehaviour
 
         try
         {
-            batteRoutine = StartCoroutine(CalculatePlayerAttack(comboManager.currentComboQueue()));
+            if (comboManager.currentComboQueue() == null)
+            {
+                batteRoutine = StartCoroutine(CalculatePlayerAttack(null));
+
+            }
+            else {
+                batteRoutine = StartCoroutine(CalculatePlayerAttack(comboManager.currentComboQueue()));
+            }
         }
         catch (Exception n)
         {
