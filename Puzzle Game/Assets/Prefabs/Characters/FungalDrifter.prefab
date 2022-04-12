@@ -273,14 +273,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2ebb9cf16674143b82d4dfb22fd3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 1500
+  MaxHP: 1250
   HP: 100
   enemyName: Fungal Drifter
-  staggerLimit: 24
+  staggerLimit: 20
   staggerCount: 0
-  redAff: 1
+  redAff: 0.9
   blueAff: 1.25
-  greenAff: 0.85
+  greenAff: 0.9
   extraTurnTimer: 2
   extraCounter: 0
   enemyActions:

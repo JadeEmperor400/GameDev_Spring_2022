@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed3ada7488990d498f5b1ccdf3637e1, type: 3}
   m_Name: Sparkler
   m_EditorClassIdentifier: 
-  power: 90
+  power: 80
   drainRt: 0.5
   attackAnim: {fileID: 0}
   actionType: 0
   targetType: 0
-  timeReduction: 1.5
-  barrierReduction: 0.25
+  timeReduction: 0.5
+  barrierReduction: 0.125

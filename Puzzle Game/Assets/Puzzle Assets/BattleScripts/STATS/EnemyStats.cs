@@ -50,6 +50,7 @@ public class EnemyStats : BattleEntity
 
         if (staggerCount >= staggerLimit) {
             staggerCount = 0;
+            extraCounter = 0;
         }
 
         if (extraCounter >= extraTurnTimer)
