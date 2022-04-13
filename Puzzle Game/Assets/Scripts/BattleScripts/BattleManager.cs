@@ -342,7 +342,7 @@ public class BattleManager : MonoBehaviour
 
         if (randomizedEnemies[enemyTurnNo].staggerCount >= randomizedEnemies[enemyTurnNo].staggerLimit) {
             //Display Enemy Stun Message
-            randomizedEnemies[enemyTurnNo].staggerCount = 0;
+            //randomizedEnemies[enemyTurnNo].staggerCount = 0;
 
             Debug.Log(randomizedEnemies[enemyTurnNo].name + " is stunned");
             batteRoutine = StartCoroutine(EnemyStunned(randomizedEnemies[enemyTurnNo]));
@@ -351,7 +351,6 @@ public class BattleManager : MonoBehaviour
 
         if (randomizedEnemies[enemyTurnNo].extraCounter >= enemy[enemyTurnNo].extraTurnTimer) {
             actions = 2;
-            randomizedEnemies[enemyTurnNo].extraCounter = 0;
         }
 
         List<EnemyAction> ea = new List<EnemyAction>();
@@ -366,15 +365,12 @@ public class BattleManager : MonoBehaviour
             ea.Add(getAct);
         }
 
-        if (actions < 2) {
-            randomizedEnemies[enemyTurnNo].extraCounter++;
-        }
-
         batteRoutine = StartCoroutine(EnemyActionPlay(randomizedEnemies[enemyTurnNo], ea));
     }
 
     private IEnumerator EnemyStunned(EnemyStats user) {
         Debug.Log("ENEMY ACTING : " + user.name + " IS STUNNED!! ");
+        user.PassTurn();
         SetMessage(user.EnemyName + " Is Stunned!!", 1.5f);
         yield return new WaitForSecondsRealtime(2.25f);
         enemyTurnNo++;
@@ -443,6 +439,7 @@ public class BattleManager : MonoBehaviour
         }
 
         enemyTurnNo++;
+        user.PassTurn();
         enemyAct();
         yield break;
     }
@@ -486,16 +483,19 @@ public class BattleManager : MonoBehaviour
             {
                 fullDmg = DealDamage(baseDamage , supportDMG, fullStagger, comboSize, firstConnectionColorType);
             }
-            catch (ArgumentOutOfRangeException e) {
+            catch (Exception e) {
                 Debug.Log(e);
                 fullDmg = DealDamage(baseDamage, supportDMG, fullStagger, comboSize, ColorEnum.RED);
             }
-            
 
-            StartCoroutine(DisplayNumber(fullDmg, enemy[targetEnemy].gameObject, Color.white));
-            if (TargetEnemy.HP <= 0) {
-                TargetEnemy.gameObject.SetActive(false);
+            if (TargetEnemy != null) {
+                StartCoroutine(DisplayNumber(fullDmg, TargetEnemy.gameObject, Color.white));
+                if (TargetEnemy.HP <= 0)
+                {
+                    TargetEnemy.gameObject.SetActive(false);
+                }
             }
+
             yield return new WaitForSecondsRealtime(0.25f);
 
             int drainHeal = (int)(fullDmg * DetermineDrainRt(firstConnectionColorType));
@@ -702,7 +702,7 @@ public class BattleManager : MonoBehaviour
     public void TargetValidEnemy() {
 
         for (int i = 0; i < enemy.Count; i++) {
-            if (enemy[i].HP <= 0)
+            if (enemy[i] == null || enemy[i].HP <= 0 )
             {
                 continue;
             }
@@ -884,7 +884,7 @@ public class BattleManager : MonoBehaviour
         state = State.Off;
     }
 
-    private void GameOver() {
+    public void GameOver() {
         StartCoroutine(GameOverAnimate());
        
         DeterminingEndingLoss();

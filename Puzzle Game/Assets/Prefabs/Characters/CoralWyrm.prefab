@@ -281,13 +281,17 @@ MonoBehaviour:
   redAff: 1
   blueAff: 1
   greenAff: 1
+  wild: 0
   extraTurnTimer: 3
   extraCounter: 0
   enemyActions:
+  - {fileID: 11400000, guid: c358430f4931c0743b40a37248540722, type: 2}
   - {fileID: 11400000, guid: 5760a2c751820934a89a0af403724352, type: 2}
-  - {fileID: 11400000, guid: 5760a2c751820934a89a0af403724352, type: 2}
+  - {fileID: 11400000, guid: 9d2f1fa66e4e41a4097f5dacecf54ec5, type: 2}
   - {fileID: 11400000, guid: 806578384c7efa149890106c6ea57dd3, type: 2}
   - {fileID: 11400000, guid: 868b617cdd1999049be14107d7736b2f, type: 2}
+  - {fileID: 11400000, guid: c358430f4931c0743b40a37248540722, type: 2}
+  - {fileID: 11400000, guid: 5760a2c751820934a89a0af403724352, type: 2}
   - {fileID: 11400000, guid: 868b617cdd1999049be14107d7736b2f, type: 2}
   - {fileID: 11400000, guid: 9d2f1fa66e4e41a4097f5dacecf54ec5, type: 2}
-  - {fileID: 11400000, guid: c358430f4931c0743b40a37248540722, type: 2}
+  - {fileID: 11400000, guid: 868b617cdd1999049be14107d7736b2f, type: 2}

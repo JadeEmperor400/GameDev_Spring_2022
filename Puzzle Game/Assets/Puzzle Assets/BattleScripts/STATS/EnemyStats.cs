@@ -19,6 +19,12 @@ public class EnemyStats : BattleEntity
     [SerializeField]
     private float redAff = 1.0f, blueAff = 1.0f, greenAff = 1.0f;
 
+    [Tooltip("Enemy behavior is randomized")]
+    [SerializeField]
+    private bool wild = false;
+
+    private int turnCount = 0;
+
     public float RedAff {
         get { return redAff; }
     }
@@ -51,9 +57,9 @@ public class EnemyStats : BattleEntity
         if (staggerCount >= staggerLimit) {
             staggerCount = 0;
             extraCounter = 0;
+            turnCount = 0;
         }
-
-        if (extraCounter >= extraTurnTimer)
+        else if (extraCounter >= extraTurnTimer)
         {
             extraCounter = 0;
         }
@@ -82,12 +88,25 @@ public class EnemyStats : BattleEntity
             return null;
         }
 
-        int choose = Random.Range(0, enemyActions.Count);
+        if (wild)
+        {
+            int choose = Random.Range(0, enemyActions.Count);
 
-        if (choose >= enemyActions.Count) {
-            return null;
+            if (choose >= enemyActions.Count)
+            {
+                return null;
+            }
+
+            return enemyActions[choose];
         }
-
-        return enemyActions[choose];
+        else {
+            int callAction = turnCount + 0;
+            turnCount++;
+            if (enemyActions.Count == turnCount) {
+                turnCount = 0;
+            }
+            return enemyActions[callAction];
+        }
+        return null;
     }
 }
